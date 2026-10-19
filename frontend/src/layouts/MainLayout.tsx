@@ -1,0 +1,19 @@
+import { Outlet } from 'react-router-dom';
+import { Navbar } from '../components/Navbar';
+import { Footer } from '../components/Footer';
+import { ScrollToTop } from '../components/ScrollToTop';
+import { WhatsAppFloat } from '../components/WhatsAppFloat';
+
+export function MainLayout() {
+  return (
+    <div className="min-h-screen flex flex-col bg-white">
+      <Navbar />
+      <main className="flex-1 pt-16 lg:pt-20" id="main-content" role="main">
+        <Outlet />
+      </main>
+      <Footer />
+      <ScrollToTop />
+      <WhatsAppFloat />
+    </div>
+  );
+}
