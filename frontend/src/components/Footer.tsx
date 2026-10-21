@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
-import { Phone, Mail, MapPin, MessageSquare } from 'lucide-react';
+import { Phone, MapPin, Mail } from 'lucide-react';
+import { FaWhatsapp, FaInstagram } from 'react-icons/fa';
 import { businessConfig } from '../config/business';
-import { getWhatsAppUrl, getDefaultWhatsAppMessage } from '../utils/helpers';
 
 const footerLinks = {
   services: [
@@ -26,8 +26,6 @@ const footerLinks = {
 };
 
 export function Footer() {
-  const whatsappUrl = getWhatsAppUrl(getDefaultWhatsAppMessage());
-  const phoneUrl = `tel:+91${businessConfig.contact.phone}`;
   const emailUrl = `mailto:${businessConfig.contact.email}`;
 
   const currentYear = new Date().getFullYear();
@@ -47,31 +45,6 @@ export function Footer() {
               Your trusted partner for digital services in Village Bhanpura, Kaithal, Haryana.
               We provide assistance with online forms, payments, documents, photos, and certificates.
             </p>
-            <div className="flex items-center gap-4">
-              <a
-                href={phoneUrl}
-                className="text-gray-400 hover:text-white transition-colors"
-                aria-label="Call us"
-              >
-                <Phone className="w-5 h-5" aria-hidden="true" />
-              </a>
-              <a
-                href={emailUrl}
-                className="text-gray-400 hover:text-white transition-colors"
-                aria-label="Email us"
-              >
-                <Mail className="w-5 h-5" aria-hidden="true" />
-              </a>
-              <a
-                href={whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-green-400 hover:text-green-300 transition-colors"
-                aria-label="WhatsApp"
-              >
-                <MessageSquare className="w-5 h-5" aria-hidden="true" />
-              </a>
-            </div>
           </div>
 
           <div>
@@ -118,20 +91,26 @@ export function Footer() {
               </div>
               <div className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-primary-400 flex-shrink-0" aria-hidden="true" />
-                <a href={phoneUrl} className="text-gray-400 hover:text-white transition-colors">
+                <a href="tel:9541611393" className="text-gray-400 hover:text-white transition-colors">
                   {businessConfig.contact.phone}
                 </a>
               </div>
               <div className="flex items-center gap-3">
-                <MessageSquare className="w-5 h-5 text-green-500 flex-shrink-0" aria-hidden="true" />
-                <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+                <FaWhatsapp className="w-5 h-5 text-[#25D366] flex-shrink-0" aria-hidden="true" />
+                <a href="https://wa.me/919541611393" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
                   WhatsApp: {businessConfig.contact.whatsapp}
                 </a>
               </div>
               <div className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-primary-400 flex-shrink-0" aria-hidden="true" />
-                <a href={emailUrl} className="text-gray-400 hover:text-white transition-colors">
+                <a href={emailUrl} className="text-gray-400 hover:text-white transition-colors break-all">
                   {businessConfig.contact.email}
+                </a>
+              </div>
+              <div className="flex items-center gap-3">
+                <FaInstagram className="w-5 h-5 text-pink-500 flex-shrink-0" aria-hidden="true" />
+                <a href="https://www.instagram.com/harinder_csc_bhanpura/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors break-all">
+                  {businessConfig.social.instagramHandle}
                 </a>
               </div>
               {businessConfig.workingHours.configured && (

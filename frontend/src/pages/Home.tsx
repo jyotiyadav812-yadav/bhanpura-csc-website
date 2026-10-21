@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight, CheckCircle, MapPin, MessageSquare, Shield, Users, Clock, Star } from 'lucide-react';
@@ -8,6 +9,27 @@ import { getPopularServices, getServicesByCategory, serviceCategories } from '..
 import { businessConfig } from '../config/business';
 import { getWhatsAppUrl, getDefaultWhatsAppMessage } from '../utils/helpers';
 import { Helmet } from 'react-helmet-async';
+
+const heroSlides = [
+  {
+    image: '/hero.jpg',
+    alt: 'Bhanpura CSC Centre - Your Local Digital Partner',
+    overlay: true,
+    showText: true,
+    loading: 'eager' as const,
+    imageClass: 'object-cover object-center',
+    backgroundClass: '',
+  },
+  {
+    image: '/hero-2.png',
+    alt: 'Bhanpura CSC Centre - Your Local Digital Partner',
+    overlay: false,
+    showText: false,
+    loading: 'lazy' as const,
+    imageClass: 'object-contain object-center md:object-cover',
+    backgroundClass: 'bg-[#1e4fd8]',
+  },
+];
 
 const popularServices = getPopularServices();
 
@@ -100,6 +122,32 @@ const faqItems = [
 
 export function Home() {
   const whatsappUrl = getWhatsAppUrl(getDefaultWhatsAppMessage());
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [timerResetKey, setTimerResetKey] = useState(0);
+  const [reducedMotion, setReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const handleChange = () => setReducedMotion(mediaQuery.matches);
+    handleChange();
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
+
+  useEffect(() => {
+    if (reducedMotion) return;
+    const intervalId = setInterval(() => {
+      setActiveSlide(current => (current + 1) % heroSlides.length);
+    }, 5000);
+    return () => clearInterval(intervalId);
+  }, [activeSlide, timerResetKey, reducedMotion]);
+
+  const goToSlide = (index: number) => {
+    setActiveSlide(index);
+    setTimerResetKey(key => key + 1);
+  };
+
+  const currentSlide = heroSlides[activeSlide];
 
   return (
     <>
@@ -113,48 +161,82 @@ export function Home() {
       </Helmet>
 
       <section
-        className="relative flex items-center min-h-[90vh] bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('/hero.jpg')" }}
-        aria-labelledby="hero-title"
+        className="relative flex items-center min-h-screen overflow-hidden"
+        aria-label="Bhanpura CSC Centre"
       >
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-950/90 via-blue-900/70 to-blue-900/30" aria-hidden="true" />
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 w-full">
-          <motion.div
-            className="max-w-2xl text-center lg:text-left mx-auto lg:mx-0"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: 'easeOut' }}
+        {heroSlides.map((slide, index) => (
+          <div
+            key={slide.image}
+            className={`absolute inset-0 transition-opacity duration-1000 ${index === activeSlide ? 'opacity-100' : 'opacity-0'} ${slide.backgroundClass}`}
+            aria-hidden={index !== activeSlide}
           >
-            <p className="text-sm font-medium text-blue-100 uppercase tracking-wider mb-4">Common Service Centre & Digital Assistance</p>
-            <h1 id="hero-title" className="text-3xl lg:text-4xl xl:text-5xl font-bold text-white leading-tight mb-6">
-              Your Trusted Partner for Digital Services
-            </h1>
-            <p className="text-base lg:text-lg text-blue-50 leading-relaxed mb-8">
-              Online form assistance, document services, photo services, payment assistance, and more, with friendly local support at Bhanpura.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center lg:items-start justify-center lg:justify-start gap-4">
-              <Link
-                to="/services"
-                className="btn btn-accent btn-block sm:w-auto"
-              >
-                Explore Services
-                <ArrowRight className="arrow w-5 h-5" aria-hidden="true" />
-              </Link>
-              <a
-                href={whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-whatsapp btn-block sm:w-auto"
-              >
-                <MessageSquare className="w-5 h-5" aria-hidden="true" />
-                Contact on WhatsApp
-              </a>
-            </div>
-            <div className="mt-6 space-y-1 text-sm text-blue-100">
-              <p>Open: {businessConfig.workingHours.display}</p>
-              <p>{businessConfig.location.formatted}</p>
-            </div>
-          </motion.div>
+            <img
+              src={slide.image}
+              alt={slide.alt}
+              loading={slide.loading}
+              className={`absolute inset-0 w-full h-full ${slide.imageClass}`}
+            />
+          </div>
+        ))}
+
+        {currentSlide.overlay && (
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-950/90 via-blue-900/70 to-blue-900/30" aria-hidden="true" />
+        )}
+
+        {currentSlide.showText && (
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 w-full">
+            <motion.div
+              className="max-w-2xl text-center lg:text-left mx-auto lg:mx-0"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: 'easeOut' }}
+            >
+              <p className="text-sm font-medium text-blue-100 uppercase tracking-wider mb-4">Common Service Centre & Digital Assistance</p>
+              <h1 id="hero-title" className="text-3xl lg:text-4xl xl:text-5xl font-bold text-white leading-tight mb-6">
+                Your Trusted Partner for Digital Services
+              </h1>
+              <p className="text-base lg:text-lg text-blue-50 leading-relaxed mb-8">
+                Online form assistance, document services, photo services, payment assistance, and more, with friendly local support at Bhanpura.
+              </p>
+              <div className="flex flex-col sm:flex-row items-center lg:items-start justify-center lg:justify-start gap-4">
+                <Link
+                  to="/services"
+                  className="btn btn-accent btn-block sm:w-auto"
+                >
+                  Explore Services
+                  <ArrowRight className="arrow w-5 h-5" aria-hidden="true" />
+                </Link>
+                <a
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-whatsapp btn-block sm:w-auto"
+                >
+                  <MessageSquare className="w-5 h-5" aria-hidden="true" />
+                  Contact on WhatsApp
+                </a>
+              </div>
+              <div className="mt-6 space-y-1 text-sm text-blue-100">
+                <p>Open: {businessConfig.workingHours.display}</p>
+                <p>{businessConfig.location.formatted}</p>
+              </div>
+            </motion.div>
+          </div>
+        )}
+
+        <div className="absolute bottom-6 left-0 right-0 z-20 flex items-center justify-center gap-3">
+          {heroSlides.map((slide, index) => (
+            <button
+              key={slide.image}
+              type="button"
+              onClick={() => goToSlide(index)}
+              className={`h-2.5 rounded-full shadow-md transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-900 ${
+                index === activeSlide ? 'w-8 bg-white' : 'w-2.5 bg-white/50 hover:bg-white/80'
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+              aria-current={index === activeSlide}
+            />
+          ))}
         </div>
       </section>
 

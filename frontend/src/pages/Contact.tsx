@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import { MapPin, Phone, Mail, MessageSquare, CheckCircle, AlertCircle } from 'lucide-react';
+import { MapPin, Phone, CheckCircle, AlertCircle } from 'lucide-react';
+import { FaWhatsapp, FaInstagram } from 'react-icons/fa';
+import { SiGmail } from 'react-icons/si';
 import { SectionHeading } from '../components/SectionHeading';
 import { businessConfig } from '../config/business';
 import { getWhatsAppUrl, getDefaultWhatsAppMessage } from '../utils/helpers';
@@ -83,7 +85,7 @@ export function Contact() {
             description="Visit our centre, call us, WhatsApp us, or send a message below. We're here to help with your digital service needs."
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20 items-stretch">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-20 items-stretch">
             <article className="hl-card theme-blue" aria-label="Visit Our Centre">
               <div className="hl-icon">
                 <MapPin className="w-7 h-7" aria-hidden="true" />
@@ -105,13 +107,67 @@ export function Contact() {
               <p className="text-sm text-gray-600">Tap to call directly from your phone</p>
             </article>
 
-            <article className="hl-card theme-purple" aria-label="WhatsApp and Email">
+            <article className="hl-card theme-green" aria-label="WhatsApp">
               <div className="hl-icon">
-                <MessageSquare className="w-7 h-7" aria-hidden="true" />
+                <FaWhatsapp className="w-7 h-7" aria-hidden="true" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900">WhatsApp & Email</h3>
-              <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="font-bold text-green-700 hover:underline">WhatsApp: {businessConfig.contact.whatsapp}</a>
-              <a href={emailUrl} className="font-bold text-blue-700 hover:underline break-words">{businessConfig.contact.email}</a>
+              <h3 className="text-xl font-bold text-gray-900">WhatsApp</h3>
+              <a href="https://wa.me/919541611393" target="_blank" rel="noopener noreferrer" className="text-xl font-bold text-green-700 hover:underline">{businessConfig.contact.whatsapp}</a>
+              <p className="text-sm text-gray-600">Message anytime</p>
+              <div className="mt-auto pt-4">
+                <a
+                  href="https://wa.me/919541611393"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-whatsapp btn-sm w-full"
+                  aria-label="Chat on WhatsApp"
+                >
+                  <FaWhatsapp className="w-5 h-5" aria-hidden="true" />
+                  <span>Chat on WhatsApp</span>
+                </a>
+              </div>
+            </article>
+
+            <article className="hl-card theme-rose" aria-label="Email">
+              <div className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 bg-red-50 border border-red-100 mb-4">
+                <SiGmail className="w-7 h-7 text-[#EA4335]" aria-hidden="true" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900">Email</h3>
+              <a href={emailUrl} className="text-base font-bold text-red-600 hover:underline break-all">{businessConfig.contact.email}</a>
+              <p className="text-sm text-gray-600">Send us an email</p>
+              <div className="mt-auto pt-4">
+                <a
+                  href={emailUrl}
+                  className="btn btn-sm w-full text-white bg-[#EA4335] hover:bg-red-600"
+                  aria-label="Send Email"
+                >
+                  <SiGmail className="w-5 h-5" aria-hidden="true" />
+                  <span>Send Email</span>
+                </a>
+              </div>
+            </article>
+
+            <article className="hl-card theme-purple sm:col-span-2 lg:col-span-4" aria-label="Follow us on Instagram">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-5">
+                <div className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 bg-gradient-to-br from-purple-600 via-pink-500 to-orange-400 shadow-lg">
+                  <FaInstagram className="w-7 h-7 text-white" aria-hidden="true" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h3 className="text-xl font-bold text-gray-900">Follow us on Instagram</h3>
+                  <p className="font-semibold text-purple-700 break-words">{businessConfig.social.instagramHandle}</p>
+                  <p className="text-sm text-gray-600">Naye updates, services aur offers ke liye hamein Instagram par follow karein.</p>
+                </div>
+                <a
+                  href={businessConfig.social.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 text-sm sm:text-base font-semibold text-white bg-gradient-to-r from-purple-600 via-pink-500 to-orange-400 rounded-full shadow-lg hover:opacity-90 hover:shadow-xl transition-all duration-300 whitespace-nowrap flex-shrink-0 self-start sm:self-auto"
+                  aria-label="Follow on Instagram"
+                >
+                  <FaInstagram className="w-5 h-5" aria-hidden="true" />
+                  <span>Follow on Instagram</span>
+                </a>
+              </div>
             </article>
           </div>
 
@@ -314,7 +370,7 @@ export function Contact() {
                   aria-label="WhatsApp chat"
                 >
                   <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center">
-                    <MessageSquare className="w-5 h-5 text-green-600" aria-hidden="true" />
+                    <FaWhatsapp className="w-5 h-5 text-[#25D366]" aria-hidden="true" />
                   </div>
                   <div>
                     <p className="text-sm text-gray-500">WhatsApp Chat</p>
@@ -327,7 +383,7 @@ export function Contact() {
                   aria-label="Email us"
                 >
                   <div className="w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center">
-                    <Mail className="w-5 h-5 text-primary-600" aria-hidden="true" />
+                    <SiGmail className="w-5 h-5 text-[#EA4335]" aria-hidden="true" />
                   </div>
                   <div>
                     <p className="text-sm text-gray-500">Email Us</p>

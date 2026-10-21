@@ -25,4 +25,8 @@ export const businessConfig = {
     display: '9 AM to 1 PM and 4 PM to 8 PM',
   },
   mapDirectionsUrl: '',
+  social: {
+    instagram: 'https://www.instagram.com/harinder_csc_bhanpura/',
+    instagramHandle: '@harinder_csc_bhanpura',
+  },
 };

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation, NavLink } from 'react-router-dom';
-import { Menu, X, Phone, MessageSquare } from 'lucide-react';
+import { Menu, X, Phone } from 'lucide-react';
+import { FaWhatsapp, FaInstagram } from 'react-icons/fa';
 import { businessConfig } from '../config/business';
 import { getWhatsAppUrl, getDefaultWhatsAppMessage } from '../utils/helpers';
 import { useMobileMenu } from '../hooks/useMobileMenu';
@@ -93,8 +94,18 @@ export function Navbar() {
               className="btn btn-whatsapp btn-sm"
               aria-label="Contact us on WhatsApp"
             >
-              <MessageSquare className="w-4 h-4" aria-hidden="true" />
+              <FaWhatsapp className="w-4 h-4" aria-hidden="true" />
               <span>WhatsApp</span>
+            </a>
+            <a
+              href={businessConfig.social.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center w-10 h-10 rounded-lg text-gray-600 hover:text-pink-600 hover:bg-pink-50 transition-colors focus:outline-none focus:ring-2 focus:ring-pink-400"
+              aria-label="Instagram"
+              title="Follow us on Instagram"
+            >
+              <FaInstagram className="w-5 h-5" aria-hidden="true" />
             </a>
           </div>
 
@@ -114,7 +125,7 @@ export function Navbar() {
           id="mobile-menu"
           className={cn(
             'lg:hidden overflow-hidden transition-all duration-300 ease-in-out',
-            isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+            isOpen ? 'max-h-[28rem] opacity-100' : 'max-h-0 opacity-0'
           )}
           role="navigation"
           aria-label="Mobile navigation"
@@ -154,8 +165,18 @@ export function Navbar() {
                 className="inline-flex items-center justify-center gap-2 px-4 py-3 text-base font-semibold text-white bg-green-600 rounded-lg"
                 aria-label="Contact us on WhatsApp"
               >
-                <MessageSquare className="w-5 h-5" aria-hidden="true" />
+                <FaWhatsapp className="w-5 h-5" aria-hidden="true" />
                 <span>Chat on WhatsApp</span>
+              </a>
+              <a
+                href={businessConfig.social.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 px-4 py-3 text-base font-semibold text-white bg-gradient-to-r from-purple-600 via-pink-500 to-orange-400 rounded-lg"
+                aria-label="Instagram"
+              >
+                <FaInstagram className="w-5 h-5" aria-hidden="true" />
+                <span>Follow on Instagram</span>
               </a>
             </div>
           </div>
