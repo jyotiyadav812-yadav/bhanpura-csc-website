@@ -1,33 +1,159 @@
-import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle, MapPin, MessageSquare, Shield, Users, Clock, Star } from 'lucide-react';
+import { ArrowRight, CheckCircle, MapPin, MessageSquare, Shield, Users, Clock, Star, FileText, CreditCard, Camera, File, Award, HelpCircle, Monitor, GraduationCap, Image, Plane, Printer, Scan, FileType, Layout, Minimize, Baby, Send, type LucideIcon } from 'lucide-react';
 import { SectionHeading } from '../components/SectionHeading';
 import { ServiceGrid } from '../components/ServiceGrid';
 import { FAQ } from '../components/FAQ';
-import { getPopularServices, getServicesByCategory, serviceCategories } from '../data/services';
+import { getPopularServices, getServicesByCategory, type Service, type ServiceCategory } from '../data/services';
 import { businessConfig } from '../config/business';
 import { getWhatsAppUrl, getDefaultWhatsAppMessage } from '../utils/helpers';
 import { Helmet } from 'react-helmet-async';
 
-const heroSlides = [
+type CategoryConfig = {
+  id: ServiceCategory;
+  name: string;
+  description: string;
+  icon: LucideIcon;
+  color: string;
+  bgColor: string;
+  gradientFrom: string;
+  gradientTo: string;
+  badgeBg: string;
+  borderColor: string;
+  hoverBg: string;
+};
+
+const categoryConfigs: CategoryConfig[] = [
   {
-    image: '/hero.jpg',
-    alt: 'Bhanpura CSC Centre - Your Local Digital Partner',
-    overlay: true,
-    showText: true,
-    loading: 'eager' as const,
-    imageClass: 'object-cover object-center',
-    backgroundClass: '',
+    id: 'online-forms',
+    name: 'Online Forms and Applications',
+    description: 'Assistance with filling and submitting various online forms and applications',
+    icon: FileText,
+    color: 'blue',
+    bgColor: 'bg-blue-500',
+    gradientFrom: 'from-blue-500',
+    gradientTo: 'to-blue-600',
+    badgeBg: 'bg-blue-100 text-blue-700',
+    borderColor: 'border-blue-500',
+    hoverBg: 'hover:bg-blue-50',
   },
   {
-    image: '/hero-2.png',
-    alt: 'Bhanpura CSC Centre - Your Local Digital Partner',
-    overlay: false,
-    showText: false,
-    loading: 'lazy' as const,
-    imageClass: 'object-contain object-center md:object-cover',
-    backgroundClass: 'bg-[#1e4fd8]',
+    id: 'online-payments',
+    name: 'Online Payment Assistance',
+    description: 'Guidance and support for online payment processes',
+    icon: CreditCard,
+    color: 'orange',
+    bgColor: 'bg-orange-500',
+    gradientFrom: 'from-orange-500',
+    gradientTo: 'to-orange-600',
+    badgeBg: 'bg-orange-100 text-orange-700',
+    borderColor: 'border-orange-500',
+    hoverBg: 'hover:bg-orange-50',
+  },
+  {
+    id: 'photo-passport',
+    name: 'Photo and Passport-size Photo Services',
+    description: 'Passport-size photos, digital photo preparation, and passport application guidance',
+    icon: Camera,
+    color: 'green',
+    bgColor: 'bg-green-500',
+    gradientFrom: 'from-green-500',
+    gradientTo: 'to-green-600',
+    badgeBg: 'bg-green-100 text-green-700',
+    borderColor: 'border-green-500',
+    hoverBg: 'hover:bg-green-50',
+  },
+  {
+    id: 'document-services',
+    name: 'Document Services',
+    description: 'Printing, scanning, PDF creation, formatting, and file conversion',
+    icon: File,
+    color: 'purple',
+    bgColor: 'bg-purple-500',
+    gradientFrom: 'from-purple-500',
+    gradientTo: 'to-purple-600',
+    badgeBg: 'bg-purple-100 text-purple-700',
+    borderColor: 'border-purple-500',
+    hoverBg: 'hover:bg-purple-50',
+  },
+  {
+    id: 'certificate-assistance',
+    name: 'Certificate Assistance',
+    description: 'Guidance for birth certificates and other certificate applications',
+    icon: Award,
+    color: 'teal',
+    bgColor: 'bg-teal-500',
+    gradientFrom: 'from-teal-500',
+    gradientTo: 'to-teal-600',
+    badgeBg: 'bg-teal-100 text-teal-700',
+    borderColor: 'border-teal-500',
+    hoverBg: 'hover:bg-teal-50',
+  },
+  {
+    id: 'general-digital',
+    name: 'General Digital Assistance',
+    description: 'Help with online applications and general digital service guidance',
+    icon: Monitor,
+    color: 'pink',
+    bgColor: 'bg-pink-500',
+    gradientFrom: 'from-pink-500',
+    gradientTo: 'to-pink-600',
+    badgeBg: 'bg-pink-100 text-pink-700',
+    borderColor: 'border-pink-500',
+    hoverBg: 'hover:bg-pink-50',
+  },
+];
+
+function CategorySection({ config, services }: { config: CategoryConfig; services: Service[] }) {
+  const Icon = config.icon;
+  const serviceCount = services.length;
+  const iconMap: Record<string, LucideIcon> = {
+    FileText, CreditCard, Camera, File, Award, HelpCircle, Monitor, GraduationCap, Image, Plane, Printer, Scan, FileType, Layout, Minimize, Baby, Send,
+  };
+  return (
+    <section id={config.id} className="scroll-mt-24 pt-24 space-y-8" aria-labelledby={`${config.id}-title`}>
+      <div className={`rounded-2xl border ${config.borderColor} bg-white shadow-sm overflow-hidden`}>
+        <div className="p-6 lg:p-8">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div className="flex items-center gap-4">
+              <div className={`flex-shrink-0 w-14 h-14 rounded-xl flex items-center justify-center text-white ${config.gradientFrom} ${config.gradientTo}`}>
+                <Icon className="w-7 h-7" aria-hidden="true" />
+              </div>
+              <div>
+                <h3 id={`${config.id}-title`} className="text-xl lg:text-2xl font-bold text-gray-900">{config.name}</h3>
+                <p className="text-gray-600 mt-1">{config.description}</p>
+              </div>
+            </div>
+            <span className={`px-3 py-1 rounded-full text-sm font-medium ${config.badgeBg} whitespace-nowrap`}>
+              {serviceCount} Services
+            </span>
+          </div>
+        </div>
+        <div className="bg-gray-50/50 px-6 lg:px-8 pb-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {services.map((service) => {
+              const ServiceIcon = (service.icon && iconMap[service.icon] ? iconMap[service.icon] : FileText) as LucideIcon;
+              return (
+                <article key={service.id} className="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg hover:border-transparent transition-all duration-300">
+                  <div className={`w-12 h-12 rounded-lg flex items-center justify-center text-white mb-4 ${config.gradientFrom} ${config.gradientTo}`}>
+                    <ServiceIcon className="w-6 h-6" aria-hidden="true" />
+                  </div>
+                  <h4 className="text-lg font-semibold text-gray-900 mb-2">{service.name}</h4>
+                  <p className="text-gray-600 text-sm leading-relaxed">{service.description}</p>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+const heroImages = [
+  {
+    src: '/hero-banner.png.png',
+    alt: 'Bhanpura CSC Centre - digital services in village',
+    loading: 'eager' as const,
   },
 ];
 
@@ -122,32 +248,6 @@ const faqItems = [
 
 export function Home() {
   const whatsappUrl = getWhatsAppUrl(getDefaultWhatsAppMessage());
-  const [activeSlide, setActiveSlide] = useState(0);
-  const [timerResetKey, setTimerResetKey] = useState(0);
-  const [reducedMotion, setReducedMotion] = useState(false);
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const handleChange = () => setReducedMotion(mediaQuery.matches);
-    handleChange();
-    mediaQuery.addEventListener('change', handleChange);
-    return () => mediaQuery.removeEventListener('change', handleChange);
-  }, []);
-
-  useEffect(() => {
-    if (reducedMotion) return;
-    const intervalId = setInterval(() => {
-      setActiveSlide(current => (current + 1) % heroSlides.length);
-    }, 5000);
-    return () => clearInterval(intervalId);
-  }, [activeSlide, timerResetKey, reducedMotion]);
-
-  const goToSlide = (index: number) => {
-    setActiveSlide(index);
-    setTimerResetKey(key => key + 1);
-  };
-
-  const currentSlide = heroSlides[activeSlide];
 
   return (
     <>
@@ -160,83 +260,46 @@ export function Home() {
         <meta name="twitter:card" content="summary_large_image" />
       </Helmet>
 
-      <section
-        className="relative flex items-center min-h-screen overflow-hidden"
-        aria-label="Bhanpura CSC Centre"
-      >
-        {heroSlides.map((slide, index) => (
-          <div
-            key={slide.image}
-            className={`absolute inset-0 transition-opacity duration-1000 ${index === activeSlide ? 'opacity-100' : 'opacity-0'} ${slide.backgroundClass}`}
-            aria-hidden={index !== activeSlide}
-          >
-            <img
-              src={slide.image}
-              alt={slide.alt}
-              loading={slide.loading}
-              className={`absolute inset-0 w-full h-full ${slide.imageClass}`}
-            />
+      <section className="relative min-h-[560px] md:min-h-[calc(100svh-80px)] flex items-center" aria-label="Bhanpura CSC Centre">
+        <img
+          src={heroImages[0].src}
+          alt={heroImages[0].alt}
+          loading={heroImages[0].loading}
+          className="absolute inset-0 w-full h-full object-cover object-[60%_center] md:object-[75%_center]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-blue-950/85 via-blue-900/60 to-blue-900/30 md:bg-gradient-to-r md:from-blue-950/90 md:via-blue-900/60 md:to-transparent" aria-hidden="true" />
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div className="max-w-xl">
+            <p className="text-sm font-medium text-blue-100 uppercase tracking-wider mb-2">Common Service Centre & Digital Assistance</p>
+            <h1 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-white leading-tight mb-4 drop-shadow-lg">
+              Your Trusted Partner for Digital Services
+            </h1>
+            <p className="text-base lg:text-lg text-white/90 leading-relaxed mb-6">
+              Online form assistance, document services, photo services, payment assistance, and more, with friendly local support at Bhanpura.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 mb-6">
+              <Link
+                to="/services"
+                className="btn btn-accent btn-block sm:w-auto"
+              >
+                Explore Services
+                <ArrowRight className="arrow w-5 h-5" aria-hidden="true" />
+              </Link>
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-whatsapp btn-block sm:w-auto"
+              >
+                <MessageSquare className="w-5 h-5" aria-hidden="true" />
+                Contact on WhatsApp
+              </a>
+            </div>
+            <div className="space-y-1 text-sm text-white/80">
+              <p>Open: {businessConfig.workingHours.display}</p>
+              <p>{businessConfig.location.formatted}</p>
+            </div>
           </div>
-        ))}
-
-        {currentSlide.overlay && (
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-950/90 via-blue-900/70 to-blue-900/30" aria-hidden="true" />
-        )}
-
-        {currentSlide.showText && (
-          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 w-full">
-            <motion.div
-              className="max-w-2xl text-center lg:text-left mx-auto lg:mx-0"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: 'easeOut' }}
-            >
-              <p className="text-sm font-medium text-blue-100 uppercase tracking-wider mb-4">Common Service Centre & Digital Assistance</p>
-              <h1 id="hero-title" className="text-3xl lg:text-4xl xl:text-5xl font-bold text-white leading-tight mb-6">
-                Your Trusted Partner for Digital Services
-              </h1>
-              <p className="text-base lg:text-lg text-blue-50 leading-relaxed mb-8">
-                Online form assistance, document services, photo services, payment assistance, and more, with friendly local support at Bhanpura.
-              </p>
-              <div className="flex flex-col sm:flex-row items-center lg:items-start justify-center lg:justify-start gap-4">
-                <Link
-                  to="/services"
-                  className="btn btn-accent btn-block sm:w-auto"
-                >
-                  Explore Services
-                  <ArrowRight className="arrow w-5 h-5" aria-hidden="true" />
-                </Link>
-                <a
-                  href={whatsappUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn btn-whatsapp btn-block sm:w-auto"
-                >
-                  <MessageSquare className="w-5 h-5" aria-hidden="true" />
-                  Contact on WhatsApp
-                </a>
-              </div>
-              <div className="mt-6 space-y-1 text-sm text-blue-100">
-                <p>Open: {businessConfig.workingHours.display}</p>
-                <p>{businessConfig.location.formatted}</p>
-              </div>
-            </motion.div>
-          </div>
-        )}
-
-        <div className="absolute bottom-6 left-0 right-0 z-20 flex items-center justify-center gap-3">
-          {heroSlides.map((slide, index) => (
-            <button
-              key={slide.image}
-              type="button"
-              onClick={() => goToSlide(index)}
-              className={`h-2.5 rounded-full shadow-md transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-900 ${
-                index === activeSlide ? 'w-8 bg-white' : 'w-2.5 bg-white/50 hover:bg-white/80'
-              }`}
-              aria-label={`Go to slide ${index + 1}`}
-              aria-current={index === activeSlide}
-            />
-          ))}
         </div>
       </section>
 
@@ -260,37 +323,22 @@ export function Home() {
         </div>
       </section>
 
-      <section className="py-16 lg:py-24 bg-gray-50" aria-labelledby="all-categories-title">
+      <section id="services" className="py-16 lg:py-24 bg-gray-50" aria-labelledby="all-categories-title">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHeading
-            title="All Service Categories"
-            subtitle="What We Offer"
-            description="Browse our complete range of digital assistance services organised by category."
-          />
-          <div className="space-y-16">
-            {serviceCategories.map((category, index) => {
-              const categoryServices = getServicesByCategory(category.id);
-              const theme = ['theme-blue','theme-orange','theme-green','theme-purple','theme-teal','theme-rose'][index % 6];
-              return (
-                <section key={category.id} id={category.id} className={`scroll-mt-20 ${theme}`} aria-labelledby={`${category.id}-title`}>
-                  <div className="cat-header">
-                    <div className="cat-icon">
-                      <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                        <polyline points="14 2 14 8 20 8" />
-                        <line x1="16" y1="13" x2="8" y2="13" />
-                        <line x1="16" y1="17" x2="8" y2="17" />
-                        <polyline points="10 9 9 9 8 9" />
-                      </svg>
-                    </div>
-                    <div>
-                      <h3 id={`${category.id}-title`}>{category.name}</h3>
-                      <p className="text-gray-600">{category.description}</p>
-                    </div>
-                  </div>
-                  <ServiceGrid services={categoryServices} variant="compact" />
-                </section>
-              );
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-orange-100 text-orange-700 text-sm font-semibold mb-6">WHAT WE OFFER</span>
+            <h2 id="all-categories-title" className="text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 leading-tight mb-4">
+              All Service Categories
+            </h2>
+            <div className="w-20 h-1 bg-orange-500 mx-auto mb-6 rounded-full" />
+            <p className="text-lg text-gray-600">
+              Browse our complete range of digital assistance services organised by category.
+            </p>
+          </div>
+          <div className="space-y-14">
+            {categoryConfigs.map((config) => {
+              const services = getServicesByCategory(config.id as import('../data/services').ServiceCategory);
+              return <CategorySection key={config.id} config={config} services={services} />;
             })}
           </div>
         </div>

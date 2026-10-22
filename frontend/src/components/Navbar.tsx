@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { Link, useLocation, NavLink } from 'react-router-dom';
 import { Menu, X, Phone } from 'lucide-react';
 import { FaWhatsapp, FaInstagram } from 'react-icons/fa';
@@ -16,17 +16,8 @@ const navItems = [
 ];
 
 export function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
   const { isOpen, close, toggle } = useMobileMenu();
   const location = useLocation();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   useEffect(() => {
     close();
@@ -37,22 +28,17 @@ export function Navbar() {
 
   return (
     <header
-      className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-        isScrolled
-          ? 'bg-white/70 backdrop-blur-md shadow-lg'
-          : 'bg-white/50 backdrop-blur-md'
-      )}
+      className="fixed top-0 left-0 right-0 z-50 bg-blue-900 shadow-lg border-b border-white/10"
       role="banner"
     >
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Main navigation">
         <div className="flex items-center justify-between h-16 lg:h-20">
           <Link
             to="/"
-            className="flex items-center gap-2 text-primary-700 font-bold text-xl lg:text-2xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 rounded-md"
+            className="flex items-center gap-2 text-white font-bold text-xl lg:text-2xl focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-900 rounded-md"
             aria-label={`${businessConfig.name} - Home`}
           >
-            <svg className="w-8 h-8 text-primary-600" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
             </svg>
             <span className="hidden sm:block">{businessConfig.name}</span>
@@ -65,10 +51,10 @@ export function Navbar() {
                 to={item.href}
                 className={({ isActive }) =>
                   cn(
-                    'text-sm font-medium transition-colors duration-200 relative after:content-[\"\"] after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:bg-primary-600 after:transition-all after:duration-300',
+                    'text-sm font-medium transition-colors duration-200 relative after:content-[\"\"] after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:bg-orange-500 after:transition-all after:duration-300',
                     isActive
-                      ? 'text-primary-600 after:w-full'
-                      : 'text-gray-600 hover:text-primary-600 after:w-0 hover:after:w-full'
+                      ? 'text-white font-semibold after:w-full'
+                      : 'text-white/85 hover:text-white after:w-0 hover:after:w-full'
                   )
                 }
                 end={item.href === '/'}
@@ -81,17 +67,17 @@ export function Navbar() {
           <div className="hidden lg:flex lg:items-center lg:gap-3">
             <a
               href={phoneUrl}
-              className="btn btn-light btn-sm"
+              className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-blue-900 bg-white border border-white rounded-lg hover:bg-blue-50 transition-colors focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-900"
               aria-label="Call us"
             >
-              <Phone className="w-4 h-4" aria-hidden="true" />
+              <Phone className="w-4 h-4 text-blue-900" aria-hidden="true" />
               <span>{businessConfig.contact.phone}</span>
             </a>
             <a
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn btn-whatsapp btn-sm"
+              className="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-green-600 rounded-lg ring-1 ring-white/40 hover:bg-green-700 transition-colors focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-900"
               aria-label="Contact us on WhatsApp"
             >
               <FaWhatsapp className="w-4 h-4" aria-hidden="true" />
@@ -101,7 +87,7 @@ export function Navbar() {
               href={businessConfig.social.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center w-10 h-10 rounded-lg text-gray-600 hover:text-pink-600 hover:bg-pink-50 transition-colors focus:outline-none focus:ring-2 focus:ring-pink-400"
+              className="inline-flex items-center justify-center w-10 h-10 rounded-full text-white bg-white/10 hover:bg-white/20 transition-colors focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-900"
               aria-label="Instagram"
               title="Follow us on Instagram"
             >
@@ -111,7 +97,7 @@ export function Navbar() {
 
           <button
             type="button"
-            className="lg:hidden inline-flex items-center justify-center p-2 rounded-lg text-gray-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-500"
+            className="lg:hidden inline-flex items-center justify-center p-2 rounded-lg text-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-900"
             onClick={toggle}
             aria-expanded={isOpen}
             aria-controls="mobile-menu"
@@ -130,7 +116,7 @@ export function Navbar() {
           role="navigation"
           aria-label="Mobile navigation"
         >
-          <div className="py-4 space-y-2 border-t border-gray-100">
+          <div className="py-4 space-y-2 border-t border-white/10 bg-blue-900">
             {navItems.map(item => (
               <NavLink
                 key={item.href}
@@ -140,8 +126,8 @@ export function Navbar() {
                   cn(
                     'block px-3 py-2.5 rounded-lg text-base font-medium transition-colors',
                     isActive
-                      ? 'bg-primary-50 text-primary-700'
-                      : 'text-gray-600 hover:bg-gray-50 hover:text-primary-700'
+                      ? 'bg-white/10 text-white'
+                      : 'text-white/85 hover:bg-white/5 hover:text-white'
                   )
                 }
                 end={item.href === '/'}
@@ -149,20 +135,20 @@ export function Navbar() {
                 {item.label}
               </NavLink>
             ))}
-            <div className="pt-4 border-t border-gray-100 flex flex-col gap-3">
+            <div className="pt-4 border-t border-white/10 flex flex-col gap-3">
               <a
                 href={phoneUrl}
-                className="inline-flex items-center justify-center gap-2 px-4 py-3 text-base font-medium text-gray-700 bg-gray-100 rounded-lg"
+                className="inline-flex items-center justify-center gap-2 px-4 py-3 text-base font-medium text-blue-900 bg-white rounded-lg hover:bg-blue-50 transition-colors focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-900"
                 aria-label="Call us"
               >
-                <Phone className="w-5 h-5" aria-hidden="true" />
+                <Phone className="w-5 h-5 text-blue-900" aria-hidden="true" />
                 <span>Call: {businessConfig.contact.phone}</span>
               </a>
               <a
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-4 py-3 text-base font-semibold text-white bg-green-600 rounded-lg"
+                className="inline-flex items-center justify-center gap-2 px-4 py-3 text-base font-semibold text-white bg-green-600 rounded-lg ring-1 ring-white/40 hover:bg-green-700 transition-colors focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-900"
                 aria-label="Contact us on WhatsApp"
               >
                 <FaWhatsapp className="w-5 h-5" aria-hidden="true" />
@@ -172,7 +158,7 @@ export function Navbar() {
                 href={businessConfig.social.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-4 py-3 text-base font-semibold text-white bg-gradient-to-r from-purple-600 via-pink-500 to-orange-400 rounded-lg"
+                className="inline-flex items-center justify-center gap-2 px-4 py-3 text-base font-semibold text-white bg-gradient-to-r from-purple-600 via-pink-500 to-orange-400 rounded-lg hover:opacity-90 transition-opacity focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-900"
                 aria-label="Instagram"
               >
                 <FaInstagram className="w-5 h-5" aria-hidden="true" />

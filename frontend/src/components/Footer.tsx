@@ -3,6 +3,8 @@ import { Phone, MapPin, Mail } from 'lucide-react';
 import { FaWhatsapp, FaInstagram } from 'react-icons/fa';
 import { businessConfig } from '../config/business';
 
+const MAP_LINK = "https://maps.app.goo.gl/JgaFfhiGEEunbvQ7A";
+
 const footerLinks = {
   services: [
     { label: 'Online Forms & Applications', href: '/services#online-forms' },
@@ -82,13 +84,15 @@ export function Footer() {
           <div>
             <h3 className="text-white font-semibold text-lg mb-4">Contact Information</h3>
             <address className="not-italic space-y-3 text-sm">
-              <div className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-primary-400 mt-0.5 flex-shrink-0" aria-hidden="true" />
-                <div>
-                  <p className="font-medium text-white">{businessConfig.name}</p>
-                  <p className="text-gray-400">{businessConfig.location.formatted}</p>
-                </div>
+<div className="flex items-start gap-3">
+              <MapPin className="w-5 h-5 text-primary-400 mt-0.5 flex-shrink-0" aria-hidden="true" />
+              <div>
+                <p className="font-medium text-white">{businessConfig.name}</p>
+                <a href={MAP_LINK} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors underline">
+                  {businessConfig.location.formatted}
+                </a>
               </div>
+            </div>
               <div className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-primary-400 flex-shrink-0" aria-hidden="true" />
                 <a href="tel:9541611393" className="text-gray-400 hover:text-white transition-colors">

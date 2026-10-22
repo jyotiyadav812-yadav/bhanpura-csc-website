@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { MapPin, Phone, CheckCircle, AlertCircle } from 'lucide-react';
+import { MapPin, Phone, CheckCircle, AlertCircle, Navigation, MapPin as MapPinIcon } from 'lucide-react';
 import { FaWhatsapp, FaInstagram } from 'react-icons/fa';
 import { SiGmail } from 'react-icons/si';
 import { SectionHeading } from '../components/SectionHeading';
@@ -7,6 +7,10 @@ import { businessConfig } from '../config/business';
 import { getWhatsAppUrl, getDefaultWhatsAppMessage } from '../utils/helpers';
 import { Helmet } from 'react-helmet-async';
 import { cn } from '../utils/helpers';
+
+const MAP_EMBED_URL = "https://www.google.com/maps?q=29.7802515,76.3262961(Bhanpura+CSC+Centre)&z=17&output=embed";
+const MAP_LINK = "https://maps.app.goo.gl/JgaFfhiGEEunbvQ7A";
+const DIRECTIONS_LINK = "https://www.google.com/maps/dir/?api=1&destination=29.7802515,76.3262961";
 interface FormData {
   name: string;
   mobile: string;
@@ -21,6 +25,7 @@ interface FormErrors {
   email?: string;
   subject?: string;
   message?: string;
+  general?: string;
 }
 
 export function Contact() {
@@ -93,7 +98,9 @@ export function Contact() {
               <h3 className="text-xl font-bold text-gray-900">Visit Our Centre</h3>
               <address className="not-italic text-gray-700 leading-relaxed">
                 <p className="font-medium text-gray-900">{businessConfig.name}</p>
-                <p>{businessConfig.location.formatted}</p>
+                <a href={MAP_LINK} target="_blank" rel="noopener noreferrer" className="hover:underline text-blue-700">
+                  {businessConfig.location.formatted}
+                </a>
               </address>
               <p className="text-sm text-gray-600">Walk-ins welcome during working hours. Contact us first to confirm availability.</p>
             </article>
@@ -147,7 +154,7 @@ export function Contact() {
               </div>
             </article>
 
-            <article className="hl-card theme-purple sm:col-span-2 lg:col-span-4" aria-label="Follow us on Instagram">
+<article className="hl-card theme-purple sm:col-span-2 lg:col-span-4" aria-label="Follow us on Instagram">
               <div className="flex flex-col sm:flex-row sm:items-center gap-5">
                 <div className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 bg-gradient-to-br from-purple-600 via-pink-500 to-orange-400 shadow-lg">
                   <FaInstagram className="w-7 h-7 text-white" aria-hidden="true" />
@@ -170,6 +177,63 @@ export function Contact() {
               </div>
             </article>
           </div>
+
+          <section className="mb-12" aria-labelledby="map-heading">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="lg:grid lg:grid-cols-3 lg:gap-8">
+                <div className="lg:col-span-1">
+                  <h3 id="map-heading" className="text-2xl font-bold text-gray-900 mb-2">Find Us on Map</h3>
+                  <p className="text-gray-600 mb-6">Bhanpura CSC Centre, Near Shiv Mandir, Yadav Chopal, Village Bhanpura, Kaithal</p>
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-3 text-sm text-gray-600">
+                      <MapPin className="w-5 h-5 text-primary-600 flex-shrink-0" aria-hidden="true" />
+                      <span>Bhanpura CSC Centre</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-sm text-gray-600">
+                      <MapPin className="w-5 h-5 text-primary-600 flex-shrink-0" aria-hidden="true" />
+                      <span>Near Shiv Mandir, Yadav Chopal, Village Bhanpura, Kaithal, Haryana 136027</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-sm text-gray-600">
+                      <MapPin className="w-5 h-5 text-primary-600 flex-shrink-0" aria-hidden="true" />
+                      <span>9:00 AM to 1:00 PM and 4:00 PM to 8:00 PM</span>
+                    </div>
+                  </div>
+                  <div className="mt-6 flex flex-col sm:flex-row gap-3">
+                    <a
+                      href={DIRECTIONS_LINK}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn-primary btn-block sm:w-auto"
+                    >
+                      <Navigation className="w-5 h-5" aria-hidden="true" />
+                      <span>Get Directions</span>
+                    </a>
+                    <a
+                      href={MAP_LINK}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn-outline btn-block sm:w-auto border-primary-600 text-primary-600 hover:bg-primary-50"
+                    >
+                      <MapPinIcon className="w-5 h-5" aria-hidden="true" />
+                      <span>Open in Google Maps</span>
+                    </a>
+                  </div>
+                </div>
+                <div className="lg:col-span-2 mt-6 lg:mt-0">
+                  <div className="rounded-2xl overflow-hidden border border-gray-200 shadow-md">
+                    <iframe
+                      title="Bhanpura CSC Centre Location"
+                      src={MAP_EMBED_URL}
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      allowFullScreen
+                      className="w-full h-80 md:h-[420px] border-0"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div>
@@ -400,8 +464,8 @@ export function Contact() {
                 <div className="mt-4">
                   <div className="rounded-xl overflow-hidden aspect-video min-h-[200px]">
                     <iframe
-                      title="Bhanpura CSC Centre location"
-                      src="https://www.google.com/maps?q=Bhanpura,+Kaithal,+Haryana&output=embed"
+                      title="Bhanpura CSC Centre Location"
+                      src={MAP_EMBED_URL}
                       className="w-full h-full border-0"
                       loading="lazy"
                       referrerPolicy="no-referrer-when-downgrade"
