@@ -149,14 +149,6 @@ function CategorySection({ config, services }: { config: CategoryConfig; service
   );
 }
 
-const heroImages = [
-  {
-    src: '/hero-banner.png.png',
-    alt: 'Bhanpura CSC Centre - digital services in village',
-    loading: 'eager' as const,
-  },
-];
-
 const popularServices = getPopularServices();
 
 const howItWorksSteps = [
@@ -262,9 +254,9 @@ export function Home() {
 
       <section className="relative min-h-[560px] md:min-h-[calc(100svh-80px)] flex items-center" aria-label="Bhanpura CSC Centre">
         <img
-          src={heroImages[0].src}
-          alt={heroImages[0].alt}
-          loading={heroImages[0].loading}
+          src="/hero-banner.png"
+          alt="Bhanpura CSC Centre - digital services in village"
+          loading="eager"
           className="absolute inset-0 w-full h-full object-cover object-[60%_center] md:object-[75%_center]"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-blue-950/85 via-blue-900/60 to-blue-900/30 md:bg-gradient-to-r md:from-blue-950/90 md:via-blue-900/60 md:to-transparent" aria-hidden="true" />
