@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle, MapPin, MessageSquare, Shield, Users, Clock, Star, FileText, CreditCard, Camera, File, Award, HelpCircle, Monitor, GraduationCap, Image, Plane, Printer, Scan, FileType, Layout, Minimize, Baby, Send, type LucideIcon } from 'lucide-react';
+import { ArrowRight, CheckCircle, MapPin, MessageSquare, Shield, Users, Clock, Star, FileText, CreditCard, Camera, File, Files, Award, HelpCircle, Monitor, GraduationCap, Image, Plane, Printer, Scan, FileType, Layout, Minimize, Baby, Send, type LucideIcon } from 'lucide-react';
 import { SectionHeading } from '../components/SectionHeading';
 import { ServiceGrid } from '../components/ServiceGrid';
 import { FAQ } from '../components/FAQ';
@@ -7,19 +7,23 @@ import { getPopularServices, getServicesByCategory, type Service, type ServiceCa
 import { businessConfig } from '../config/business';
 import { getWhatsAppUrl, getDefaultWhatsAppMessage } from '../utils/helpers';
 import { Helmet } from 'react-helmet-async';
+import { FaWhatsapp } from 'react-icons/fa';
+
+const COLOR_MAP = {
+  blue: { gradient: 'from-blue-600 to-blue-900', soft: 'bg-blue-50', softText: 'text-blue-900', border: 'border-t-blue-600', badge: 'bg-blue-100 text-blue-800', iconSoft: 'bg-blue-100 text-blue-700', hoverBorder: 'hover:border-blue-300', whatsappHover: 'hover:bg-green-50' },
+  orange: { gradient: 'from-orange-500 to-orange-600', soft: 'bg-orange-50', softText: 'text-orange-900', border: 'border-t-orange-500', badge: 'bg-orange-100 text-orange-800', iconSoft: 'bg-orange-100 text-orange-700', hoverBorder: 'hover:border-orange-300', whatsappHover: 'hover:bg-green-50' },
+  green: { gradient: 'from-green-500 to-green-700', soft: 'bg-green-50', softText: 'text-green-900', border: 'border-t-green-600', badge: 'bg-green-100 text-green-800', iconSoft: 'bg-green-100 text-green-700', hoverBorder: 'hover:border-green-300', whatsappHover: 'hover:bg-green-50' },
+  purple: { gradient: 'from-purple-500 to-purple-700', soft: 'bg-purple-50', softText: 'text-purple-900', border: 'border-t-purple-600', badge: 'bg-purple-100 text-purple-800', iconSoft: 'bg-purple-100 text-purple-700', hoverBorder: 'hover:border-purple-300', whatsappHover: 'hover:bg-green-50' },
+  teal: { gradient: 'from-teal-500 to-teal-700', soft: 'bg-teal-50', softText: 'text-teal-900', border: 'border-t-teal-600', badge: 'bg-teal-100 text-teal-800', iconSoft: 'bg-teal-100 text-teal-700', hoverBorder: 'hover:border-teal-300', whatsappHover: 'hover:bg-green-50' },
+  pink: { gradient: 'from-pink-500 to-pink-600', soft: 'bg-pink-50', softText: 'text-pink-900', border: 'border-t-pink-500', badge: 'bg-pink-100 text-pink-800', iconSoft: 'bg-pink-100 text-pink-700', hoverBorder: 'hover:border-pink-300', whatsappHover: 'hover:bg-green-50' },
+} as const;
 
 type CategoryConfig = {
   id: ServiceCategory;
   name: string;
   description: string;
   icon: LucideIcon;
-  color: string;
-  bgColor: string;
-  gradientFrom: string;
-  gradientTo: string;
-  badgeBg: string;
-  borderColor: string;
-  hoverBg: string;
+  color: keyof typeof COLOR_MAP;
 };
 
 const categoryConfigs: CategoryConfig[] = [
@@ -29,12 +33,6 @@ const categoryConfigs: CategoryConfig[] = [
     description: 'Assistance with filling and submitting various online forms and applications',
     icon: FileText,
     color: 'blue',
-    bgColor: 'bg-blue-500',
-    gradientFrom: 'from-blue-500',
-    gradientTo: 'to-blue-600',
-    badgeBg: 'bg-blue-100 text-blue-700',
-    borderColor: 'border-blue-500',
-    hoverBg: 'hover:bg-blue-50',
   },
   {
     id: 'online-payments',
@@ -42,12 +40,6 @@ const categoryConfigs: CategoryConfig[] = [
     description: 'Guidance and support for online payment processes',
     icon: CreditCard,
     color: 'orange',
-    bgColor: 'bg-orange-500',
-    gradientFrom: 'from-orange-500',
-    gradientTo: 'to-orange-600',
-    badgeBg: 'bg-orange-100 text-orange-700',
-    borderColor: 'border-orange-500',
-    hoverBg: 'hover:bg-orange-50',
   },
   {
     id: 'photo-passport',
@@ -55,12 +47,6 @@ const categoryConfigs: CategoryConfig[] = [
     description: 'Passport-size photos, digital photo preparation, and passport application guidance',
     icon: Camera,
     color: 'green',
-    bgColor: 'bg-green-500',
-    gradientFrom: 'from-green-500',
-    gradientTo: 'to-green-600',
-    badgeBg: 'bg-green-100 text-green-700',
-    borderColor: 'border-green-500',
-    hoverBg: 'hover:bg-green-50',
   },
   {
     id: 'document-services',
@@ -68,12 +54,6 @@ const categoryConfigs: CategoryConfig[] = [
     description: 'Printing, scanning, PDF creation, formatting, and file conversion',
     icon: File,
     color: 'purple',
-    bgColor: 'bg-purple-500',
-    gradientFrom: 'from-purple-500',
-    gradientTo: 'to-purple-600',
-    badgeBg: 'bg-purple-100 text-purple-700',
-    borderColor: 'border-purple-500',
-    hoverBg: 'hover:bg-purple-50',
   },
   {
     id: 'certificate-assistance',
@@ -81,12 +61,6 @@ const categoryConfigs: CategoryConfig[] = [
     description: 'Guidance for birth certificates and other certificate applications',
     icon: Award,
     color: 'teal',
-    bgColor: 'bg-teal-500',
-    gradientFrom: 'from-teal-500',
-    gradientTo: 'to-teal-600',
-    badgeBg: 'bg-teal-100 text-teal-700',
-    borderColor: 'border-teal-500',
-    hoverBg: 'hover:bg-teal-50',
   },
   {
     id: 'general-digital',
@@ -94,51 +68,56 @@ const categoryConfigs: CategoryConfig[] = [
     description: 'Help with online applications and general digital service guidance',
     icon: Monitor,
     color: 'pink',
-    bgColor: 'bg-pink-500',
-    gradientFrom: 'from-pink-500',
-    gradientTo: 'to-pink-600',
-    badgeBg: 'bg-pink-100 text-pink-700',
-    borderColor: 'border-pink-500',
-    hoverBg: 'hover:bg-pink-50',
   },
 ];
 
 function CategorySection({ config, services }: { config: CategoryConfig; services: Service[] }) {
   const Icon = config.icon;
   const serviceCount = services.length;
+  const colors = COLOR_MAP[config.color];
   const iconMap: Record<string, LucideIcon> = {
-    FileText, CreditCard, Camera, File, Award, HelpCircle, Monitor, GraduationCap, Image, Plane, Printer, Scan, FileType, Layout, Minimize, Baby, Send,
+    FileText, CreditCard, Camera, File, Files, Award, HelpCircle, Monitor, GraduationCap, Image, Plane, Printer, Scan, FileType, Layout, Minimize, Baby, Send,
   };
   return (
-    <section id={config.id} className="scroll-mt-24 pt-24 space-y-8" aria-labelledby={`${config.id}-title`}>
-      <div className={`rounded-2xl border ${config.borderColor} bg-white shadow-sm overflow-hidden`}>
+    <section id={config.id} className="scroll-mt-28" aria-labelledby={`${config.id}-title`}>
+      <div className={`relative rounded-2xl border border-slate-200 ${colors.soft} bg-gradient-to-r ${colors.soft} to-white shadow-md overflow-hidden`}>
+        <div className={`absolute left-0 top-0 bottom-0 w-[6px] bg-gradient-to-b ${colors.gradient}`} aria-hidden="true" />
         <div className="p-6 lg:p-8">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div className="flex items-center gap-4">
-              <div className={`flex-shrink-0 w-14 h-14 rounded-xl flex items-center justify-center text-white ${config.gradientFrom} ${config.gradientTo}`}>
-                <Icon className="w-7 h-7" aria-hidden="true" />
+              <div className={`flex-shrink-0 w-16 h-16 rounded-2xl flex items-center justify-center text-white bg-gradient-to-br ${colors.gradient} shadow-lg`}>
+                <Icon className="w-8 h-8" aria-hidden="true" />
               </div>
               <div>
-                <h3 id={`${config.id}-title`} className="text-xl lg:text-2xl font-bold text-gray-900">{config.name}</h3>
-                <p className="text-gray-600 mt-1">{config.description}</p>
+                <h3 id={`${config.id}-title`} className="text-2xl font-bold text-blue-900">{config.name}</h3>
+                <p className="text-slate-600 mt-1">{config.description}</p>
               </div>
             </div>
-            <span className={`px-3 py-1 rounded-full text-sm font-medium ${config.badgeBg} whitespace-nowrap`}>
+            <span className={`px-3 py-1 rounded-full text-sm font-semibold ${colors.badge} whitespace-nowrap`}>
               {serviceCount} Services
             </span>
           </div>
         </div>
-        <div className="bg-gray-50/50 px-6 lg:px-8 pb-8">
+        <div className="bg-white/60 px-6 lg:px-8 pb-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((service) => {
               const ServiceIcon = (service.icon && iconMap[service.icon] ? iconMap[service.icon] : FileText) as LucideIcon;
               return (
-                <article key={service.id} className="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg hover:border-transparent transition-all duration-300">
-                  <div className={`w-12 h-12 rounded-lg flex items-center justify-center text-white mb-4 ${config.gradientFrom} ${config.gradientTo}`}>
+                <article key={service.id} className={`bg-white rounded-2xl border border-slate-200 border-t-4 ${colors.border} p-6 shadow-sm flex flex-col ${colors.hoverBorder} hover:shadow-xl hover:-translate-y-1 transition-all duration-300`}>
+                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${colors.iconSoft}`}>
                     <ServiceIcon className="w-6 h-6" aria-hidden="true" />
                   </div>
-                  <h4 className="text-lg font-semibold text-gray-900 mb-2">{service.name}</h4>
-                  <p className="text-gray-600 text-sm leading-relaxed">{service.description}</p>
+                  <h4 className="text-lg font-bold text-blue-900 mb-2">{service.name}</h4>
+                  <p className="text-slate-600 text-sm leading-relaxed">{service.description}</p>
+                  <a
+                    href={`https://wa.me/919541611393?text=${encodeURIComponent(`Hello, I need help with ${service.name}`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`mt-auto pt-3 border-t border-slate-100 flex items-center gap-2 text-green-600 font-semibold text-sm rounded-lg px-2 py-1 transition-colors ${colors.whatsappHover} hover:text-green-700`}
+                  >
+                    <FaWhatsapp className="w-4 h-4" aria-hidden="true" />
+                    <span>Enquire on WhatsApp</span>
+                  </a>
                 </article>
               );
             })}
@@ -315,23 +294,47 @@ export function Home() {
         </div>
       </section>
 
-      <section id="services" className="py-16 lg:py-24 bg-gray-50" aria-labelledby="all-categories-title">
+      <section id="services" className="relative overflow-hidden py-16 lg:py-24 bg-gradient-to-b from-blue-50 via-white to-orange-50/40 scroll-mt-28" aria-labelledby="all-categories-title">
+        <div className="absolute -top-24 -left-24 w-80 h-80 bg-blue-200/30 rounded-full blur-3xl pointer-events-none -z-10" aria-hidden="true" />
+        <div className="absolute -bottom-24 -right-24 w-80 h-80 bg-orange-200/30 rounded-full blur-3xl pointer-events-none -z-10" aria-hidden="true" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="text-center max-w-3xl mx-auto mb-12">
             <span className="inline-block px-4 py-1.5 rounded-full bg-orange-100 text-orange-700 text-sm font-semibold mb-6">WHAT WE OFFER</span>
-            <h2 id="all-categories-title" className="text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 leading-tight mb-4">
+            <h2 id="all-categories-title" className="text-3xl lg:text-4xl xl:text-5xl font-bold text-blue-900 leading-tight mb-4">
               All Service Categories
             </h2>
             <div className="w-20 h-1 bg-orange-500 mx-auto mb-6 rounded-full" />
-            <p className="text-lg text-gray-600">
+            <p className="text-lg text-slate-600">
               Browse our complete range of digital assistance services organised by category.
             </p>
           </div>
-          <div className="space-y-14">
+          <div className="space-y-16">
             {categoryConfigs.map((config) => {
               const services = getServicesByCategory(config.id as import('../data/services').ServiceCategory);
               return <CategorySection key={config.id} config={config} services={services} />;
             })}
+          </div>
+
+          <div className="mt-16 rounded-3xl bg-gradient-to-r from-blue-900 via-blue-800 to-blue-700 text-white p-8 md:p-12 text-center shadow-xl">
+            <h3 className="text-2xl md:text-3xl font-bold">Apni service list mein nahi mili? Hamse puchiye.</h3>
+            <p className="text-white/80 mt-3">Hum aapki zaroorat ke hisaab se guide karenge.</p>
+            <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="https://wa.me/919541611393"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-3 bg-green-600 text-white font-semibold rounded-xl hover:-translate-y-1 transition-transform"
+              >
+                <FaWhatsapp className="w-5 h-5" aria-hidden="true" />
+                Contact on WhatsApp
+              </a>
+              <a
+                href="tel:+919541611393"
+                className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-3 bg-white text-blue-900 font-semibold rounded-xl hover:-translate-y-1 transition-transform"
+              >
+                Call Us
+              </a>
+            </div>
           </div>
         </div>
       </section>

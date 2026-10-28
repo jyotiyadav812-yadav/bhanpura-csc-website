@@ -3,6 +3,7 @@ import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 import { ScrollToTop } from '../components/ScrollToTop';
 import { WhatsAppFloat } from '../components/WhatsAppFloat';
+import { Chatbot } from '../components/Chatbot';
 
 export function MainLayout() {
   return (
@@ -14,6 +15,7 @@ export function MainLayout() {
       <Footer />
       <ScrollToTop />
       <WhatsAppFloat />
+      <Chatbot />
     </div>
   );
 }

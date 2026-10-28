@@ -1,28 +1,17 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { MessageSquare, X } from 'lucide-react';
 import { businessConfig } from '../config/business';
-import { getWhatsAppUrl, getDefaultWhatsAppMessage } from '../utils/helpers';
+import { getWhatsAppUrl } from '../utils/helpers';
 
 export function WhatsAppFloat() {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [isVisible, setIsVisible] = useState(true);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsVisible(window.scrollY < 100);
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const whatsappUrl = getWhatsAppUrl(getDefaultWhatsAppMessage());
+  const whatsappUrl = getWhatsAppUrl('Hello, I need help');
   const phoneUrl = `tel:+91${businessConfig.contact.phone}`;
 
-  if (!isVisible) return null;
-
   return (
-    <div className="fixed bottom-4 right-4 z-50" role="region" aria-label="Quick contact actions">
-      <div className="flex flex-col items-end gap-3">
+    <div className="fixed bottom-6 left-6 z-50 max-sm:bottom-4 max-sm:left-4" role="region" aria-label="Quick contact actions">
+      <div className="flex flex-col items-start gap-3">
         {isExpanded && (
           <>
             <a
@@ -54,9 +43,9 @@ export function WhatsAppFloat() {
         <button
           type="button"
           onClick={() => setIsExpanded(!isExpanded)}
-          className="btn btn-float whatsapp"
+          className="w-14 h-14 rounded-full bg-green-600 hover:bg-green-700 text-white shadow-xl flex items-center justify-center transition-colors"
           aria-expanded={isExpanded}
-          aria-label={isExpanded ? 'Close contact options' : 'Open contact options'}
+          aria-label={isExpanded ? 'Close contact options' : 'Chat on WhatsApp'}
         >
           {isExpanded ? <X className="w-7 h-7" aria-hidden="true" /> : <MessageSquare className="w-7 h-7" aria-hidden="true" />}
         </button>

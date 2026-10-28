@@ -38,6 +38,8 @@ export function Contact() {
   });
   const [errors, setErrors] = useState<FormErrors>({});
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [botcheck, setBotcheck] = useState('');
 
   const whatsappUrl = getWhatsAppUrl(getDefaultWhatsAppMessage());
   const phoneUrl = `tel:+91${businessConfig.contact.phone}`;
@@ -60,10 +62,32 @@ export function Contact() {
     e.preventDefault();
     if (!validateForm()) return;
     setSubmitStatus('submitting');
-    setTimeout(() => {
+    setSubmitError(null);
+    const accessKey = (import.meta.env.VITE_WEB3FORMS_KEY as string | undefined) || 'PASTE_ACCESS_KEY_YAHA';
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: accessKey,
+          subject: `New enquiry: ${formData.subject.trim()}`,
+          from_name: 'Bhanpura CSC Website',
+          name: formData.name.trim(),
+          mobile: formData.mobile.trim(),
+          email: formData.email.trim() || undefined,
+          message: formData.message.trim(),
+          botcheck: botcheck,
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data?.success) throw new Error('request failed');
       setSubmitStatus('success');
       setFormData({ name: '', mobile: '', email: '', subject: '', message: '' });
-    }, 300);
+      setBotcheck('');
+    } catch {
+      setSubmitStatus('idle');
+      setSubmitError('Message nahi ja paya. Kripya WhatsApp ya call karke sampark karein.');
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -261,7 +285,18 @@ export function Contact() {
                   </button>
                 </div>
               ) : (
+                <>
+                {submitError && (
+                  <div className="mb-4 flex flex-col gap-3 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700" role="alert">
+                    <p>{submitError}</p>
+                    <div className="flex gap-3">
+                      <a href="https://wa.me/919541611393" target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-green-600 text-white rounded-lg text-sm font-semibold">WhatsApp</a>
+                      <a href="tel:9541611393" className="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg text-sm font-semibold">Call</a>
+                    </div>
+                  </div>
+                )}
                 <form onSubmit={handleSubmit} className="space-y-4" noValidate>
+                  <input type="text" name="botcheck" value={botcheck} onChange={(e) => setBotcheck(e.target.value)} className="hidden" tabIndex={-1} autoComplete="off" />
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
@@ -399,7 +434,7 @@ export function Contact() {
                           <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                           <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                         </svg>
-                        Sending...
+                        Bhej rahe hain...
                       </span>
                     ) : (
                       'Send Message'
@@ -407,6 +442,7 @@ export function Contact() {
                   </button>
                   <p className="text-sm text-gray-500 text-center sm:text-left">This form is for enquiries only. No backend submission — we'll contact you via WhatsApp or phone.</p>
                 </form>
+                </>
               )}
             </div>
 

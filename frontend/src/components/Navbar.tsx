@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Link, useLocation, NavLink } from 'react-router-dom';
 import { Menu, X, Phone } from 'lucide-react';
-import { FaWhatsapp, FaInstagram } from 'react-icons/fa';
+import { FaWhatsapp } from 'react-icons/fa';
 import { businessConfig } from '../config/business';
 import { getWhatsAppUrl, getDefaultWhatsAppMessage } from '../utils/helpers';
 import { useMobileMenu } from '../hooks/useMobileMenu';
@@ -83,16 +83,6 @@ export function Navbar() {
               <FaWhatsapp className="w-4 h-4" aria-hidden="true" />
               <span>WhatsApp</span>
             </a>
-            <a
-              href={businessConfig.social.instagram}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center w-10 h-10 rounded-full text-white bg-white/10 hover:bg-white/20 transition-colors focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-900"
-              aria-label="Instagram"
-              title="Follow us on Instagram"
-            >
-              <FaInstagram className="w-5 h-5" aria-hidden="true" />
-            </a>
           </div>
 
           <button
@@ -153,16 +143,6 @@ export function Navbar() {
               >
                 <FaWhatsapp className="w-5 h-5" aria-hidden="true" />
                 <span>Chat on WhatsApp</span>
-              </a>
-              <a
-                href={businessConfig.social.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-4 py-3 text-base font-semibold text-white bg-gradient-to-r from-purple-600 via-pink-500 to-orange-400 rounded-lg hover:opacity-90 transition-opacity focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-900"
-                aria-label="Instagram"
-              >
-                <FaInstagram className="w-5 h-5" aria-hidden="true" />
-                <span>Follow on Instagram</span>
               </a>
             </div>
           </div>

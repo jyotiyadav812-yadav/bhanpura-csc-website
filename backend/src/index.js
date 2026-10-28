@@ -6,6 +6,7 @@ const path = require('path');
 require('./db');
 
 const enquiryRoutes = require('./routes/enquiries');
+const contactRoutes = require('./routes/contact');
 const serviceRoutes = require('./routes/services');
 const authRoutes = require('./routes/auth');
 const adminRoutes = require('./routes/admin');
@@ -25,6 +26,7 @@ app.get('/api/health', (req, res) => {
 });
 
 app.use('/api/enquiries', enquiryRoutes);
+app.use('/api/contact', contactRoutes);
 app.use('/api/services', serviceRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/admin', adminRoutes);
