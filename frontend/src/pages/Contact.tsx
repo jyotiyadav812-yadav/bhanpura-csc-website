@@ -7,6 +7,7 @@ import { businessConfig } from '../config/business';
 import { getWhatsAppUrl, getDefaultWhatsAppMessage } from '../utils/helpers';
 import { Helmet } from 'react-helmet-async';
 import { cn } from '../utils/helpers';
+import { submitWeb3Forms } from '../utils/web3forms';
 
 const MAP_EMBED_URL = "https://www.google.com/maps?q=29.7802515,76.3262961(Bhanpura+CSC+Centre)&z=17&output=embed";
 const MAP_LINK = "https://maps.app.goo.gl/JgaFfhiGEEunbvQ7A";
@@ -63,24 +64,15 @@ export function Contact() {
     if (!validateForm()) return;
     setSubmitStatus('submitting');
     setSubmitError(null);
-    const accessKey = (import.meta.env.VITE_WEB3FORMS_KEY as string | undefined) || 'PASTE_ACCESS_KEY_YAHA';
     try {
-      const res = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({
-          access_key: accessKey,
-          subject: `New enquiry: ${formData.subject.trim()}`,
-          from_name: 'Bhanpura CSC Website',
-          name: formData.name.trim(),
-          mobile: formData.mobile.trim(),
-          email: formData.email.trim() || undefined,
-          message: formData.message.trim(),
-          botcheck: botcheck,
-        }),
+      await submitWeb3Forms({
+        subject: `New enquiry: ${formData.subject.trim()}`,
+        name: formData.name.trim(),
+        mobile: formData.mobile.trim(),
+        email: formData.email.trim() || undefined,
+        message: formData.message.trim(),
+        botcheck: botcheck,
       });
-      const data = await res.json().catch(() => ({}));
-      if (!res.ok || !data?.success) throw new Error('request failed');
       setSubmitStatus('success');
       setFormData({ name: '', mobile: '', email: '', subject: '', message: '' });
       setBotcheck('');
@@ -440,7 +432,7 @@ export function Contact() {
                       'Send Message'
                     )}
                   </button>
-                  <p className="text-sm text-gray-500 text-center sm:text-left">This form is for enquiries only. No backend submission — we'll contact you via WhatsApp or phone.</p>
+                  <p className="text-sm text-gray-500 text-center sm:text-left">We'll respond via WhatsApp or phone. For urgent queries, call us directly.</p>
                 </form>
                 </>
               )}

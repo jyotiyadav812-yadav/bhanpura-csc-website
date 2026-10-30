@@ -7,6 +7,7 @@ import { businessConfig } from '../config/business';
 import { getWhatsAppUrl } from '../utils/helpers';
 import { Helmet } from 'react-helmet-async';
 import { cn } from '../utils/helpers';
+import { submitWeb3Forms } from '../utils/web3forms';
 interface FormData {
   name: string;
   mobile: string;
@@ -33,6 +34,7 @@ export function Enquiry() {
   const [errors, setErrors] = useState<FormErrors>({});
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
   const [privacyConsent, setPrivacyConsent] = useState(false);
+  const [botcheck, setBotcheck] = useState('');
 
   const whatsappUrl = getWhatsAppUrl(`Hello ${businessConfig.name}, I submitted an enquiry via the website. Please share the process and required information.`);
 
@@ -53,9 +55,22 @@ export function Enquiry() {
     e.preventDefault();
     if (!validateForm()) return;
     setSubmitStatus('submitting');
-    setTimeout(() => {
+    setErrors(prev => ({ ...prev, general: '' }));
+    try {
+      const serviceName = services.find(s => s.id === formData.service)?.name || formData.service;
+      await submitWeb3Forms({
+        subject: `New website enquiry: ${serviceName}`,
+        name: formData.name.trim(),
+        mobile: formData.mobile.trim(),
+        service: serviceName,
+        message: formData.message.trim(),
+        botcheck,
+      });
       setSubmitStatus('success');
-    }, 300);
+    } catch {
+      setSubmitStatus('idle');
+      setErrors(prev => ({ ...prev, general: 'Message nahi ja paya. Kripya WhatsApp ya call karke sampark karein.' }));
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -89,7 +104,7 @@ export function Enquiry() {
                   <CheckCircle className="w-16 h-16 text-green-600 mx-auto mb-4" aria-hidden="true" />
                   <h3 className="text-2xl font-bold text-gray-900 mb-2">Enquiry Submitted Successfully!</h3>
                   <p className="text-gray-600 mb-6 max-w-md mx-auto">
-                    Thank you for your enquiry. Online submission is coming soon — for now, please contact us directly on WhatsApp or call us for immediate assistance.
+                    Thank you for your enquiry. We have received your details and will contact you via WhatsApp or phone soon.
                   </p>
                   <div className="bg-gray-50 rounded-xl p-6 mb-6 text-left max-w-md mx-auto">
                     <p className="text-sm text-gray-600 mb-2">Your Details</p>
@@ -132,6 +147,8 @@ export function Enquiry() {
                       setSubmitStatus('idle');
                       setFormData({ name: '', mobile: '', service: '', message: '' });
                       setPrivacyConsent(false);
+                      setBotcheck('');
+                      setErrors({});
                     }}
                     className="mt-6 text-primary-600 hover:text-primary-700 font-medium text-sm"
                   >
@@ -140,6 +157,7 @@ export function Enquiry() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="bg-white border border-gray-100 rounded-2xl p-6 lg:p-8" noValidate>
+                  <input type="text" name="botcheck" value={botcheck} onChange={e => setBotcheck(e.target.value)} className="hidden" tabIndex={-1} autoComplete="off" />
                   <div className="space-y-6">
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
@@ -265,9 +283,15 @@ export function Enquiry() {
                     </div>
 
                     {errors.general && (
-                      <div className="flex items-center gap-2 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700" role="alert">
-                        <AlertCircle className="w-5 h-5 flex-shrink-0" aria-hidden="true" />
-                        <p>{errors.general}</p>
+                      <div className="flex flex-col gap-3 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700" role="alert">
+                        <div className="flex items-center gap-2">
+                          <AlertCircle className="w-5 h-5 flex-shrink-0" aria-hidden="true" />
+                          <p>{errors.general}</p>
+                        </div>
+                        <div className="flex gap-3">
+                          <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-green-600 text-white rounded-lg text-sm font-semibold">WhatsApp</a>
+                          <a href={`tel:+91${businessConfig.contact.phone}`} className="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg text-sm font-semibold">Call</a>
+                        </div>
                       </div>
                     )}
 
@@ -289,7 +313,7 @@ export function Enquiry() {
                       )}
                     </button>
                     <p className="mt-4 text-sm text-gray-500 text-center">
-                      Online submission coming soon. For immediate assistance, please contact us on WhatsApp or call.
+                      We'll respond via WhatsApp or phone. For immediate assistance, please contact us on WhatsApp or call.
                     </p>
                   </div>
                 </form>

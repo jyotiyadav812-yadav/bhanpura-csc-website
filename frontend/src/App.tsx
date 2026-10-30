@@ -16,7 +16,7 @@ import { NotFound } from './pages/NotFound';
 function App() {
   return (
     <HelmetProvider>
-      <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+      <BrowserRouter>
         <ScrollToTopRoute />
         <Routes>
           <Route path="/" element={<MainLayout />}>

@@ -233,7 +233,7 @@ export function Home() {
 
       <section className="relative min-h-[560px] md:min-h-[calc(100svh-80px)] flex items-center" aria-label="Bhanpura CSC Centre">
         <img
-          src="/hero-banner.png"
+          src="/hero-banner.webp"
           alt="Bhanpura CSC Centre - digital services in village"
           loading="eager"
           className="absolute inset-0 w-full h-full object-cover object-[60%_center] md:object-[75%_center]"

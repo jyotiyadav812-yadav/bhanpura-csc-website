@@ -1,23 +1,23 @@
 # Bhanpura CSC Centre Website
 
-A multipage React website for Bhanpura CSC Centre (Common Service Centre) built with Vite, React 19, Tailwind CSS v4, React Router v7, and Lucide React icons.
+A multipage React website for Bhanpura CSC Centre (Common Service Centre) built with Vite 5, React 18, Tailwind CSS 3, React Router 7, and Lucide React icons.
 
 ## Features
 
 - **Pages**: Home, Services, Service Details, How It Works, About, Contact, Enquiry, Privacy Policy, Terms & Conditions, 404
 - **Responsive Design**: Mobile-first, fully responsive with hamburger menu
 - **Accessibility**: Semantic HTML, ARIA labels, keyboard navigation, focus states
-- **SEO**: Page titles, meta descriptions, Open Graph tags via react-helmet-async
-- **Contact Integration**: Click-to-call, WhatsApp deep links with prefilled messages
+- **SEO**: Page titles, meta descriptions, static and per-page Open Graph tags
+- **Contact Integration**: Click-to-call, WhatsApp deep links, and Web3Forms contact/enquiry submission
 - **Service Catalogue**: 6 categories, 18 services with detailed descriptions
 - **Floating WhatsApp Button**: Mobile-only quick contact
-- **No Backend**: Frontend-only, client-side validation only
+- **No Backend**: Frontend-only; contact and enquiry forms submit to Web3Forms
 
 ## Tech Stack
 
-- **React 19** with **Vite 8**
-- **Tailwind CSS v4** (via @tailwindcss/vite)
-- **React Router v7**
+- **React 18** with **Vite 5**
+- **Tailwind CSS 3**
+- **React Router 7**
 - **Lucide React** icons
 - **React Helmet Async** for SEO
 - **TypeScript** for type safety
@@ -35,10 +35,9 @@ src/
 │   ├── SectionHeading.tsx
 │   ├── ServiceCard.tsx
 │   ├── ServiceGrid.tsx
-│   ├── WhatsAppFloat.tsx
-│   └── EnquiryForm.tsx
+│   └── WhatsAppFloat.tsx
 ├── config/           # Business configuration
-│   └── business.ts
+│   └── business.js
 ├── data/             # Service data
 │   └── services.js
 ├── hooks/            # Custom React hooks
@@ -70,7 +69,7 @@ src/
 
 ### Prerequisites
 
-- Node.js 18+
+- Node.js 20+
 - npm 9+
 
 ### Installation
@@ -108,11 +107,10 @@ The built files will be in the `dist/` directory.
 npm run preview
 ```
 
-### Linting
+### Type Check
 
 ```bash
-# Run linter
-npm run lint
+npx tsc --noEmit
 ```
 
 ## Business Configuration
@@ -147,6 +145,14 @@ The `dist/` folder can be deployed to any static hosting:
 - Netlify, Vercel, Cloudflare Pages
 - GitHub Pages, Firebase Hosting
 - AWS S3 + CloudFront, Azure Static Web Apps
+
+### Vercel
+
+1. Import the repository and set **Root Directory** to `frontend`.
+2. Use **Build Command** `npm run build` and **Output Directory** `dist`.
+3. Add `VITE_WEB3FORMS_KEY` in **Project Settings > Environment Variables** for Production and Preview. Get the access key from [Web3Forms](https://web3forms.com). Without this key, the contact and enquiry forms show an error and users are redirected to WhatsApp/call.
+4. `vercel.json` includes the SPA rewrite so React Router pages work on refresh and direct links.
+5. After the first deploy, update the `og:image` and `twitter:image` values in `index.html` to the absolute production URL (`https://<your-domain>/og-image.jpg`) for the best social preview.
 
 ## Important Notes
 
