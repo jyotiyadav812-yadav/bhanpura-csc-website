@@ -63,14 +63,15 @@ export function About() {
         <meta property="og:type" content="website" />
       </Helmet>
 
-      <section className="about-hero py-16 lg:py-24" aria-labelledby="about-title">
+      <section id="about" className="about-hero py-20 md:py-24 scroll-mt-24 bg-white" aria-labelledby="about-title">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <span className="about-badge">WHO WE ARE</span>
-            <h1 id="about-title" className="about-title">About Our Centre</h1>
-            <div className="about-title-line" />
-            <p className="text-slate-600 text-lg mt-4 max-w-2xl mx-auto">Bhanpura CSC Centre is a private digital assistance centre serving Village Bhanpura and surrounding areas in Kaithal district, Haryana.</p>
-          </div>
+          <SectionHeading
+            as="h1"
+            id="about-title"
+            title="About Our Centre"
+            subtitle="WHO WE ARE"
+            description="Bhanpura CSC Centre is a private digital assistance centre serving Village Bhanpura and surrounding areas in Kaithal district, Haryana."
+          />
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
             <div className="about-text-block">

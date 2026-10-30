@@ -90,7 +90,7 @@ export function HowItWorks() {
         <meta property="og:type" content="website" />
       </Helmet>
 
-      <section className="relative py-16 lg:py-24 bg-gradient-to-br from-white via-slate-50 to-blue-50 overflow-hidden" aria-labelledby="how-it-works-title">
+      <section id="how-it-works" className="relative py-20 md:py-24 scroll-mt-24 bg-slate-50 overflow-hidden" aria-labelledby="how-it-works-title">
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
           <div className="absolute -top-24 -right-24 w-80 h-80 bg-blue-200/30 rounded-full blur-3xl" />
           <div className="absolute bottom-0 -left-24 w-80 h-80 bg-orange-200/30 rounded-full blur-3xl" />
@@ -98,12 +98,10 @@ export function HowItWorks() {
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
+            id="how-it-works-title"
             title="How It Works"
             subtitle="SIMPLE 4-STEP PROCESS"
             description="Getting digital assistance at Bhanpura CSC is straightforward. Here's what to expect when you visit or contact us."
-            titleClassName="text-slate-900"
-            subtitleClassName="text-orange-700 bg-orange-100 px-3 py-1 rounded-full inline-block"
-            descriptionClassName="text-slate-600"
           />
 
           <div className="relative max-w-3xl mx-auto pl-16 sm:pl-24 space-y-12 sm:space-y-16">
@@ -141,15 +139,11 @@ export function HowItWorks() {
             ))}
           </div>
 
-          <div className="mt-20 mb-14 text-center">
-            <span className="inline-block px-4 py-2 rounded-full bg-orange-100 text-orange-700 text-xs font-bold uppercase tracking-widest">
-              Key Points
-            </span>
-            <h2 className="text-3xl lg:text-4xl font-extrabold text-slate-900 mt-5">
-              What Makes Our Process Different
-            </h2>
-            <div className="w-20 h-1 rounded-full mx-auto mt-4 bg-gradient-to-r from-blue-600 to-orange-500" />
-          </div>
+          <SectionHeading
+            className="mt-20"
+            title="What Makes Our Process Different"
+            subtitle="Key Points"
+          />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
             {keyPoints.map((point, index) => {
               const theme = ['theme-blue', 'theme-green', 'theme-orange', 'theme-purple'][index % 4];
@@ -171,7 +165,7 @@ export function HowItWorks() {
         </div>
       </section>
 
-      <section className="relative py-20 lg:py-28 bg-gradient-to-br from-blue-600 to-indigo-700 text-white overflow-hidden" aria-labelledby="start-title">
+      <section className="relative py-20 md:py-24 bg-gradient-to-br from-blue-600 to-indigo-700 text-white overflow-hidden" aria-labelledby="start-title">
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
           <div className="absolute -top-24 -left-20 w-80 h-80 bg-white/10 rounded-full blur-3xl" />
           <div className="absolute -bottom-24 -right-16 w-80 h-80 bg-orange-400/20 rounded-full blur-3xl" />

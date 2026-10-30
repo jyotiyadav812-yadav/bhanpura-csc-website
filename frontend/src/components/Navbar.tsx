@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, type MouseEvent } from 'react';
 import { Link, useLocation, NavLink } from 'react-router-dom';
 import { Menu, X, Phone } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa';
@@ -23,6 +23,15 @@ export function Navbar() {
     close();
   }, [location.pathname, close]);
 
+  const handleNavClick = (href: string) => (event: MouseEvent<HTMLAnchorElement>) => {
+    close();
+    if (location.pathname === href) {
+      event.preventDefault();
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top: 0, left: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+    }
+  };
+
   const whatsappUrl = getWhatsAppUrl(getDefaultWhatsAppMessage());
   const phoneUrl = `tel:+91${businessConfig.contact.phone}`;
 
@@ -35,6 +44,7 @@ export function Navbar() {
         <div className="flex items-center justify-between h-16 lg:h-20">
           <Link
             to="/"
+            onClick={handleNavClick('/')}
             className="flex items-center gap-2 text-white font-bold text-xl lg:text-2xl focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-900 rounded-md"
             aria-label={`${businessConfig.name} - Home`}
           >
@@ -49,11 +59,12 @@ export function Navbar() {
               <NavLink
                 key={item.href}
                 to={item.href}
+                onClick={handleNavClick(item.href)}
                 className={({ isActive }) =>
                   cn(
                     'text-sm font-medium transition-colors duration-200 relative after:content-[\"\"] after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:bg-orange-500 after:transition-all after:duration-300',
                     isActive
-                      ? 'text-white font-semibold after:w-full'
+                      ? 'text-white font-bold after:w-full'
                       : 'text-white/85 hover:text-white after:w-0 hover:after:w-full'
                   )
                 }
@@ -111,12 +122,12 @@ export function Navbar() {
               <NavLink
                 key={item.href}
                 to={item.href}
-                onClick={close}
+                onClick={handleNavClick(item.href)}
                 className={({ isActive }) =>
                   cn(
-                    'block px-3 py-2.5 rounded-lg text-base font-medium transition-colors',
+                    'block px-3 py-2.5 rounded-lg text-base font-medium transition-colors border-b-2 border-transparent',
                     isActive
-                      ? 'bg-white/10 text-white'
+                      ? 'bg-white/10 text-white font-bold border-orange-500'
                       : 'text-white/85 hover:bg-white/5 hover:text-white'
                   )
                 }

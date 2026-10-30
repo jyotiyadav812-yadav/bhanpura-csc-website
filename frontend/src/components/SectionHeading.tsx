@@ -9,6 +9,8 @@ interface SectionHeadingProps {
   titleClassName?: string;
   subtitleClassName?: string;
   descriptionClassName?: string;
+  as?: 'h1' | 'h2' | 'h3';
+  id?: string;
 }
 
 export function SectionHeading({
@@ -20,25 +22,30 @@ export function SectionHeading({
   titleClassName = '',
   subtitleClassName = '',
   descriptionClassName = '',
+  as: Heading = 'h2',
+  id,
 }: SectionHeadingProps) {
   const alignClasses = {
     left: 'text-left',
     center: 'text-center',
     right: 'text-right',
   };
+  const underlineAlign = textAlign === 'center' ? 'mx-auto' : textAlign === 'right' ? 'ml-auto' : '';
+  const descriptionAlign = textAlign === 'center' ? 'mx-auto' : textAlign === 'right' ? 'ml-auto' : '';
 
   return (
-    <div className={cn('mb-12 lg:mb-16', alignClasses[textAlign], className)}>
+    <div className={cn('mb-12', alignClasses[textAlign], className)}>
       {subtitle && (
         <p className={cn('inline-block text-xs font-bold uppercase tracking-widest text-orange-700 bg-orange-100 px-4 py-2 rounded-full mb-4', subtitleClassName)}>
           {subtitle}
         </p>
       )}
-      <h2 className={cn('text-3xl lg:text-4xl font-bold text-gray-900 mb-4', titleClassName)}>
+      <Heading id={id} className={cn('text-3xl md:text-5xl font-extrabold text-blue-900 mb-4', titleClassName)}>
         {title}
-      </h2>
+      </Heading>
+      <span className={cn('block w-20 h-1 bg-orange-500 rounded', underlineAlign)} aria-hidden="true" />
       {description && (
-        <p className={cn('text-lg text-gray-600 max-w-2xl mx-auto', textAlign !== 'center' && 'mx-0', descriptionClassName)}>
+        <p className={cn('mt-5 text-lg text-slate-600 max-w-2xl', descriptionAlign, descriptionClassName)}>
           {description}
         </p>
       )}

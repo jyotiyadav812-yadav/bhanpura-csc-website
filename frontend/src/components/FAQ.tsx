@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
+import { SectionHeading } from './SectionHeading';
 import { cn } from '../utils/helpers';
 
 interface FAQItem {
@@ -22,18 +23,10 @@ export function FAQ({ items, className = '', title, subtitle }: FAQProps) {
   };
 
   return (
-    <section className={cn('py-16 lg:py-24', className)} aria-labelledby={title ? 'faq-title' : undefined}>
-      {(title || subtitle) && (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-12">
-          {subtitle && (
-            <span className="inline-block text-xs font-bold uppercase tracking-widest text-orange-700 bg-orange-100 px-4 py-2 rounded-full mb-4">{subtitle}</span>
-          )}
-          {title && (
-            <>
-              <h2 id="faq-title" className="text-3xl lg:text-4xl font-bold text-gray-900">{title}</h2>
-              <div className="w-20 h-1 rounded-full mx-auto mt-4 bg-gradient-to-r from-blue-600 to-orange-500" />
-            </>
-          )}
+    <section className={cn('py-20 md:py-24', className)} aria-labelledby={title ? 'faq-title' : undefined}>
+      {title && (
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionHeading id="faq-title" title={title} subtitle={subtitle} />
         </div>
       )}
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">

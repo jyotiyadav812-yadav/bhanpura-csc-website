@@ -10,7 +10,7 @@ export function WhatsAppFloat() {
   const phoneUrl = `tel:+91${businessConfig.contact.phone}`;
 
   return (
-    <div className="fixed bottom-6 left-6 z-50 max-sm:bottom-4 max-sm:left-4" role="region" aria-label="Quick contact actions">
+    <div className="fixed bottom-6 left-6 z-40 max-sm:bottom-4 max-sm:left-4" role="region" aria-label="Quick contact actions">
       <div className="flex flex-col items-start gap-3">
         {isExpanded && (
           <>

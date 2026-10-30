@@ -79,7 +79,7 @@ function CategorySection({ config, services }: { config: CategoryConfig; service
     FileText, CreditCard, Camera, File, Files, Award, HelpCircle, Monitor, GraduationCap, Image, Plane, Printer, Scan, FileType, Layout, Minimize, Baby, Send,
   };
   return (
-    <section id={config.id} className="scroll-mt-28" aria-labelledby={`${config.id}-title`}>
+    <section id={config.id} className="scroll-mt-24 min-w-0" aria-labelledby={`${config.id}-title`}>
       <div className={`relative rounded-2xl border border-slate-200 ${colors.soft} bg-gradient-to-r ${colors.soft} to-white shadow-md overflow-hidden`}>
         <div className={`absolute left-0 top-0 bottom-0 w-[6px] bg-gradient-to-b ${colors.gradient}`} aria-hidden="true" />
         <div className="p-6 lg:p-8">
@@ -231,7 +231,7 @@ export function Home() {
         <meta name="twitter:card" content="summary_large_image" />
       </Helmet>
 
-      <section className="relative min-h-[560px] md:min-h-[calc(100svh-80px)] flex items-center" aria-label="Bhanpura CSC Centre">
+      <section id="home" className="relative min-h-[560px] md:min-h-[calc(100svh-80px)] flex items-center scroll-mt-24" aria-label="Bhanpura CSC Centre">
         <img
           src="/hero-banner.webp"
           alt="Bhanpura CSC Centre - digital services in village"
@@ -274,9 +274,10 @@ export function Home() {
         </div>
       </section>
 
-      <section className="py-16 lg:py-24 bg-white" aria-labelledby="popular-services-title">
+      <section className="py-20 md:py-24 bg-white" aria-labelledby="popular-services-title">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
+            id="popular-services-title"
             title="Popular Services"
             subtitle="Most Requested"
             description="These are the services our customers ask for most often. Click to see details and request assistance."
@@ -294,20 +295,16 @@ export function Home() {
         </div>
       </section>
 
-      <section id="services" className="relative overflow-hidden py-16 lg:py-24 bg-gradient-to-b from-blue-50 via-white to-orange-50/40 scroll-mt-28" aria-labelledby="all-categories-title">
+      <section id="services" className="relative overflow-hidden py-20 md:py-24 bg-gradient-to-b from-blue-50 via-white to-orange-50/40 scroll-mt-24" aria-labelledby="all-categories-title">
         <div className="absolute -top-24 -left-24 w-80 h-80 bg-blue-200/30 rounded-full blur-3xl pointer-events-none -z-10" aria-hidden="true" />
         <div className="absolute -bottom-24 -right-24 w-80 h-80 bg-orange-200/30 rounded-full blur-3xl pointer-events-none -z-10" aria-hidden="true" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-12">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-orange-100 text-orange-700 text-sm font-semibold mb-6">WHAT WE OFFER</span>
-            <h2 id="all-categories-title" className="text-3xl lg:text-4xl xl:text-5xl font-bold text-blue-900 leading-tight mb-4">
-              All Service Categories
-            </h2>
-            <div className="w-20 h-1 bg-orange-500 mx-auto mb-6 rounded-full" />
-            <p className="text-lg text-slate-600">
-              Browse our complete range of digital assistance services organised by category.
-            </p>
-          </div>
+          <SectionHeading
+            id="all-categories-title"
+            title="All Service Categories"
+            subtitle="WHAT WE OFFER"
+            description="Browse our complete range of digital assistance services organised by category."
+          />
           <div className="space-y-16">
             {categoryConfigs.map((config) => {
               const services = getServicesByCategory(config.id as import('../data/services').ServiceCategory);
@@ -339,9 +336,10 @@ export function Home() {
         </div>
       </section>
 
-      <section className="py-16 lg:py-24 bg-white" aria-labelledby="how-it-works-title">
+      <section className="py-20 md:py-24 bg-white" aria-labelledby="how-it-works-title">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
+            id="how-it-works-title"
             title="How It Works"
             subtitle="Simple Process"
             description="Getting digital assistance at Bhanpura CSC is straightforward. Here's what to expect."
@@ -374,9 +372,10 @@ export function Home() {
         </div>
       </section>
 
-      <section className="py-16 lg:py-24 bg-gray-50" aria-labelledby="why-choose-title">
+      <section className="py-20 md:py-24 bg-gray-50" aria-labelledby="why-choose-title">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
+            id="why-choose-title"
             title="Why Choose Bhanpura CSC?"
             subtitle="Our Commitment"
             description="We focus on honest, transparent, and helpful service for our local community."

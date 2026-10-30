@@ -92,6 +92,7 @@ export function Enquiry() {
       <section className="py-16 lg:py-24 bg-gradient-to-b from-primary-50 via-white to-secondary-50" aria-labelledby="enquiry-title">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
+            id="enquiry-title"
             title="Submit an Enquiry"
             subtitle="Get Assistance"
             description="Fill out the form below and we'll contact you via WhatsApp or phone. All fields marked with * are required."
@@ -321,7 +322,7 @@ export function Enquiry() {
             </div>
 
             <aside className="lg:col-span-1">
-              <div className="bg-white border border-gray-100 rounded-2xl p-6 h-fit sticky top-24">
+              <div className="bg-white border border-gray-100 rounded-2xl p-6 h-fit lg:sticky lg:top-24">
                 <h3 className="text-xl font-bold text-gray-900 mb-4">Need Help Faster?</h3>
                 <p className="text-gray-600 mb-6">Skip the form and get immediate assistance via WhatsApp or phone.</p>
                 <ContactButtons variant="default" />

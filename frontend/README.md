@@ -150,7 +150,7 @@ The `dist/` folder can be deployed to any static hosting:
 
 1. Import the repository and set **Root Directory** to `frontend`.
 2. Use **Build Command** `npm run build` and **Output Directory** `dist`.
-3. Add `VITE_WEB3FORMS_KEY` in **Project Settings > Environment Variables** for Production and Preview. Get the access key from [Web3Forms](https://web3forms.com). Without this key, the contact and enquiry forms show an error and users are redirected to WhatsApp/call.
+3. Add `VITE_WEB3FORMS_KEY` in **Project Settings > Environment Variables** for Production and Preview. Get the access key from [Web3Forms](https://web3forms.com). Without this key, the contact and enquiry forms show a WhatsApp/call fallback instead of sending an email. Vite embeds this value at build time, so redeploy after changing it.
 4. `vercel.json` includes the SPA rewrite so React Router pages work on refresh and direct links.
 5. After the first deploy, update the `og:image` and `twitter:image` values in `index.html` to the absolute production URL (`https://<your-domain>/og-image.jpg`) for the best social preview.
 

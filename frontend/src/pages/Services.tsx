@@ -16,18 +16,20 @@ export function Services() {
         <meta property="og:type" content="website" />
       </Helmet>
 
-      <section className="py-16 lg:py-24 bg-gradient-to-b from-primary-50 via-white to-secondary-50" aria-labelledby="services-title">
+      <section id="services" className="py-20 md:py-24 scroll-mt-24 bg-gradient-to-b from-blue-50 via-white to-orange-50/40" aria-labelledby="services-title">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
+            id="services-title"
             title="All Services"
             subtitle="Complete Catalogue"
-            description="Online forms, payments, documents, photos and most online services, with friendly local support."          />
+            description="Online forms, payments, documents, photos and most online services, with friendly local support."
+          />
           <div className="space-y-16">
             {serviceCategories.map((category, index) => {
               const categoryServices = getServicesByCategory(category.id);
               const theme = ['theme-blue', 'theme-orange', 'theme-green', 'theme-purple', 'theme-teal', 'theme-rose'][index % 6];
               return (
-                <section key={category.id} id={category.id} className={`scroll-mt-20 ${theme}`} aria-labelledby={`${category.id}-title`}>
+                <section key={category.id} id={category.id} className={`scroll-mt-24 min-w-0 ${theme}`} aria-labelledby={`${category.id}-title`}>
                   <div className="cat-header">
                     <div className="cat-icon">
                       <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -51,7 +53,7 @@ export function Services() {
         </div>
       </section>
 
-      <section className="py-16 bg-primary-600 text-white text-center" aria-label="Contact for services">
+      <section className="py-16 md:py-20 bg-primary-600 text-white text-center" aria-label="Contact for services">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl lg:text-4xl font-bold mb-4">Need Help Choosing a Service?</h2>
           <p className="text-primary-100 text-lg mb-8 max-w-2xl mx-auto">Not sure which service you need? Contact us and we'll guide you to the right assistance.</p>

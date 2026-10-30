@@ -19,6 +19,7 @@ export function Privacy() {
       <section className="py-16 lg:py-24 bg-gradient-to-b from-primary-50 via-white to-secondary-50" aria-labelledby="privacy-title">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
+            id="privacy-title"
             title="Privacy Policy"
             subtitle="Your Data Protection"
             textAlign="left"

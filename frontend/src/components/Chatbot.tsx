@@ -259,7 +259,7 @@ export function Chatbot() {
   return (
     <>
       {tooltip && !open && (
-        <div className="fixed bottom-20 right-6 z-40 bg-white text-gray-800 text-sm px-3 py-2 rounded-xl shadow-lg border border-gray-200 flex items-center gap-2">
+        <div className="fixed bottom-6 right-24 z-40 max-sm:bottom-4 max-sm:right-20 bg-white text-gray-800 text-sm px-3 py-2 rounded-xl shadow-lg border border-gray-200 flex items-center gap-2">
           <span>Madad chahiye? Mujhse puchiye</span>
           <button
             type="button"

@@ -152,7 +152,7 @@
 
 @media (max-width: 640px) { .btn { min-height: 48px; } }
 
-.about-hero { position: relative; overflow: hidden; padding: 72px 0; background: linear-gradient(135deg, #eff6ff 0%, #ffffff 45%, #fff7ed 100%); }
+.about-hero { position: relative; overflow: hidden; padding: 0; background: #ffffff; }
 .about-hero::before { content: ""; position: absolute; top: -80px; left: -80px; width: 300px; height: 300px; border-radius: 50%; background: rgba(37, 99, 235, 0.12); filter: blur(60px); }
 .about-hero::after { content: ""; position: absolute; bottom: -80px; right: -60px; width: 280px; height: 280px; border-radius: 50%; background: rgba(249, 115, 22, 0.14); filter: blur(60px); }
 .about-hero > * { position: relative; z-index: 1; }
@@ -243,3 +243,13 @@ html, body { overflow-x: hidden; }
 .svc-card p { color:#4b5563; margin:0; }
 .svc-card .svc-arrow { margin-left:auto; flex-shrink:0; display:flex; align-items:center; justify-content:center; width:32px; height:32px; border-radius:50%; color:var(--c-accent); background:var(--c-bg); transition:all .3s ease; }
 .svc-card:hover .svc-arrow { color:#fff; background:var(--c-accent); transform:translateX(4px); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
