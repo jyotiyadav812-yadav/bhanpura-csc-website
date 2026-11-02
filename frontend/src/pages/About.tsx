@@ -15,38 +15,95 @@ import { SectionHeading } from '../components/SectionHeading';
 import { businessConfig } from '../config/business';
 import { Helmet } from 'react-helmet-async';
 
+const COLOR_MAP = {
+  blue: {
+    gradient: 'from-blue-600 to-blue-800',
+    soft: 'bg-blue-50',
+    border: 'border-t-blue-500',
+    hoverBorder: 'hover:border-blue-500',
+    number: 'text-blue-100',
+    titleHover: 'group-hover:text-blue-700',
+  },
+  green: {
+    gradient: 'from-green-500 to-green-700',
+    soft: 'bg-green-50',
+    border: 'border-t-green-500',
+    hoverBorder: 'hover:border-green-500',
+    number: 'text-green-100',
+    titleHover: 'group-hover:text-green-700',
+  },
+  orange: {
+    gradient: 'from-orange-500 to-orange-600',
+    soft: 'bg-orange-50',
+    border: 'border-t-orange-500',
+    hoverBorder: 'hover:border-orange-500',
+    number: 'text-orange-100',
+    titleHover: 'group-hover:text-orange-700',
+  },
+  rose: {
+    gradient: 'from-rose-500 to-rose-700',
+    soft: 'bg-rose-50',
+    border: 'border-t-rose-500',
+    hoverBorder: 'hover:border-rose-500',
+    number: 'text-rose-100',
+    titleHover: 'group-hover:text-rose-700',
+  },
+  purple: {
+    gradient: 'from-purple-500 to-purple-700',
+    soft: 'bg-purple-50',
+    border: 'border-t-purple-500',
+    hoverBorder: 'hover:border-purple-500',
+    number: 'text-purple-100',
+    titleHover: 'group-hover:text-purple-700',
+  },
+  teal: {
+    gradient: 'from-teal-500 to-teal-700',
+    soft: 'bg-teal-50',
+    border: 'border-t-teal-500',
+    hoverBorder: 'hover:border-teal-500',
+    number: 'text-teal-100',
+    titleHover: 'group-hover:text-teal-700',
+  },
+} as const;
+
 const values = [
   {
     title: 'Honest Guidance',
     description: 'We provide accurate information based on current rules. We don\'t make false promises or guarantee approvals.',
     icon: Shield,
+    color: 'blue',
   },
   {
     title: 'Customer First',
     description: 'Your needs come first. We take time to understand your situation and explain options clearly in your preferred language.',
     icon: Users,
+    color: 'green',
   },
   {
     title: 'Transparent Pricing',
     description: 'No hidden fees. We say "Contact us for applicable charges" upfront so you know what to expect.',
     icon: Clock,
+    color: 'orange',
   },
   {
     title: 'Data Safety',
     description: 'We NEVER ask for UPI PINs, OTPs, passwords, or banking credentials. Your sensitive data stays with you.',
     icon: Shield,
+    color: 'rose',
   },
   {
     title: 'Local Commitment',
     description: 'We\'re part of the Bhanpura community. Our goal is to make digital services accessible to our neighbours.',
     icon: Building2,
+    color: 'purple',
   },
   {
     title: 'Continuous Learning',
     description: 'Government portals and rules change. We stay updated so you get current, relevant guidance.',
     icon: Award,
+    color: 'teal',
   },
-];
+] as const;
 
 const teamInfo = {
   owner: businessConfig.owner.name,
@@ -69,15 +126,6 @@ const disclaimers = [
   'Final decisions, approvals, fees, and timelines rest solely with respective government authorities.',
   'We are not affiliated with any government department or ministry.',
   'We do not use any government logos or claim official status.',
-];
-
-const valueThemes = [
-  'bg-blue-50 text-blue-700',
-  'bg-emerald-50 text-emerald-700',
-  'bg-orange-50 text-orange-700',
-  'bg-rose-50 text-rose-700',
-  'bg-violet-50 text-violet-700',
-  'bg-cyan-50 text-cyan-700',
 ];
 
 export function About() {
@@ -126,6 +174,10 @@ export function About() {
                 <p className="mt-4 leading-relaxed text-slate-600">
                   Our centre is owned and operated by <strong className="text-blue-800">{teamInfo.owner}</strong>. We understand the challenges of accessing digital services in rural areas — language barriers, complex portals, document requirements, and technical difficulties. That's why we offer patient, step-by-step assistance in Hindi, English, or Hinglish.
                 </p>
+                <div className="mt-6 grid grid-cols-2 gap-3">
+                  <img src="/csc-certificate.jpg" alt="CSC Certificate" className="h-56 w-full rounded-2xl bg-white object-contain shadow-md" />
+                  <img src="/csc-id-card.jpg" alt="CSC ID Card" className="h-56 w-full rounded-2xl bg-white object-contain shadow-md" />
+                </div>
                 <div className="mt-6 rounded-2xl border border-orange-200 bg-gradient-to-br from-orange-50 to-amber-50 p-5 text-sm leading-relaxed text-orange-900">
                   We are a <strong>private digital assistance centre</strong>, not an official government office. We don't issue certificates or approvals — we help you understand the process, prepare your documents, and complete applications correctly.
                 </div>
@@ -187,28 +239,61 @@ export function About() {
             </div>
           </div>
 
-          <SectionHeading
-            title="Our Values"
-            subtitle="What Drives Us"
-            description="These principles guide every interaction at our centre."
-          />
-          <div className="mb-16 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {values.map((value, index) => (
-              <article
-                key={value.title}
-                className="group relative h-full overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl"
-              >
-                <span className="pointer-events-none absolute right-5 top-4 text-5xl font-black leading-none text-slate-100 transition-colors group-hover:text-blue-100" aria-hidden="true">
-                  {String(index + 1).padStart(2, '0')}
-                </span>
-                <div className={`relative flex h-12 w-12 items-center justify-center rounded-2xl ${valueThemes[index % valueThemes.length]} shadow-sm`}>
-                  <value.icon className="h-6 w-6" aria-hidden="true" />
-                </div>
-                <h3 className="relative mt-5 text-lg font-bold text-blue-900">{value.title}</h3>
-                <p className="relative mt-2 leading-relaxed text-slate-600">{value.description}</p>
-              </article>
-            ))}
-          </div>
+          <section className="relative isolate mb-16 overflow-hidden bg-gradient-to-b from-white via-blue-50/60 to-orange-50/40 px-4 py-12 sm:px-6 lg:px-8">
+            <div className="pointer-events-none absolute -left-24 -top-24 -z-10 h-80 w-80 rounded-full bg-blue-200/30 blur-3xl" aria-hidden="true" />
+            <div className="pointer-events-none absolute -bottom-24 -right-24 -z-10 h-80 w-80 rounded-full bg-orange-200/30 blur-3xl" aria-hidden="true" />
+
+            <SectionHeading
+              id="values-section-title"
+              title="Our Values"
+              subtitle="What Drives Us"
+              description="These principles guide every interaction at our centre."
+            />
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+              {values.map((value, index) => {
+                const theme = COLOR_MAP[value.color];
+
+                return (
+                  <article
+                    key={value.title}
+                    className={`group relative flex h-full flex-col overflow-hidden rounded-3xl border border-slate-200 border-t-4 ${theme.border} bg-white p-7 shadow-md motion-safe:transition-all motion-safe:duration-300 motion-safe:hover:-translate-y-2 ${theme.hoverBorder} motion-safe:hover:shadow-2xl`}
+                  >
+                    <span className={`pointer-events-none absolute right-5 top-4 text-5xl font-extrabold leading-none ${theme.number}`} aria-hidden="true">
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
+                    <div className={`pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full ${theme.soft} opacity-60 blur-3xl`} aria-hidden="true" />
+                    <div className={`relative z-10 flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br ${theme.gradient} text-white shadow-lg motion-safe:transition-transform motion-safe:duration-300 motion-safe:group-hover:scale-110 motion-safe:group-hover:rotate-3`}>
+                      <value.icon className="h-8 w-8" aria-hidden="true" />
+                    </div>
+                    <h3 className={`relative z-10 mt-5 text-xl font-bold text-blue-900 ${theme.titleHover}`}>{value.title}</h3>
+                    <p className="relative z-10 mt-2 leading-relaxed text-slate-600">{value.description}</p>
+                  </article>
+                );
+              })}
+            </div>
+
+            <div className="mt-8 flex flex-col items-center gap-5 rounded-2xl bg-gradient-to-r from-blue-900 to-blue-700 p-6 text-center text-white sm:flex-row sm:justify-between sm:text-left">
+              <p className="font-semibold leading-relaxed">
+                Hamara vaada: sahi jaankari, saaf daam, aapka data surakshit.
+              </p>
+              <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
+                <a
+                  href="https://wa.me/919541611393"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex w-full items-center justify-center rounded-xl bg-green-500 px-5 py-3 text-sm font-bold text-white transition-colors hover:bg-green-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:w-auto"
+                >
+                  Contact on WhatsApp
+                </a>
+                <a
+                  href="tel:9541611393"
+                  className="inline-flex w-full items-center justify-center rounded-xl bg-white px-5 py-3 text-sm font-bold text-blue-900 transition-colors hover:bg-blue-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:w-auto"
+                >
+                  Call Us
+                </a>
+              </div>
+            </div>
+          </section>
 
           <SectionHeading
             title="Important Disclaimers"

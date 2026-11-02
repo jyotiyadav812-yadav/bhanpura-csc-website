@@ -151,7 +151,7 @@ export function HowItWorks() {
 
       <section
         id="how-it-works"
-        className="relative overflow-hidden bg-slate-50 py-20 md:py-24 scroll-mt-24"
+        className="relative overflow-hidden bg-gradient-to-br from-indigo-50 via-white to-emerald-50 py-20 md:py-24 scroll-mt-24"
         aria-labelledby="how-it-works-title"
       >
         <div className="pointer-events-none absolute inset-0" aria-hidden="true">
