@@ -2,7 +2,7 @@ const Database = require('better-sqlite3');
 const path = require('path');
 const fs = require('fs');
 
-const dbPath = process.env.DB_PATH || './data/csc.db';
+const dbPath = process.env.DB_PATH || (process.env.VERCEL ? '/tmp/csc.db' : './data/csc.db');
 const dbDir = path.dirname(dbPath);
 
 if (!fs.existsSync(dbDir)) {
