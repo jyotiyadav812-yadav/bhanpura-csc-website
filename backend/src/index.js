@@ -38,7 +38,6 @@ app.use((err, req, res, next) => {
 
 const fs = require('fs');
 const frontendDist = path.join(__dirname, '..', '..', 'frontend', 'dist');
-console.log('DEBUG __dirname=', __dirname, 'distExists=', require('fs').existsSync(frontendDist));
 if (fs.existsSync(frontendDist)) {
   app.use(express.static(frontendDist));
   app.get('*', (req, res) => {
