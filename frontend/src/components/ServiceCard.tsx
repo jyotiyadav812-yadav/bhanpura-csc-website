@@ -54,12 +54,12 @@ export function ServiceCard({ service, variant = 'default' }: ServiceCardProps) 
 
   return (
     <article className="group color-card service-card border-t-4 border-t-transparent hover:border-t-orange-500 overflow-hidden hover:-translate-y-1 transform transition-all duration-300">
-      <div className="p-6">
-        <div className="card-icon group-hover:bg-primary-700 transition-colors">
-          <IconComponent className="w-7 h-7" aria-hidden="true" />
+      <div className="p-5 sm:p-6">
+        <div className="card-icon group-hover:bg-primary-700 transition-colors w-11 h-11 sm:w-12 sm:h-12">
+          <IconComponent className="w-6 h-6 sm:w-7 sm:h-7" aria-hidden="true" />
         </div>
-        <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-primary-600 transition-colors">{service.name}</h3>
-        <p className="text-gray-600 mb-4 leading-relaxed">{service.description}</p>
+        <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2 group-hover:text-primary-600 transition-colors">{service.name}</h3>
+        <p className="text-gray-600 mb-4 leading-relaxed text-sm sm:text-base">{service.description}</p>
         <ul className="space-y-2 mb-6" role="list" aria-label="What we do">
           {service.whatWeDo.slice(0, 3).map((item, index) => (
             <li key={index} className="flex items-start gap-2 text-sm text-gray-600">
@@ -77,7 +77,7 @@ export function ServiceCard({ service, variant = 'default' }: ServiceCardProps) 
           <span className="text-sm text-gray-500">{service.priceNote}</span>
         </div>
       </div>
-      <div className="mt-auto px-6 pb-6 pt-0 flex flex-col gap-3">
+      <div className="mt-auto px-5 sm:px-6 pb-5 pt-0 flex flex-col gap-3">
         <Link
           to={`/services/${service.id}`}
           className="btn-primary"

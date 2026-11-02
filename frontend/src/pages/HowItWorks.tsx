@@ -170,7 +170,7 @@ export function HowItWorks() {
 
           <div className="mb-16 grid gap-6 lg:grid-cols-12 lg:gap-8">
             <div className="lg:col-span-5">
-              <div className="rounded-3xl border border-blue-100 bg-white p-4 shadow-xl shadow-blue-900/5 sm:p-5">
+              <div className="rounded-3xl border border-blue-100 bg-white p-3 shadow-xl shadow-blue-900/5 sm:p-4">
                 <div className="mb-3 flex items-center justify-between px-2">
                   <span className="text-xs font-bold uppercase tracking-[0.2em] text-slate-400">Your journey</span>
                   <span className="rounded-full bg-blue-50 px-3 py-1 text-xs font-bold text-blue-700">
@@ -192,7 +192,7 @@ export function HowItWorks() {
                         aria-controls={`step-panel-${step.number}`}
                         onClick={() => setActiveStep(step.number)}
                         className={cn(
-                          'group flex w-full items-center gap-3 rounded-2xl border p-3 text-left transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2',
+                          'group flex w-full items-center gap-3 rounded-2xl border p-3 text-left transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 touch-manipulation',
                           isActive
                             ? `border-transparent bg-gradient-to-r ${stepTheme.gradient} text-white shadow-lg`
                             : 'border-slate-200 bg-white text-slate-900 hover:border-blue-200 hover:bg-blue-50/60'
@@ -231,25 +231,25 @@ export function HowItWorks() {
                 role="tabpanel"
                 id={`step-panel-${active.number}`}
                 aria-labelledby={`step-tab-${active.number}`}
-                className="relative h-full overflow-hidden rounded-3xl border border-blue-100 bg-white p-6 shadow-xl shadow-slate-200/70 sm:p-8 lg:p-10"
+                className="relative h-full overflow-hidden rounded-3xl border border-blue-100 bg-white p-5 shadow-xl shadow-slate-200/70 sm:p-7 lg:p-10"
               >
                 <div className={cn('pointer-events-none absolute -right-16 -top-16 h-60 w-60 rounded-full blur-3xl', theme.glow)} aria-hidden="true" />
                 <div className="relative">
                   <div className="flex flex-wrap items-center gap-4">
-                    <div className={cn('flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br text-white shadow-lg', theme.gradient)}>
-                      <ActiveIcon className="h-8 w-8" aria-hidden="true" />
+                    <div className={cn('flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br text-white shadow-lg', theme.gradient)}>
+                      <ActiveIcon className="h-7 w-7" aria-hidden="true" />
                     </div>
                     <div>
                       <span className={cn('inline-flex rounded-full px-3 py-1 text-xs font-bold uppercase tracking-widest', theme.chip)}>
                         Step {active.number}
                       </span>
-                      <h3 className="mt-2 text-2xl font-extrabold leading-tight text-blue-900 sm:text-3xl">{active.title}</h3>
+                      <h3 className="mt-2 text-xl font-extrabold leading-tight text-blue-900 sm:text-2xl">{active.title}</h3>
                     </div>
                   </div>
 
-                  <p className="mt-6 text-lg leading-relaxed text-slate-600">{active.description}</p>
+                  <p className="mt-5 text-base leading-relaxed text-slate-600 sm:text-lg">{active.description}</p>
 
-                  <div className="mt-8 grid gap-3 sm:grid-cols-2">
+                  <div className="mt-6 grid gap-3 sm:grid-cols-2">
                     {active.details.map((detail) => (
                       <div
                         key={detail}
@@ -263,19 +263,19 @@ export function HowItWorks() {
                     ))}
                   </div>
 
-                  <div className="mt-8 flex flex-col gap-3 border-t border-slate-100 pt-6 sm:flex-row">
+                  <div className="mt-7 flex flex-col gap-3 border-t border-slate-100 pt-6 sm:flex-row">
                     <a
                       href={whatsappUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-2 rounded-xl bg-green-600 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-green-600/20 transition hover:-translate-y-0.5 hover:bg-green-700"
+                      className="inline-flex items-center justify-center gap-2 rounded-xl bg-green-600 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-green-600/20 transition hover:-translate-y-0.5 hover:bg-green-700 touch-manipulation"
                     >
                       <FaWhatsapp className="h-5 w-5" aria-hidden="true" />
                       Contact on WhatsApp
                     </a>
                     <a
                       href={`tel:+91${businessConfig.contact.phone}`}
-                      className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-700 transition hover:border-blue-200 hover:text-blue-700"
+                      className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-700 transition hover:border-blue-200 hover:text-blue-700 touch-manipulation"
                     >
                       <Phone className="h-5 w-5" aria-hidden="true" />
                       Call {businessConfig.contact.phone}
@@ -291,21 +291,21 @@ export function HowItWorks() {
               title="What Makes Our Process Different"
               subtitle="Key Points"
             />
-            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 sm:gap-5">
               {keyPoints.map((point, index) => {
                 const pointTheme = stepThemes[index % stepThemes.length];
                 return (
                   <article
                     key={point.title}
-                    className="group relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl"
+                    className="group relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl"
                   >
                     <span className="pointer-events-none absolute right-4 top-3 text-5xl font-black leading-none text-slate-100 transition-colors group-hover:text-blue-100" aria-hidden="true">
                       {String(index + 1).padStart(2, '0')}
                     </span>
-                    <div className={cn('relative flex h-12 w-12 items-center justify-center rounded-2xl', pointTheme.soft, pointTheme.text)}>
+                    <div className={cn('relative flex h-11 w-11 items-center justify-center rounded-2xl', pointTheme.soft, pointTheme.text)}>
                       <point.icon className="h-6 w-6" aria-hidden="true" />
                     </div>
-                    <h3 className="relative mt-5 text-lg font-bold text-blue-900">{point.title}</h3>
+                    <h3 className="relative mt-4 text-lg font-bold text-blue-900">{point.title}</h3>
                     <p className="relative mt-2 text-sm leading-relaxed text-slate-600">{point.description}</p>
                   </article>
                 );
@@ -315,29 +315,29 @@ export function HowItWorks() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-blue-950 py-20 text-white md:py-24" aria-labelledby="start-title">
+      <section className="relative overflow-hidden bg-blue-950 py-16 text-white md:py-20" aria-labelledby="start-title">
         <div className="pointer-events-none absolute inset-0" aria-hidden="true">
           <div className="absolute -left-20 -top-24 h-80 w-80 rounded-full bg-blue-500/20 blur-3xl" />
           <div className="absolute -bottom-24 -right-16 h-80 w-80 rounded-full bg-orange-400/20 blur-3xl" />
         </div>
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.06] p-8 shadow-2xl backdrop-blur sm:p-10 lg:p-12">
+          <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.06] p-6 shadow-2xl backdrop-blur sm:p-8 lg:p-12">
             <div className="grid gap-8 lg:grid-cols-[1.4fr_1fr] lg:items-center">
               <div>
-                <span className="inline-flex rounded-full bg-orange-500/20 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-orange-300">
+                <span className="inline-flex rounded-full bg-orange-500/20 px-3 py-1.5 text-xs font-bold uppercase tracking-widest text-orange-300">
                   Start Here
                 </span>
-                <h2 id="start-title" className="mt-4 text-3xl font-extrabold sm:text-4xl lg:text-[44px]">
+                <h2 id="start-title" className="mt-3 text-2xl font-extrabold sm:text-3xl lg:text-[40px]">
                   Ready to Get Started?
                 </h2>
-                <p className="mt-3 max-w-2xl text-lg text-blue-100/80">
+                <p className="mt-2 max-w-2xl text-base text-blue-100/80 sm:text-lg">
                   Visit us at Village Bhanpura, call us, or message on WhatsApp. We're here to help.
                 </p>
               </div>
               <div className="flex flex-col gap-3">
                 <a
                   href={`tel:+91${businessConfig.contact.phone}`}
-                  className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-white px-6 py-3.5 font-bold text-blue-900 shadow-xl transition hover:-translate-y-0.5 hover:bg-blue-50 focus:outline-none focus-visible:ring-4 focus-visible:ring-white/60"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-white px-6 py-3.5 font-bold text-blue-900 shadow-xl transition hover:-translate-y-0.5 hover:bg-blue-50 focus:outline-none focus-visible:ring-4 focus-visible:ring-white/60 touch-manipulation"
                   aria-label="Call Now"
                 >
                   <Phone className="h-5 w-5" aria-hidden="true" />
@@ -347,7 +347,7 @@ export function HowItWorks() {
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-green-600 px-6 py-3.5 font-bold text-white shadow-xl transition hover:-translate-y-0.5 hover:bg-green-700 focus:outline-none focus-visible:ring-4 focus-visible:ring-white/60"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-green-600 px-6 py-3.5 font-bold text-white shadow-xl transition hover:-translate-y-0.5 hover:bg-green-700 focus:outline-none focus-visible:ring-4 focus-visible:ring-white/60 touch-manipulation"
                   aria-label="WhatsApp Us"
                 >
                   <FaWhatsapp className="h-5 w-5" aria-hidden="true" />
@@ -355,7 +355,7 @@ export function HowItWorks() {
                 </a>
                 <Link
                   to="/contact"
-                  className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/5 px-6 py-3.5 font-semibold text-white transition hover:bg-white/10"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/5 px-6 py-3.5 font-semibold text-white transition hover:bg-white/10 touch-manipulation"
                 >
                   Send an Enquiry
                   <ArrowRight className="h-5 w-5" aria-hidden="true" />

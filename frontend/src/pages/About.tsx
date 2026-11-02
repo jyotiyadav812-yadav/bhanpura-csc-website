@@ -175,8 +175,8 @@ export function About() {
                   Our centre is owned and operated by <strong className="text-blue-800">{teamInfo.owner}</strong>. We understand the challenges of accessing digital services in rural areas — language barriers, complex portals, document requirements, and technical difficulties. That's why we offer patient, step-by-step assistance in Hindi, English, or Hinglish.
                 </p>
                 <div className="mt-6 grid grid-cols-2 gap-3">
-                  <img src="/csc-certificate.jpg" alt="CSC Certificate" className="h-56 w-full rounded-2xl bg-white object-contain shadow-md" />
-                  <img src="/csc-id-card.jpg" alt="CSC ID Card" className="h-56 w-full rounded-2xl bg-white object-contain shadow-md" />
+                  <img src="/csc-certificate.jpg" alt="CSC Centre certificate - proof of Common Service Centre registration" className="h-48 w-full rounded-2xl bg-white object-contain shadow-md" />
+                  <img src="/csc-id-card.jpg" alt="CSC ID card - Common Service Centre identity card" className="h-48 w-full rounded-2xl bg-white object-contain shadow-md" />
                 </div>
                 <div className="mt-6 rounded-2xl border border-orange-200 bg-gradient-to-br from-orange-50 to-amber-50 p-5 text-sm leading-relaxed text-orange-900">
                   We are a <strong>private digital assistance centre</strong>, not an official government office. We don't issue certificates or approvals — we help you understand the process, prepare your documents, and complete applications correctly.

@@ -85,12 +85,12 @@ function CategorySection({ config, services }: { config: CategoryConfig; service
         <div className="p-6 lg:p-8">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div className="flex items-center gap-4">
-              <div className={`flex-shrink-0 w-16 h-16 rounded-2xl flex items-center justify-center text-white bg-gradient-to-br ${colors.gradient} shadow-lg`}>
-                <Icon className="w-8 h-8" aria-hidden="true" />
+              <div className={`flex-shrink-0 w-14 h-14 sm:w-16 sm:h-16 rounded-2xl flex items-center justify-center text-white bg-gradient-to-br ${colors.gradient} shadow-lg`}>
+                <Icon className="w-7 h-7 sm:w-8 sm:h-8" aria-hidden="true" />
               </div>
               <div>
-                <h3 id={`${config.id}-title`} className="text-2xl font-bold text-blue-900">{config.name}</h3>
-                <p className="text-slate-600 mt-1">{config.description}</p>
+                <h3 id={`${config.id}-title`} className="text-xl sm:text-2xl font-bold text-blue-900">{config.name}</h3>
+                <p className="text-slate-600 mt-1 text-sm sm:text-base">{config.description}</p>
               </div>
             </div>
             <span className={`px-3 py-1 rounded-full text-sm font-semibold ${colors.badge} whitespace-nowrap`}>
@@ -98,16 +98,16 @@ function CategorySection({ config, services }: { config: CategoryConfig; service
             </span>
           </div>
         </div>
-        <div className="bg-white/60 px-6 lg:px-8 pb-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="bg-white/60 px-4 sm:px-6 lg:px-8 pb-6 sm:pb-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {services.map((service) => {
               const ServiceIcon = (service.icon && iconMap[service.icon] ? iconMap[service.icon] : FileText) as LucideIcon;
               return (
-                <article key={service.id} className={`bg-white rounded-2xl border border-slate-200 border-t-4 ${colors.border} p-6 shadow-sm flex flex-col ${colors.hoverBorder} hover:shadow-xl hover:-translate-y-1 transition-all duration-300`}>
-                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${colors.iconSoft}`}>
-                    <ServiceIcon className="w-6 h-6" aria-hidden="true" />
+                <article key={service.id} className={`bg-white rounded-2xl border border-slate-200 border-t-4 ${colors.border} p-5 sm:p-6 shadow-sm flex flex-col ${colors.hoverBorder} hover:shadow-xl hover:-translate-y-1 transition-all duration-300`}>
+                  <div className={`w-11 h-11 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center mb-4 ${colors.iconSoft}`}>
+                    <ServiceIcon className="w-5 h-5 sm:w-6 sm:h-6" aria-hidden="true" />
                   </div>
-                  <h4 className="text-lg font-bold text-blue-900 mb-2">{service.name}</h4>
+                  <h4 className="text-base sm:text-lg font-bold text-blue-900 mb-2">{service.name}</h4>
                   <p className="text-slate-600 text-sm leading-relaxed">{service.description}</p>
                   <a
                     href={`https://wa.me/919541611393?text=${encodeURIComponent(`Hello, I need help with ${service.name}`)}`}
@@ -234,7 +234,7 @@ export function Home() {
       <section id="home" className="relative min-h-[480px] sm:min-h-[560px] md:min-h-[calc(100svh-80px)] flex items-center scroll-mt-24" aria-label="Bhanpura CSC Centre">
         <img
           src="/hero-banner.webp"
-          alt="Bhanpura CSC Centre - digital services in village"
+          alt="Bhanpura CSC Centre building - digital services centre in village Bhanpura, Kaithal"
           loading="eager"
           className="absolute inset-0 w-full h-full object-cover object-center"
         />

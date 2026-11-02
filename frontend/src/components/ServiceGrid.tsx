@@ -22,8 +22,9 @@ export function ServiceGrid({ services, variant = 'default', className = '' }: S
   return (
     <div
       className={`
-        grid gap-6 items-stretch
+        grid items-stretch
         ${variant === 'compact' ? 'grid-cols-1 sm:grid-cols-2' : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'}
+        gap-4 sm:gap-5 lg:gap-6
         ${className}
       `}
       role="list"

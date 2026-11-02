@@ -127,14 +127,14 @@ export function ServiceDetails() {
                 </section>
               </article>
 
-              <section aria-labelledby="request-title" className="bg-white border border-gray-100 rounded-2xl p-6 sticky top-24">
-                <h2 id="request-title" className="text-xl font-bold text-gray-900 mb-4">Request This Service</h2>
-                <p className="text-gray-600 mb-6">Get in touch with us to start the process or ask any questions.</p>
+              <section aria-labelledby="request-title" className="bg-white border border-gray-100 rounded-2xl p-5 sm:p-6 lg:sticky lg:top-24">
+                <h2 id="request-title" className="text-lg sm:text-xl font-bold text-gray-900 mb-4">Request This Service</h2>
+                <p className="text-gray-600 mb-5 text-sm sm:text-base">Get in touch with us to start the process or ask any questions.</p>
                 <ContactButtons serviceName={service.name} variant="default" />
-                <div className="mt-6 pt-6 border-t border-gray-100 space-y-3">
+                <div className="mt-5 pt-5 border-t border-gray-100 space-y-3">
                   <a
                     href={phoneUrl}
-                    className="flex items-center justify-center gap-2 px-4 py-3 text-sm font-medium text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
+                    className="flex items-center justify-center gap-2 px-4 py-3 text-sm font-medium text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors touch-manipulation"
                     aria-label="Call us"
                   >
                     <Phone className="w-5 h-5" aria-hidden="true" />
@@ -144,7 +144,7 @@ export function ServiceDetails() {
                     href={whatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 px-4 py-3 text-sm font-semibold text-white bg-green-600 rounded-lg hover:bg-green-700 transition-colors"
+                    className="flex items-center justify-center gap-2 px-4 py-3 text-sm font-semibold text-white bg-green-600 rounded-lg hover:bg-green-700 transition-colors touch-manipulation"
                     aria-label="Contact on WhatsApp"
                   >
                     <MessageSquare className="w-5 h-5" aria-hidden="true" />

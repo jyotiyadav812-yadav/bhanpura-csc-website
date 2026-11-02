@@ -18,7 +18,7 @@ export function ContactButtons({ className = '', serviceName, variant = 'default
       <div className={cn('flex items-center gap-2', className)} role="group" aria-label="Contact options">
         <a
           href={phoneUrl}
-          className="inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+          className="inline-flex items-center gap-1.5 px-3 py-2.5 text-sm font-medium text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 touch-manipulation"
           aria-label="Call us"
         >
           <Phone className="w-4 h-4" aria-hidden="true" />
@@ -28,7 +28,7 @@ export function ContactButtons({ className = '', serviceName, variant = 'default
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 px-3 py-2 text-sm font-semibold text-white bg-green-600 rounded-lg hover:bg-green-700 transition-colors focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+          className="inline-flex items-center gap-1.5 px-3 py-2.5 text-sm font-semibold text-white bg-green-600 rounded-lg hover:bg-green-700 transition-colors focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 touch-manipulation"
           aria-label="Contact on WhatsApp"
         >
           <MessageSquare className="w-4 h-4" aria-hidden="true" />
@@ -39,10 +39,10 @@ export function ContactButtons({ className = '', serviceName, variant = 'default
   }
 
   return (
-    <div className={cn('flex flex-col sm:flex-row gap-4', className)} role="group" aria-label="Contact options">
+    <div className={cn('flex flex-col sm:flex-row gap-3', className)} role="group" aria-label="Contact options">
       <a
         href={phoneUrl}
-        className="flex items-center justify-center gap-2 px-6 py-3 text-base font-medium text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+        className="flex items-center justify-center gap-2 px-6 py-3.5 text-base font-medium text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 touch-manipulation"
         aria-label="Call us"
       >
         <Phone className="w-5 h-5" aria-hidden="true" />
@@ -52,7 +52,7 @@ export function ContactButtons({ className = '', serviceName, variant = 'default
         href={whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="flex items-center justify-center gap-2 px-6 py-3 text-base font-semibold text-white bg-green-600 rounded-lg hover:bg-green-700 transition-colors focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+        className="flex items-center justify-center gap-2 px-6 py-3.5 text-base font-semibold text-white bg-green-600 rounded-lg hover:bg-green-700 transition-colors focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 touch-manipulation"
         aria-label="Contact on WhatsApp"
       >
         <MessageSquare className="w-5 h-5" aria-hidden="true" />

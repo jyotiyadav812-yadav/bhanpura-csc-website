@@ -34,18 +34,18 @@ export function SectionHeading({
   const descriptionAlign = textAlign === 'center' ? 'mx-auto' : textAlign === 'right' ? 'ml-auto' : '';
 
   return (
-    <div className={cn('mb-12', alignClasses[textAlign], className)}>
+    <div className={cn('mb-10 md:mb-12', alignClasses[textAlign], className)}>
       {subtitle && (
-        <p className={cn('inline-block text-xs font-bold uppercase tracking-widest text-orange-700 bg-orange-100 px-4 py-2 rounded-full mb-4', subtitleClassName)}>
+        <p className={cn('inline-block text-xs font-bold uppercase tracking-widest text-orange-700 bg-orange-100 px-3 py-1.5 rounded-full mb-3 md:mb-4', subtitleClassName)}>
           {subtitle}
         </p>
       )}
-      <Heading id={id} className={cn('text-3xl md:text-5xl font-extrabold text-blue-900 mb-4', titleClassName)}>
+      <Heading id={id} className={cn('text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-blue-900 mb-3 md:mb-4', titleClassName)}>
         {title}
       </Heading>
-      <span className={cn('block w-20 h-1 bg-orange-500 rounded', underlineAlign)} aria-hidden="true" />
+      <span className={cn('block w-16 sm:w-20 h-1 bg-orange-500 rounded', underlineAlign)} aria-hidden="true" />
       {description && (
-        <p className={cn('mt-5 text-lg text-slate-600 max-w-2xl', descriptionAlign, descriptionClassName)}>
+        <p className={cn('mt-4 md:mt-5 text-base sm:text-lg text-slate-600 max-w-2xl', descriptionAlign, descriptionClassName)}>
           {description}
         </p>
       )}
