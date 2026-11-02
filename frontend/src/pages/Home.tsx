@@ -231,24 +231,24 @@ export function Home() {
         <meta name="twitter:card" content="summary_large_image" />
       </Helmet>
 
-      <section id="home" className="relative min-h-[560px] md:min-h-[calc(100svh-80px)] flex items-center scroll-mt-24" aria-label="Bhanpura CSC Centre">
+      <section id="home" className="relative min-h-[480px] sm:min-h-[560px] md:min-h-[calc(100svh-80px)] flex items-center scroll-mt-24" aria-label="Bhanpura CSC Centre">
         <img
           src="/hero-banner.webp"
           alt="Bhanpura CSC Centre - digital services in village"
           loading="eager"
-          className="absolute inset-0 w-full h-full object-cover object-[60%_center] md:object-[75%_center]"
+          className="absolute inset-0 w-full h-full object-cover object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-blue-950/85 via-blue-900/60 to-blue-900/30 md:bg-gradient-to-r md:from-blue-950/90 md:via-blue-900/60 md:to-transparent" aria-hidden="true" />
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div className="absolute inset-0 bg-gradient-to-b from-blue-950/90 via-blue-900/70 to-blue-900/40 md:bg-gradient-to-r md:from-blue-950/90 md:via-blue-900/60 md:to-transparent" aria-hidden="true" />
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-8 md:py-0">
           <div className="max-w-xl">
-            <p className="text-sm font-medium text-blue-100 uppercase tracking-wider mb-2">Common Service Centre & Digital Assistance</p>
-            <h1 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-white leading-tight mb-4 drop-shadow-lg">
+            <p className="text-xs sm:text-sm font-medium text-blue-100 uppercase tracking-wider mb-2">Common Service Centre & Digital Assistance</p>
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-white leading-tight mb-3 sm:mb-4 drop-shadow-lg">
               Your Trusted Partner for Digital Services
             </h1>
-            <p className="text-base lg:text-lg text-white/90 leading-relaxed mb-6">
+            <p className="text-sm sm:text-base lg:text-lg text-white/90 leading-relaxed mb-5">
               Online form assistance, document services, photo services, payment assistance, and more, with friendly local support at Bhanpura.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 mb-6">
+            <div className="flex flex-col sm:flex-row gap-3 mb-5">
               <Link
                 to="/services"
                 className="btn btn-accent btn-block sm:w-auto"
@@ -266,7 +266,7 @@ export function Home() {
                 Contact on WhatsApp
               </a>
             </div>
-            <div className="space-y-1 text-sm text-white/80">
+            <div className="space-y-1 text-xs sm:text-sm text-white/80">
               <p>Open: {businessConfig.workingHours.display}</p>
               <p>{businessConfig.location.formatted}</p>
             </div>
@@ -274,7 +274,7 @@ export function Home() {
         </div>
       </section>
 
-      <section className="py-20 md:py-24 bg-white" aria-labelledby="popular-services-title">
+      <section className="py-12 md:py-20 lg:py-24 bg-white" aria-labelledby="popular-services-title">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
             id="popular-services-title"
@@ -283,7 +283,7 @@ export function Home() {
             description="These are the services our customers ask for most often. Click to see details and request assistance."
           />
           <ServiceGrid services={popularServices} />
-          <div className="text-center mt-10">
+          <div className="text-center mt-8">
             <Link
               to="/services"
               className="inline-flex items-center gap-2 px-6 py-3 bg-primary-600 text-white font-medium rounded-lg hover:bg-primary-700 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
@@ -295,9 +295,9 @@ export function Home() {
         </div>
       </section>
 
-      <section id="services" className="relative overflow-hidden py-20 md:py-24 bg-gradient-to-b from-blue-50 via-white to-orange-50/40 scroll-mt-24" aria-labelledby="all-categories-title">
-        <div className="absolute -top-24 -left-24 w-80 h-80 bg-blue-200/30 rounded-full blur-3xl pointer-events-none -z-10" aria-hidden="true" />
-        <div className="absolute -bottom-24 -right-24 w-80 h-80 bg-orange-200/30 rounded-full blur-3xl pointer-events-none -z-10" aria-hidden="true" />
+      <section id="services" className="relative overflow-hidden py-12 md:py-20 lg:py-24 bg-gradient-to-b from-blue-50 via-white to-orange-50/40 scroll-mt-24" aria-labelledby="all-categories-title">
+        <div className="absolute -top-16 -left-16 w-64 h-64 bg-blue-200/30 rounded-full blur-3xl pointer-events-none -z-10" aria-hidden="true" />
+        <div className="absolute -bottom-16 -right-16 w-64 h-64 bg-orange-200/30 rounded-full blur-3xl pointer-events-none -z-10" aria-hidden="true" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
             id="all-categories-title"
@@ -305,29 +305,29 @@ export function Home() {
             subtitle="WHAT WE OFFER"
             description="Browse our complete range of digital assistance services organised by category."
           />
-          <div className="space-y-16">
+          <div className="space-y-10">
             {categoryConfigs.map((config) => {
               const services = getServicesByCategory(config.id as import('../data/services').ServiceCategory);
               return <CategorySection key={config.id} config={config} services={services} />;
             })}
           </div>
 
-          <div className="mt-16 rounded-3xl bg-gradient-to-r from-blue-900 via-blue-800 to-blue-700 text-white p-8 md:p-12 text-center shadow-xl">
-            <h3 className="text-2xl md:text-3xl font-bold">Apni service list mein nahi mili? Hamse puchiye.</h3>
-            <p className="text-white/80 mt-3">Hum aapki zaroorat ke hisaab se guide karenge.</p>
-            <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="mt-12 rounded-3xl bg-gradient-to-r from-blue-900 via-blue-800 to-blue-700 text-white p-6 md:p-10 text-center shadow-xl">
+            <h3 className="text-xl md:text-2xl lg:text-3xl font-bold">Apni service list mein nahi mili? Hamse puchiye.</h3>
+            <p className="text-white/80 mt-2">Hum aapki zaroorat ke hisaab se guide karenge.</p>
+            <div className="mt-5 flex flex-col sm:flex-row gap-3 justify-center">
               <a
                 href="https://wa.me/919541611393"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-3 bg-green-600 text-white font-semibold rounded-xl hover:-translate-y-1 transition-transform"
+                className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-5 py-3 bg-green-600 text-white font-semibold rounded-xl hover:-translate-y-1 transition-transform"
               >
                 <FaWhatsapp className="w-5 h-5" aria-hidden="true" />
                 Contact on WhatsApp
               </a>
               <a
                 href="tel:+919541611393"
-                className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-3 bg-white text-blue-900 font-semibold rounded-xl hover:-translate-y-1 transition-transform"
+                className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-5 py-3 bg-white text-blue-900 font-semibold rounded-xl hover:-translate-y-1 transition-transform"
               >
                 Call Us
               </a>
@@ -336,7 +336,7 @@ export function Home() {
         </div>
       </section>
 
-      <section className="py-20 md:py-24 bg-white" aria-labelledby="how-it-works-title">
+      <section className="py-12 md:py-20 lg:py-24 bg-white" aria-labelledby="how-it-works-title">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
             id="how-it-works-title"
@@ -344,7 +344,7 @@ export function Home() {
             subtitle="Simple Process"
             description="Getting digital assistance at Bhanpura CSC is straightforward. Here's what to expect."
           />
-          <div className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <div className="hidden lg:block absolute left-0 right-0 top-8 h-0.5 bg-gradient-to-r from-blue-500 via-green-500 to-purple-500" aria-hidden="true" />
             {howItWorksSteps.map((step, index) => {
               const theme = ['theme-blue','theme-green','theme-orange','theme-purple'][index % 4];
@@ -354,13 +354,13 @@ export function Home() {
                   <div className="hl-icon">
                     <step.icon className="w-7 h-7" aria-hidden="true" />
                   </div>
-                  <h3 className="text-xl">{step.title}</h3>
-                  <p>{step.description}</p>
+                  <h3 className="text-lg md:text-xl">{step.title}</h3>
+                  <p className="text-sm">{step.description}</p>
                 </article>
               );
             })}
           </div>
-          <div className="text-center mt-12">
+          <div className="text-center mt-10">
             <Link
               to="/how-it-works"
               className="inline-flex items-center gap-2 px-6 py-3 border-2 border-primary-600 text-primary-600 font-medium rounded-lg hover:bg-primary-50 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
