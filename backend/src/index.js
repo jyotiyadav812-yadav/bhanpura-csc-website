@@ -38,11 +38,20 @@ app.use((err, req, res, next) => {
 
 const fs = require('fs');
 const frontendDist = path.join(__dirname, '..', '..', 'frontend', 'dist');
+const backendDist = path.join(__dirname, '..', 'dist');
+let frontendPath = null;
+
 if (fs.existsSync(frontendDist)) {
-  app.use(express.static(frontendDist));
+  frontendPath = frontendDist;
+} else if (fs.existsSync(backendDist)) {
+  frontendPath = backendDist;
+}
+
+if (frontendPath) {
+  app.use(express.static(frontendPath));
   app.use((req, res) => {
     if (req.path.startsWith('/api')) return res.status(404).json({ error: 'Not found' });
-    res.sendFile(path.join(frontendDist, 'index.html'));
+    res.sendFile(path.join(frontendPath, 'index.html'));
   });
 } else {
   app.use((req, res) => {
