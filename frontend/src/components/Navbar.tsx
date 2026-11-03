@@ -70,7 +70,7 @@ export function Navbar() {
             ))}
           </div>
 
-          <div className="hidden items-center gap-2 sm:flex">
+          <div className="flex items-center gap-2">
             <a
               href={phoneUrl}
               className="inline-flex min-h-10 items-center gap-2 rounded-lg border border-white bg-white px-3 py-2 text-sm font-medium text-blue-900 transition-colors hover:bg-blue-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-blue-900"
