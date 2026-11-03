@@ -6,7 +6,7 @@ import { FAQ } from '../components/FAQ';
 import { getPopularServices, getServicesByCategory, type Service, type ServiceCategory } from '../data/services';
 import { businessConfig } from '../config/business';
 import { getWhatsAppUrl, getDefaultWhatsAppMessage } from '../utils/helpers';
-import { Helmet } from 'react-helmet-async';
+import { PageSEO } from '../components/PageSEO';
 import { FaWhatsapp } from 'react-icons/fa';
 
 const COLOR_MAP = {
@@ -222,20 +222,21 @@ export function Home() {
 
   return (
     <>
-      <Helmet>
-        <title>{businessConfig.name} | Your Trusted Partner for Digital Services</title>
-        <meta name="description" content="Bhanpura CSC Centre - Online form assistance, document services, photo services, payment assistance, and more with friendly local support at Village Bhanpura, Kaithal, Haryana." />
-        <meta property="og:title" content={`${businessConfig.name} | Your Trusted Partner for Digital Services`} />
-        <meta property="og:description" content="Online form assistance, document services, photo services, payment assistance, and more, with friendly local support at Bhanpura." />
-        <meta property="og:type" content="website" />
-        <meta name="twitter:card" content="summary_large_image" />
-      </Helmet>
+      <PageSEO
+        title={`${businessConfig.name} | Online Forms & Digital Services in Kaithal`}
+        description="Get online form, document, photo, payment and certificate assistance at Bhanpura CSC Centre in Kaithal, Haryana. Call or WhatsApp for local support."
+        keywords={['Bhanpura CSC Centre', 'CSC centre in Bhanpura', 'digital services in Kaithal', 'online form filling Kaithal', 'document services', 'passport photo service']}
+      />
 
       <section id="home" className="relative min-h-[480px] sm:min-h-[560px] md:min-h-[calc(100svh-80px)] flex items-center scroll-mt-24" aria-label="Bhanpura CSC Centre">
         <img
           src="/hero-banner.webp"
-          alt="Bhanpura CSC Centre building - digital services centre in village Bhanpura, Kaithal"
+          alt="Bhanpura CSC Centre, providing local digital assistance in Kaithal"
           loading="eager"
+          fetchPriority="high"
+          decoding="async"
+          width={1672}
+          height={941}
           className="absolute inset-0 w-full h-full object-cover object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-blue-950/90 via-blue-900/70 to-blue-900/40 md:bg-gradient-to-r md:from-blue-950/90 md:via-blue-900/60 md:to-transparent" aria-hidden="true" />

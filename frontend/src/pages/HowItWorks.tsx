@@ -15,7 +15,7 @@ import { FaWhatsapp } from 'react-icons/fa';
 import { SectionHeading } from '../components/SectionHeading';
 import { businessConfig } from '../config/business';
 import { getWhatsAppUrl, getDefaultWhatsAppMessage } from '../utils/helpers';
-import { Helmet } from 'react-helmet-async';
+import { PageSEO } from '../components/PageSEO';
 import { cn } from '../utils/helpers';
 
 interface Step {
@@ -141,13 +141,11 @@ export function HowItWorks() {
 
   return (
     <>
-      <Helmet>
-        <title>How It Works | {businessConfig.name}</title>
-        <meta name="description" content="Learn how Bhanpura CSC Centre works - visit us, explain your need, get assisted, receive confirmation. Simple 4-step process for digital services." />
-        <meta property="og:title" content={`How It Works | ${businessConfig.name}`} />
-        <meta property="og:description" content="Learn how Bhanpura CSC Centre works - simple 4-step process for digital services." />
-        <meta property="og:type" content="website" />
-      </Helmet>
+      <PageSEO
+        title={`How CSC Services Work | ${businessConfig.name}`}
+        description="See how to get digital service assistance at Bhanpura CSC Centre: visit, explain your requirement, get guided help, and receive your confirmation."
+        keywords={['how CSC services work', 'digital service assistance process', 'Bhanpura CSC Centre', 'Kaithal service centre']}
+      />
 
       <section
         id="how-it-works"

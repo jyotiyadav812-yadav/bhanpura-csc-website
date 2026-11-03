@@ -282,6 +282,8 @@ export function Chatbot() {
           <img
             src="/chatbot-icon.png"
             alt="Chat with assistant"
+            loading="lazy"
+            decoding="async"
             className="w-14 h-14 md:w-16 md:h-16 object-contain bg-transparent drop-shadow-[0_0_6px_rgba(255,255,255,0.9)] drop-shadow-[0_4px_8px_rgba(0,0,0,0.35)]"
           />
         </button>

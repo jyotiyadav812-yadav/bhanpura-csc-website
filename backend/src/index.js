@@ -14,8 +14,27 @@ const adminRoutes = require('./routes/admin');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+const allowedOrigins = new Set(
+  (process.env.FRONTEND_URL || '')
+    .split(',')
+    .map(origin => origin.trim())
+    .filter(origin => Boolean(origin) && (
+      process.env.NODE_ENV !== 'production' ||
+      !/^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin)
+    ))
+);
+allowedOrigins.add('https://bhanpura-csc.vercel.app');
+if (process.env.NODE_ENV !== 'production') {
+  allowedOrigins.add('http://localhost:5173');
+}
+
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+  origin(origin, callback) {
+    if (!origin || allowedOrigins.has(origin)) {
+      return callback(null, true);
+    }
+    return callback(new Error('Origin not allowed by CORS'));
+  },
   credentials: true
 }));
 app.use(express.json());

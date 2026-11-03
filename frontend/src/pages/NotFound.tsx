@@ -2,21 +2,19 @@ import { Link } from 'react-router-dom';
 import { Home, MessageSquare, Search } from 'lucide-react';
 import { businessConfig } from '../config/business';
 import { getWhatsAppUrl, getDefaultWhatsAppMessage } from '../utils/helpers';
-import { Helmet } from 'react-helmet-async';
+import { PageSEO } from '../components/PageSEO';
 
 export function NotFound() {
   const whatsappUrl = getWhatsAppUrl(getDefaultWhatsAppMessage());
 
   return (
     <>
-      <Helmet>
-        <title>Page Not Found | {businessConfig.name}</title>
-        <meta name="description" content="The page you're looking for doesn't exist. Bhanpura CSC Centre - digital assistance services in Village Bhanpura, Kaithal, Haryana." />
-        <meta property="og:title" content={`Page Not Found | ${businessConfig.name}`} />
-        <meta property="og:description" content="The page you're looking for doesn't exist." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="noindex" />
-      </Helmet>
+      <PageSEO
+        title={`Page Not Found | ${businessConfig.name}`}
+        description="This page could not be found. Visit Bhanpura CSC Centre online for digital assistance services in Kaithal, Haryana."
+        keywords={['Bhanpura CSC Centre']}
+        noindex
+      />
 
       <section className="min-h-[70vh] flex items-center justify-center bg-gray-50 px-4">
         <div className="text-center max-w-md">

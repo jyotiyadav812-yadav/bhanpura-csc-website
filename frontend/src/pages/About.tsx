@@ -13,7 +13,7 @@ import {
 } from 'lucide-react';
 import { SectionHeading } from '../components/SectionHeading';
 import { businessConfig } from '../config/business';
-import { Helmet } from 'react-helmet-async';
+import { PageSEO } from '../components/PageSEO';
 
 const COLOR_MAP = {
   blue: {
@@ -131,13 +131,11 @@ const disclaimers = [
 export function About() {
   return (
     <>
-      <Helmet>
-        <title>About Our Centre | {businessConfig.name}</title>
-        <meta name="description" content="Learn about Bhanpura CSC Centre - a private digital assistance centre in Village Bhanpura, Kaithal, Haryana. Owner: Harinder Singh. Services, values, and contact details." />
-        <meta property="og:title" content={`About Our Centre | ${businessConfig.name}`} />
-        <meta property="og:description" content="Learn about Bhanpura CSC Centre - a private digital assistance centre in Village Bhanpura, Kaithal." />
-        <meta property="og:type" content="website" />
-      </Helmet>
+      <PageSEO
+        title={`About Bhanpura CSC Centre | Local Digital Help in Kaithal`}
+        description="Meet Bhanpura CSC Centre, a private digital assistance centre in Village Bhanpura, Kaithal, Haryana, offering practical guidance for online services."
+        keywords={['about Bhanpura CSC Centre', 'digital assistance centre Kaithal', 'CSC centre Bhanpura Haryana', 'local online service help']}
+      />
 
       <section
         id="about"
@@ -175,8 +173,8 @@ export function About() {
                   Our centre is owned and operated by <strong className="text-blue-800">{teamInfo.owner}</strong>. We understand the challenges of accessing digital services in rural areas — language barriers, complex portals, document requirements, and technical difficulties. That's why we offer patient, step-by-step assistance in Hindi, English, or Hinglish.
                 </p>
                 <div className="mt-6 grid grid-cols-2 gap-3">
-                  <img src="/csc-certificate.jpg" alt="CSC Centre certificate - proof of Common Service Centre registration" className="h-48 w-full rounded-2xl bg-white object-contain shadow-md" />
-                  <img src="/csc-id-card.jpg" alt="CSC ID card - Common Service Centre identity card" className="h-48 w-full rounded-2xl bg-white object-contain shadow-md" />
+                  <img src="/csc-certificate.jpg" alt="Bhanpura CSC Centre registration certificate" loading="lazy" decoding="async" width={1200} height={906} className="h-48 w-full rounded-2xl bg-white object-contain shadow-md" />
+                  <img src="/csc-id-card.jpg" alt="Bhanpura CSC Centre identity card" loading="lazy" decoding="async" width={1000} height={902} className="h-48 w-full rounded-2xl bg-white object-contain shadow-md" />
                 </div>
                 <div className="mt-6 rounded-2xl border border-orange-200 bg-gradient-to-br from-orange-50 to-amber-50 p-5 text-sm leading-relaxed text-orange-900">
                   We are a <strong>private digital assistance centre</strong>, not an official government office. We don't issue certificates or approvals — we help you understand the process, prepare your documents, and complete applications correctly.

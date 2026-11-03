@@ -19,7 +19,7 @@ import { ServiceGrid } from '../components/ServiceGrid';
 import { serviceCategories, services, getServicesByCategory } from '../data/services';
 import { businessConfig } from '../config/business';
 import { getWhatsAppUrl, getDefaultWhatsAppMessage } from '../utils/helpers';
-import { Helmet } from 'react-helmet-async';
+import { PageSEO } from '../components/PageSEO';
 
 const categoryIcons: Record<string, LucideIcon> = {
   FileText,
@@ -81,13 +81,11 @@ export function Services() {
 
   return (
     <>
-      <Helmet>
-        <title>All Services | {businessConfig.name}</title>
-        <meta name="description" content="Browse all digital assistance services at Bhanpura CSC Centre - Online forms, payments, photos, documents, certificates, and general digital help." />
-        <meta property="og:title" content={`All Services | ${businessConfig.name}`} />
-        <meta property="og:description" content="Browse all digital assistance services at Bhanpura CSC Centre." />
-        <meta property="og:type" content="website" />
-      </Helmet>
+      <PageSEO
+        title={`CSC Services in Bhanpura, Kaithal | ${businessConfig.name}`}
+        description="Explore online form filling, payment guidance, passport photos, printing, scanning, PDF and certificate application assistance at Bhanpura CSC Centre."
+        keywords={['CSC services Bhanpura', 'digital services Kaithal', 'online form filling', 'document printing and scanning', 'passport photos', 'certificate application help']}
+      />
 
       <section
         id="services"

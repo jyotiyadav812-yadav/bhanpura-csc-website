@@ -1,20 +1,18 @@
 import { SectionHeading } from '../components/SectionHeading';
 import { ContactButtons } from '../components/ContactButtons';
 import { businessConfig } from '../config/business';
-import { Helmet } from 'react-helmet-async';
+import { PageSEO } from '../components/PageSEO';
 
 const lastUpdated = new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'long', year: 'numeric' });
 
 export function Privacy() {
   return (
     <>
-      <Helmet>
-        <title>Privacy Policy | {businessConfig.name}</title>
-        <meta name="description" content="Privacy Policy for Bhanpura CSC Centre - how we collect, use, and protect your information when you use our digital assistance services." />
-        <meta property="og:title" content={`Privacy Policy | ${businessConfig.name}`} />
-        <meta property="og:description" content="Privacy Policy for Bhanpura CSC Centre." />
-        <meta property="og:type" content="website" />
-      </Helmet>
+      <PageSEO
+        title={`Privacy Policy | ${businessConfig.name}`}
+        description="Read how Bhanpura CSC Centre collects, uses, stores, and protects personal information submitted through its website and digital assistance services."
+        keywords={['Bhanpura CSC Centre privacy policy', 'personal data policy', 'website privacy Kaithal']}
+      />
 
       <section className="py-16 lg:py-24 bg-gradient-to-b from-primary-50 via-white to-secondary-50" aria-labelledby="privacy-title">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">

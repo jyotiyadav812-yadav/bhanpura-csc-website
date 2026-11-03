@@ -8,10 +8,10 @@ A multipage React website for Bhanpura CSC Centre (Common Service Centre) built 
 - **Responsive Design**: Mobile-first, fully responsive with hamburger menu
 - **Accessibility**: Semantic HTML, ARIA labels, keyboard navigation, focus states
 - **SEO**: Page titles, meta descriptions, static and per-page Open Graph tags
-- **Contact Integration**: Click-to-call, WhatsApp deep links, and Web3Forms contact/enquiry submission
+- **Contact Integration**: Click-to-call, WhatsApp deep links, and backend-powered contact/enquiry submission
 - **Service Catalogue**: 6 categories, 18 services with detailed descriptions
 - **Floating WhatsApp Button**: Mobile-only quick contact
-- **No Backend**: Frontend-only; contact and enquiry forms submit to Web3Forms
+- **Backend API**: Contact and enquiry submissions are stored by the backend
 
 ## Tech Stack
 
@@ -150,9 +150,9 @@ The `dist/` folder can be deployed to any static hosting:
 
 1. Import the repository and set **Root Directory** to `frontend`.
 2. Use **Build Command** `npm run build` and **Output Directory** `dist`.
-3. Add `VITE_WEB3FORMS_KEY` in **Project Settings > Environment Variables** for Production and Preview. Get the access key from [Web3Forms](https://web3forms.com). Without this key, the contact and enquiry forms show a WhatsApp/call fallback instead of sending an email. Vite embeds this value at build time, so redeploy after changing it.
+3. Set `VITE_API_URL` to `https://bhanpura-csc-backend.onrender.com` for Production and Preview. This is also the built-in default.
 4. `vercel.json` includes the SPA rewrite so React Router pages work on refresh and direct links.
-5. After the first deploy, update the `og:image` and `twitter:image` values in `index.html` to the absolute production URL (`https://<your-domain>/og-image.jpg`) for the best social preview.
+5. Open Graph and Twitter share previews use the production URL and `public/og-image.jpg`.
 
 ## Important Notes
 
@@ -160,7 +160,7 @@ The `dist/` folder can be deployed to any static hosting:
 - **No PIN/OTP/password** requests in payment guidance
 - **Prices**: "Contact us for applicable charges" - no fake pricing
 - **No fake reviews**, ratings, or customer counts
-- **Frontend only** - no backend, database, or authentication
+- Contact and enquiry submissions are stored in the backend database. Email notifications require SMTP settings on the backend.
 
 ## License
 

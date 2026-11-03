@@ -4,7 +4,7 @@ import { ContactButtons } from '../components/ContactButtons';
 import { getServiceById, serviceCategories } from '../data/services';
 import { businessConfig } from '../config/business';
 import { getWhatsAppUrl, getDefaultWhatsAppMessage } from '../utils/helpers';
-import { Helmet } from 'react-helmet-async';
+import { PageSEO } from '../components/PageSEO';
 
 export function ServiceDetails() {
   const { id } = useParams();
@@ -14,9 +14,12 @@ export function ServiceDetails() {
   if (!service) {
     return (
       <>
-        <Helmet>
-          <title>Service Not Found | {businessConfig.name}</title>
-        </Helmet>
+        <PageSEO
+          title={`Service Not Found | ${businessConfig.name}`}
+          description="This service page could not be found. Browse the services available from Bhanpura CSC Centre in Kaithal."
+          keywords={['Bhanpura CSC Centre services']}
+          noindex
+        />
         <div className="min-h-[60vh] flex items-center justify-center bg-gray-50 px-4">
           <div className="text-center max-w-md">
             <AlertCircle className="w-16 h-16 text-gray-300 mx-auto mb-4" aria-hidden="true" />
@@ -37,17 +40,14 @@ export function ServiceDetails() {
 
   const whatsappUrl = getWhatsAppUrl(getDefaultWhatsAppMessage(service.name));
   const phoneUrl = `tel:+91${businessConfig.contact.phone}`;
-  const pageTitle = `${service.name} | ${businessConfig.name}`;
 
   return (
     <>
-      <Helmet>
-        <title>{pageTitle}</title>
-        <meta name="description" content={service.description} />
-        <meta property="og:title" content={pageTitle} />
-        <meta property="og:description" content={service.description} />
-        <meta property="og:type" content="website" />
-      </Helmet>
+      <PageSEO
+        title={`${service.name} in Bhanpura, Kaithal | ${businessConfig.name}`}
+        description={`${service.description} Get local assistance at Bhanpura CSC Centre, Kaithal, Haryana.`}
+        keywords={[service.name, `${service.name} in Kaithal`, `${service.category.replace(/-/g, ' ')} assistance`, 'Bhanpura CSC Centre']}
+      />
 
       <section className="py-12 lg:py-16 bg-gradient-to-b from-primary-50 via-white to-secondary-50" aria-labelledby="service-title">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -5,9 +5,9 @@ import { ContactButtons } from '../components/ContactButtons';
 import { services, serviceCategories } from '../data/services';
 import { businessConfig } from '../config/business';
 import { getWhatsAppUrl } from '../utils/helpers';
-import { Helmet } from 'react-helmet-async';
+import { PageSEO } from '../components/PageSEO';
 import { cn } from '../utils/helpers';
-import { submitWeb3Forms } from '../utils/web3forms';
+import { submitEnquiry } from '../utils/api';
 interface FormData {
   name: string;
   mobile: string;
@@ -58,18 +58,21 @@ export function Enquiry() {
     setErrors(prev => ({ ...prev, general: '' }));
     try {
       const serviceName = services.find(s => s.id === formData.service)?.name || formData.service;
-      await submitWeb3Forms({
-        subject: `New website enquiry: ${serviceName}`,
+      await submitEnquiry({
         name: formData.name.trim(),
-        mobile: formData.mobile.trim(),
+        mobile: formData.mobile.replace(/\D/g, ''),
         service: serviceName,
         message: formData.message.trim(),
-        botcheck,
+        privacyConsent,
+        _hp: botcheck,
       });
       setSubmitStatus('success');
-    } catch {
+    } catch (error) {
       setSubmitStatus('idle');
-      setErrors(prev => ({ ...prev, general: 'Message nahi ja paya. Kripya WhatsApp ya call karke sampark karein.' }));
+      setErrors(prev => ({
+        ...prev,
+        general: error instanceof Error ? error.message : 'Message nahi ja paya. Kripya WhatsApp ya call karke sampark karein.',
+      }));
     }
   };
 
@@ -81,13 +84,11 @@ export function Enquiry() {
 
   return (
     <>
-      <Helmet>
-        <title>Submit Enquiry | {businessConfig.name}</title>
-        <meta name="description" content="Submit an enquiry at Bhanpura CSC Centre for digital services. Online form with name, mobile, service selection, and message. Client-side validation only." />
-        <meta property="og:title" content={`Submit Enquiry | ${businessConfig.name}`} />
-        <meta property="og:description" content="Submit an enquiry for digital services at Bhanpura CSC Centre." />
-        <meta property="og:type" content="website" />
-      </Helmet>
+      <PageSEO
+        title={`Request Digital Service Help | ${businessConfig.name}`}
+        description="Ask Bhanpura CSC Centre about online forms, documents, photos, payments, or certificates. Send your service enquiry and our team will follow up."
+        keywords={['CSC service enquiry Kaithal', 'request online form assistance', 'Bhanpura digital service enquiry', 'document service help']}
+      />
 
       <section className="py-16 lg:py-24 bg-gradient-to-b from-primary-50 via-white to-secondary-50" aria-labelledby="enquiry-title">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

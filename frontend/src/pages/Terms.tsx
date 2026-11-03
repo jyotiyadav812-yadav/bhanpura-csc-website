@@ -1,7 +1,7 @@
 import { SectionHeading } from '../components/SectionHeading';
 import { ContactButtons } from '../components/ContactButtons';
 import { businessConfig } from '../config/business';
-import { Helmet } from 'react-helmet-async';
+import { PageSEO } from '../components/PageSEO';
 
 const lastUpdated = new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'long', year: 'numeric' });
 
@@ -10,13 +10,11 @@ export function Terms() {
 
   return (
     <>
-      <Helmet>
-        <title>Terms & Conditions | {businessConfig.name}</title>
-        <meta name="description" content="Terms and Conditions for Bhanpura CSC Centre - terms of service for using our digital assistance services and website." />
-        <meta property="og:title" content={`Terms & Conditions | ${businessConfig.name}`} />
-        <meta property="og:description" content="Terms and Conditions for Bhanpura CSC Centre." />
-        <meta property="og:type" content="website" />
-      </Helmet>
+      <PageSEO
+        title={`Terms & Conditions | ${businessConfig.name}`}
+        description="Review the terms for using the Bhanpura CSC Centre website and its private digital assistance services in Kaithal, Haryana."
+        keywords={['Bhanpura CSC Centre terms', 'digital assistance terms and conditions', 'website terms Kaithal']}
+      />
 
       <section className="py-16 lg:py-24 bg-gradient-to-b from-primary-50 via-white to-secondary-50" aria-labelledby="terms-title">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">

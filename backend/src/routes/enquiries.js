@@ -11,12 +11,17 @@ const enquirySchema = z.object({
   email: z.string().email('Invalid email').optional().or(z.literal('')),
   service: z.string().min(1, 'Service is required'),
   message: z.string().min(10, 'Message must be at least 10 characters').max(2000),
-  privacyConsent: z.boolean().refine(val => val === true, 'Privacy consent is required')
+  privacyConsent: z.boolean().refine(val => val === true, 'Privacy consent is required'),
+  _hp: z.string().optional()
 });
 
 router.post('/', async (req, res) => {
   try {
     const data = enquirySchema.parse(req.body);
+
+    if (data._hp && data._hp.trim() !== '') {
+      return res.status(200).json({ success: true });
+    }
 
     const stmt = db.prepare(`
       INSERT INTO enquiries (name, mobile, email, service, message, privacy_consent)

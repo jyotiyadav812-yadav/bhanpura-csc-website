@@ -5,9 +5,9 @@ import { SiGmail } from 'react-icons/si';
 import { SectionHeading } from '../components/SectionHeading';
 import { businessConfig } from '../config/business';
 import { getWhatsAppUrl, getDefaultWhatsAppMessage } from '../utils/helpers';
-import { Helmet } from 'react-helmet-async';
+import { PageSEO } from '../components/PageSEO';
 import { cn } from '../utils/helpers';
-import { submitWeb3Forms } from '../utils/web3forms';
+import { submitContact } from '../utils/api';
 
 const MAP_EMBED_URL = "https://www.google.com/maps?q=29.7802515,76.3262961(Bhanpura+CSC+Centre)&z=17&output=embed";
 const MAP_LINK = "https://maps.app.goo.gl/JgaFfhiGEEunbvQ7A";
@@ -65,20 +65,20 @@ export function Contact() {
     setSubmitStatus('submitting');
     setSubmitError(null);
     try {
-      await submitWeb3Forms({
-        subject: `New enquiry: ${formData.subject.trim()}`,
+      await submitContact({
+        subject: formData.subject.trim(),
         name: formData.name.trim(),
-        mobile: formData.mobile.trim(),
+        mobile: formData.mobile.replace(/\D/g, ''),
         email: formData.email.trim() || undefined,
         message: formData.message.trim(),
-        botcheck: botcheck,
+        _hp: botcheck,
       });
       setSubmitStatus('success');
       setFormData({ name: '', mobile: '', email: '', subject: '', message: '' });
       setBotcheck('');
-    } catch {
+    } catch (error) {
       setSubmitStatus('idle');
-      setSubmitError('Message nahi ja paya. Kripya WhatsApp ya call karke sampark karein.');
+      setSubmitError(error instanceof Error ? error.message : 'Message nahi ja paya. Kripya WhatsApp ya call karke sampark karein.');
     }
   };
 
@@ -90,13 +90,11 @@ export function Contact() {
 
   return (
     <>
-      <Helmet>
-        <title>Contact & Location | {businessConfig.name}</title>
-        <meta name="description" content="Contact Bhanpura CSC Centre - Village Bhanpura, Kaithal, Haryana. Phone: 9541611393, WhatsApp: 9541611393, Email: digitalbhanpura@gmail.com. Visit us or send a message." />
-        <meta property="og:title" content={`Contact & Location | ${businessConfig.name}`} />
-        <meta property="og:description" content="Contact Bhanpura CSC Centre - Village Bhanpura, Kaithal, Haryana." />
-        <meta property="og:type" content="website" />
-      </Helmet>
+      <PageSEO
+        title={`Contact & Directions | ${businessConfig.name} Kaithal`}
+        description="Find and contact Bhanpura CSC Centre in Village Bhanpura, Kaithal, Haryana. Call or WhatsApp 9541611393, get directions, or send a message."
+        keywords={['contact Bhanpura CSC Centre', 'CSC centre address Kaithal', 'Bhanpura digital services phone', 'directions to CSC centre']}
+      />
 
       <section id="contact" className="py-20 md:py-24 scroll-mt-24 bg-gradient-to-b from-blue-50 to-white" aria-labelledby="contact-title">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
