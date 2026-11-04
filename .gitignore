@@ -3,8 +3,8 @@ node_modules
 .pnp
 .pnp.js
 
-# Build output (frontend only)
-frontend/dist
+# Build output
+dist
 dist-ssr
 build
 *.local
