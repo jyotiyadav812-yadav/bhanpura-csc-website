@@ -233,7 +233,6 @@ export function Home() {
           src="/hero-banner.webp"
           alt="Bhanpura CSC Centre, providing local digital assistance in Kaithal"
           loading="eager"
-          fetchPriority="high"
           decoding="async"
           width={1672}
           height={941}
