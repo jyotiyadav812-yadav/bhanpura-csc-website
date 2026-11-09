@@ -1,6 +1,12 @@
 {
   "buildCommand": "cd frontend && npm install && npm run build",
   "installCommand": "cd backend && npm install",
+  "routes": [
+    { "src": "/assets/(.*)", "dest": "/api/index.js" },
+    { "src": "/(favicon.svg|og-image.jpg|og-image.png|chatbot-icon.png|chatbot.png|csc-certificate.jpg|csc-id-card.jpg|hero-banner.webp)", "dest": "/api/index.js" },
+    { "src": "/api/(.*)", "dest": "/api/index.js" },
+    { "src": "/(.*)", "dest": "/api/index.js" }
+  ],
   "functions": {
     "api/index.js": {
       "includeFiles": "frontend/dist/**"
