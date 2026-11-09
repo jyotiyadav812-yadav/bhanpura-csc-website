@@ -6,7 +6,7 @@ import { SectionHeading } from '../components/SectionHeading';
 import { businessConfig } from '../config/business';
 import { PageSEO } from '../components/PageSEO';
 import { SchemaMarkup } from '../components/SchemaMarkup';
-import { cn } from '../utils/helpers';
+import { cn, getWhatsAppUrl, getDefaultWhatsAppMessage } from '../utils/helpers';
 import { submitContact } from '../utils/api';
 
 const MAP_EMBED_URL = "https://www.google.com/maps?q=29.7802515,76.3262961(Bhanpura+CSC+Centre)&z=17&output=embed";

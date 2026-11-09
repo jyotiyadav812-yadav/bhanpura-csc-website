@@ -1,7 +1,7 @@
 {
   "rewrites": [
     { "source": "/assets/:path*", "destination": "/assets/:path*" },
-    { "source": "/(robots.txt|sitemap.xml|hero-banner.webp|favicon.svg|og-image.jpg|chatbot-icon.png|chatbot.png|csc-certificate.jpg|csc-id-card.jpg)", "destination": "/$1" },
+    { "source": "/(robots.txt|sitemap.xml|hero-banner.webp|favicon.svg|og-image.jpg|chatbot-icon.png|chatbot.png|csc-certificate.jpg|csc-id-card.jpg|csc centre.png)", "destination": "/$1" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }

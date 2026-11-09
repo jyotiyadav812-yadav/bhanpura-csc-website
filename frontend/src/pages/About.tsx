@@ -209,6 +209,17 @@ export function About() {
                 <p className="mt-4 leading-relaxed text-slate-600">
                   Our centre is owned and operated by <strong className="text-blue-800">{teamInfo.owner}</strong>. We understand the challenges of accessing digital services in rural areas — language barriers, complex portals, document requirements, and technical difficulties. That's why we offer patient, step-by-step assistance in Hindi, English, or Hinglish.
                 </p>
+                <figure className="mt-6 overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-md">
+                  <img
+                    src="/csc centre.png"
+                    alt="Bhanpura CSC Centre building and storefront"
+                    loading="lazy"
+                    decoding="async"
+                    width={768}
+                    height={1364}
+                    className="h-auto w-full object-contain"
+                  />
+                </figure>
                 <div className="mt-6 grid grid-cols-2 gap-3">
                   <img src="/csc-certificate.jpg" alt="Bhanpura CSC Centre registration certificate" loading="lazy" decoding="async" width={1200} height={906} className="h-48 w-full rounded-2xl bg-white object-contain shadow-md" />
                   <img src="/csc-id-card.jpg" alt="Bhanpura CSC Centre identity card" loading="lazy" decoding="async" width={1000} height={902} className="h-48 w-full rounded-2xl bg-white object-contain shadow-md" />
