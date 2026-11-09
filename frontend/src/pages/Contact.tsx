@@ -99,6 +99,7 @@ export function Contact() {
       <section id="contact" className="py-20 md:py-24 scroll-mt-24 bg-gradient-to-b from-blue-50 to-white" aria-labelledby="contact-title">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
+            as="h1"
             id="contact-title"
             title="Contact & Location"
             subtitle="Get in Touch"

@@ -160,6 +160,7 @@ export function HowItWorks() {
 
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
+            as="h1"
             id="how-it-works-title"
             title="How It Works"
             subtitle="SIMPLE 4-STEP PROCESS"
