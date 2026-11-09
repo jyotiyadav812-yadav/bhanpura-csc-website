@@ -2,6 +2,7 @@ import { SectionHeading } from '../components/SectionHeading';
 import { ContactButtons } from '../components/ContactButtons';
 import { businessConfig } from '../config/business';
 import { PageSEO } from '../components/PageSEO';
+import { SchemaMarkup } from '../components/SchemaMarkup';
 
 const lastUpdated = new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'long', year: 'numeric' });
 
@@ -12,6 +13,27 @@ export function Privacy() {
         title={`Privacy Policy | ${businessConfig.name}`}
         description="Read how Bhanpura CSC Centre collects, uses, stores, and protects personal information submitted through its website and digital assistance services."
         keywords={['Bhanpura CSC Centre privacy policy', 'personal data policy', 'website privacy Kaithal']}
+      />
+      <SchemaMarkup
+        type="Organization"
+        data={{
+          name: businessConfig.name,
+          url: 'https://bhanpura-csc.vercel.app/privacy',
+          logo: 'https://bhanpura-csc.vercel.app/favicon.svg',
+          address: {
+            '@type': 'PostalAddress',
+            streetAddress: 'Near Shiv Mandir, Yadav Chopal',
+            addressLocality: 'Village Bhanpura',
+            addressRegion: 'Kaithal',
+            postalCode: '136027',
+            addressCountry: 'IN',
+          },
+          telephone: `+91${businessConfig.contact.phone}`,
+          email: businessConfig.contact.email,
+          sameAs: [
+            businessConfig.social.instagram,
+          ],
+        }}
       />
 
       <section className="py-16 lg:py-24 bg-gradient-to-b from-primary-50 via-white to-secondary-50" aria-labelledby="privacy-title">

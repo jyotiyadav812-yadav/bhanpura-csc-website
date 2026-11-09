@@ -7,6 +7,7 @@ import { getPopularServices, getServicesByCategory, type Service, type ServiceCa
 import { businessConfig } from '../config/business';
 import { getWhatsAppUrl, getDefaultWhatsAppMessage } from '../utils/helpers';
 import { PageSEO } from '../components/PageSEO';
+import { SchemaMarkup } from '../components/SchemaMarkup';
 import { FaWhatsapp } from 'react-icons/fa';
 
 const COLOR_MAP = {
@@ -226,6 +227,42 @@ export function Home() {
         title={`${businessConfig.name} | Online Forms & Digital Services in Kaithal`}
         description="Get online form, document, photo, payment and certificate assistance at Bhanpura CSC Centre in Kaithal, Haryana. Call or WhatsApp for local support."
         keywords={['Bhanpura CSC Centre', 'CSC centre in Bhanpura', 'digital services in Kaithal', 'online form filling Kaithal', 'document services', 'passport photo service']}
+      />
+      <SchemaMarkup
+        type="LocalBusiness"
+        data={{
+          name: businessConfig.name,
+          image: 'https://bhanpura-csc.vercel.app/og-image.jpg',
+          address: {
+            '@type': 'PostalAddress',
+            streetAddress: 'Near Shiv Mandir, Yadav Chopal',
+            addressLocality: 'Village Bhanpura',
+            addressRegion: 'Kaithal',
+            postalCode: '136027',
+            addressCountry: 'IN',
+          },
+          telephone: `+91${businessConfig.contact.phone}`,
+          email: businessConfig.contact.email,
+          url: 'https://bhanpura-csc.vercel.app',
+          priceRange: '₹',
+          openingHoursSpecification: [
+            {
+              '@type': 'OpeningHoursSpecification',
+              dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+              opens: '09:00',
+              closes: '13:00',
+            },
+            {
+              '@type': 'OpeningHoursSpecification',
+              dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+              opens: '16:00',
+              closes: '20:00',
+            },
+          ],
+          sameAs: [
+            businessConfig.social.instagram,
+          ],
+        }}
       />
 
       <section id="home" className="relative min-h-[480px] sm:min-h-[560px] md:min-h-[calc(100svh-80px)] flex items-center scroll-mt-24" aria-label="Bhanpura CSC Centre">

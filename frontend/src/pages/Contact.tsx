@@ -4,8 +4,8 @@ import { FaWhatsapp, FaInstagram } from 'react-icons/fa';
 import { SiGmail } from 'react-icons/si';
 import { SectionHeading } from '../components/SectionHeading';
 import { businessConfig } from '../config/business';
-import { getWhatsAppUrl, getDefaultWhatsAppMessage } from '../utils/helpers';
 import { PageSEO } from '../components/PageSEO';
+import { SchemaMarkup } from '../components/SchemaMarkup';
 import { cn } from '../utils/helpers';
 import { submitContact } from '../utils/api';
 
@@ -94,6 +94,42 @@ export function Contact() {
         title={`Contact & Directions | ${businessConfig.name} Kaithal`}
         description="Find and contact Bhanpura CSC Centre in Village Bhanpura, Kaithal, Haryana. Call or WhatsApp 9541611393, get directions, or send a message."
         keywords={['contact Bhanpura CSC Centre', 'CSC centre address Kaithal', 'Bhanpura digital services phone', 'directions to CSC centre']}
+      />
+      <SchemaMarkup
+        type="LocalBusiness"
+        data={{
+          name: businessConfig.name,
+          image: 'https://bhanpura-csc.vercel.app/og-image.jpg',
+          address: {
+            '@type': 'PostalAddress',
+            streetAddress: 'Near Shiv Mandir, Yadav Chopal',
+            addressLocality: 'Village Bhanpura',
+            addressRegion: 'Kaithal',
+            postalCode: '136027',
+            addressCountry: 'IN',
+          },
+          telephone: `+91${businessConfig.contact.phone}`,
+          email: businessConfig.contact.email,
+          url: 'https://bhanpura-csc.vercel.app/contact',
+          priceRange: '₹',
+          openingHoursSpecification: [
+            {
+              '@type': 'OpeningHoursSpecification',
+              dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+              opens: '09:00',
+              closes: '13:00',
+            },
+            {
+              '@type': 'OpeningHoursSpecification',
+              dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+              opens: '16:00',
+              closes: '20:00',
+            },
+          ],
+          sameAs: [
+            businessConfig.social.instagram,
+          ],
+        }}
       />
 
       <section id="contact" className="py-20 md:py-24 scroll-mt-24 bg-gradient-to-b from-blue-50 to-white" aria-labelledby="contact-title">

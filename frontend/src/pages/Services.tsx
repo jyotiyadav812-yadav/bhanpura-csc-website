@@ -20,6 +20,7 @@ import { serviceCategories, services, getServicesByCategory } from '../data/serv
 import { businessConfig } from '../config/business';
 import { getWhatsAppUrl, getDefaultWhatsAppMessage } from '../utils/helpers';
 import { PageSEO } from '../components/PageSEO';
+import { SchemaMarkup } from '../components/SchemaMarkup';
 
 const categoryIcons: Record<string, LucideIcon> = {
   FileText,
@@ -85,6 +86,42 @@ export function Services() {
         title={`CSC Services in Bhanpura, Kaithal | ${businessConfig.name}`}
         description="Explore online form filling, payment guidance, passport photos, printing, scanning, PDF and certificate application assistance at Bhanpura CSC Centre."
         keywords={['CSC services Bhanpura', 'digital services Kaithal', 'online form filling', 'document printing and scanning', 'passport photos', 'certificate application help']}
+      />
+      <SchemaMarkup
+        type="LocalBusiness"
+        data={{
+          name: businessConfig.name,
+          image: 'https://bhanpura-csc.vercel.app/og-image.jpg',
+          address: {
+            '@type': 'PostalAddress',
+            streetAddress: 'Near Shiv Mandir, Yadav Chopal',
+            addressLocality: 'Village Bhanpura',
+            addressRegion: 'Kaithal',
+            postalCode: '136027',
+            addressCountry: 'IN',
+          },
+          telephone: `+91${businessConfig.contact.phone}`,
+          email: businessConfig.contact.email,
+          url: 'https://bhanpura-csc.vercel.app/services',
+          priceRange: '₹',
+          openingHoursSpecification: [
+            {
+              '@type': 'OpeningHoursSpecification',
+              dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+              opens: '09:00',
+              closes: '13:00',
+            },
+            {
+              '@type': 'OpeningHoursSpecification',
+              dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+              opens: '16:00',
+              closes: '20:00',
+            },
+          ],
+          sameAs: [
+            businessConfig.social.instagram,
+          ],
+        }}
       />
 
       <section

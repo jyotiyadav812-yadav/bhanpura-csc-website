@@ -14,6 +14,7 @@ import {
 import { SectionHeading } from '../components/SectionHeading';
 import { businessConfig } from '../config/business';
 import { PageSEO } from '../components/PageSEO';
+import { SchemaMarkup } from '../components/SchemaMarkup';
 
 const COLOR_MAP = {
   blue: {
@@ -135,6 +136,42 @@ export function About() {
         title={`About Bhanpura CSC Centre | Local Digital Help in Kaithal`}
         description="Meet Bhanpura CSC Centre, a private digital assistance centre in Village Bhanpura, Kaithal, Haryana, offering practical guidance for online services."
         keywords={['about Bhanpura CSC Centre', 'digital assistance centre Kaithal', 'CSC centre Bhanpura Haryana', 'local online service help']}
+      />
+      <SchemaMarkup
+        type="LocalBusiness"
+        data={{
+          name: businessConfig.name,
+          image: 'https://bhanpura-csc.vercel.app/og-image.jpg',
+          address: {
+            '@type': 'PostalAddress',
+            streetAddress: 'Near Shiv Mandir, Yadav Chopal',
+            addressLocality: 'Village Bhanpura',
+            addressRegion: 'Kaithal',
+            postalCode: '136027',
+            addressCountry: 'IN',
+          },
+          telephone: `+91${businessConfig.contact.phone}`,
+          email: businessConfig.contact.email,
+          url: 'https://bhanpura-csc.vercel.app/about',
+          priceRange: '₹',
+          openingHoursSpecification: [
+            {
+              '@type': 'OpeningHoursSpecification',
+              dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+              opens: '09:00',
+              closes: '13:00',
+            },
+            {
+              '@type': 'OpeningHoursSpecification',
+              dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+              opens: '16:00',
+              closes: '20:00',
+            },
+          ],
+          sameAs: [
+            businessConfig.social.instagram,
+          ],
+        }}
       />
 
       <section
