@@ -22,6 +22,8 @@ export interface BusinessWorkingHours {
   configured: boolean;
   details: string;
   display: string;
+  morning: string;
+  evening: string;
 }
 
 export interface BusinessSocial {

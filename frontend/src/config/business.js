@@ -1,6 +1,6 @@
 export const businessConfig = {
   name: 'Bhanpura CSC Centre',
-  type: 'Common Service Centre and digital assistance centre',
+  type: 'Government Verified Common Service Centre (Privately Owned)',
   address: 'Near Shiv Mandir, Yadav Chopal, Village Bhanpura, Kaithal, Haryana 136027, India',
   location: {
     village: 'Bhanpura',
@@ -23,6 +23,8 @@ export const businessConfig = {
     configured: true,
     details: '9:00 AM to 1:00 PM and 4:00 PM to 8:00 PM',
     display: '9 AM to 1 PM and 4 PM to 8 PM',
+    morning: '9:00 AM to 1:00 PM',
+    evening: '4:00 PM to 8:00 PM',
   },
   mapDirectionsUrl: '',
   social: {
