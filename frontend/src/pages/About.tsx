@@ -211,7 +211,7 @@ export function About() {
                 </p>
                 <figure className="mt-6 overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-md">
                   <img
-                    src="/csc centre.png"
+                    src="/csc-centre.png"
                     alt="Bhanpura CSC Centre building and storefront"
                     loading="lazy"
                     decoding="async"

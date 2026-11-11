@@ -11,6 +11,7 @@ const HowItWorks = lazy(() => import('./pages/HowItWorks').then(module => ({ def
 const About = lazy(() => import('./pages/About').then(module => ({ default: module.About })));
 const Contact = lazy(() => import('./pages/Contact').then(module => ({ default: module.Contact })));
 const Enquiry = lazy(() => import('./pages/Enquiry').then(module => ({ default: module.Enquiry })));
+const Payment = lazy(() => import('./pages/Payment').then(module => ({ default: module.Payment })));
 const Privacy = lazy(() => import('./pages/Privacy').then(module => ({ default: module.Privacy })));
 const Terms = lazy(() => import('./pages/Terms').then(module => ({ default: module.Terms })));
 const NotFound = lazy(() => import('./pages/NotFound').then(module => ({ default: module.NotFound })));
@@ -30,6 +31,7 @@ function App() {
               <Route path="about" element={<About />} />
               <Route path="contact" element={<Contact />} />
               <Route path="enquiry" element={<Enquiry />} />
+              <Route path="payment" element={<Payment />} />
               <Route path="privacy" element={<Privacy />} />
               <Route path="terms" element={<Terms />} />
               <Route path="*" element={<NotFound />} />

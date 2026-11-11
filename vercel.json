@@ -3,7 +3,7 @@
   "outputDirectory": "frontend/dist",
   "routes": [
     { "src": "/assets/(.*)", "dest": "/assets/$1" },
-    { "src": "/(robots.txt|sitemap.xml|hero-banner.webp|favicon.svg|og-image.jpg|chatbot-icon.png|chatbot.png|csc-certificate.jpg|csc-id-card.jpg|csc centre.png)", "dest": "/$1" },
+    { "src": "/(robots.txt|sitemap.xml|hero-banner.webp|favicon.svg|og-image.jpg|chatbot-icon.png|chatbot.png|csc-certificate.jpg|csc-id-card.jpg|csc-centre.png)", "dest": "/$1" },
     { "src": "/(.*)", "dest": "/index.html" }
   ]
 }

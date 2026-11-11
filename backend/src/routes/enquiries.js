@@ -49,9 +49,10 @@ router.post('/', async (req, res) => {
     });
   } catch (error) {
     if (error.name === 'ZodError') {
+      const issues = error.issues || error.errors || [];
       return res.status(400).json({
         success: false,
-        errors: error.errors.map(e => ({ field: e.path.join('.'), message: e.message }))
+        errors: issues.map(e => ({ field: e.path.join('.'), message: e.message }))
       });
     }
     console.error('Enquiry creation error:', error);
