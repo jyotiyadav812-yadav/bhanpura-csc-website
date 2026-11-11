@@ -16,8 +16,8 @@ export function ServiceDetails() {
       <>
         <PageSEO
           title={`Service Not Found | ${businessConfig.name}`}
-          description="This service page could not be found. Browse the services available from Bhanpura CSC Centre in Kaithal."
-          keywords={['Bhanpura CSC Centre services']}
+          description="This service page could not be found. Browse the services available from CSC Centre Bhanpura in Kaithal."
+          keywords={['CSC Centre Bhanpura services']}
           noindex
         />
         <div className="min-h-[60vh] flex items-center justify-center bg-gray-50 px-4">
@@ -45,8 +45,8 @@ export function ServiceDetails() {
     <>
       <PageSEO
         title={`${service.name} in Bhanpura, Kaithal | ${businessConfig.name}`}
-        description={`${service.description} Get local assistance at Bhanpura CSC Centre, Kaithal, Haryana.`}
-        keywords={[service.name, `${service.name} in Kaithal`, `${service.category.replace(/-/g, ' ')} assistance`, 'Bhanpura CSC Centre']}
+        description={`${service.description} Get local assistance at CSC Centre Bhanpura, Kaithal, Haryana.`}
+        keywords={[service.name, `${service.name} in Kaithal`, `${service.category.replace(/-/g, ' ')} assistance`, 'CSC Centre Bhanpura']}
       />
 
       <section className="py-12 lg:py-16 bg-gradient-to-b from-primary-50 via-white to-secondary-50" aria-labelledby="service-title">

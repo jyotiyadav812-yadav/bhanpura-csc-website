@@ -143,8 +143,8 @@ export function HowItWorks() {
     <>
       <PageSEO
         title={`How CSC Services Work | ${businessConfig.name}`}
-        description="See how to get digital service assistance at Bhanpura CSC Centre: visit, explain your requirement, get guided help, and receive your confirmation."
-        keywords={['how CSC services work', 'digital service assistance process', 'Bhanpura CSC Centre', 'Kaithal service centre']}
+        description="See how to get digital service assistance at CSC Centre Bhanpura: visit, explain your requirement, get guided help, and receive your confirmation."
+        keywords={['how CSC services work', 'digital service assistance process', 'CSC Centre Bhanpura', 'Kaithal service centre']}
       />
 
       <section

@@ -11,8 +11,8 @@ export function Privacy() {
     <>
       <PageSEO
         title={`Privacy Policy | ${businessConfig.name}`}
-        description="Read how Bhanpura CSC Centre collects, uses, stores, and protects personal information submitted through its website and digital assistance services."
-        keywords={['Bhanpura CSC Centre privacy policy', 'personal data policy', 'website privacy Kaithal']}
+        description="Read how CSC Centre Bhanpura collects, uses, stores, and protects personal information submitted through its website and digital assistance services."
+        keywords={['CSC Centre Bhanpura privacy policy', 'personal data policy', 'website privacy Kaithal']}
       />
       <SchemaMarkup
         type="Organization"

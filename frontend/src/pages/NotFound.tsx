@@ -11,8 +11,8 @@ export function NotFound() {
     <>
       <PageSEO
         title={`Page Not Found | ${businessConfig.name}`}
-        description="This page could not be found. Visit Bhanpura CSC Centre online for digital assistance services in Kaithal, Haryana."
-        keywords={['Bhanpura CSC Centre']}
+        description="This page could not be found. Visit CSC Centre Bhanpura online for digital assistance services in Kaithal, Haryana."
+        keywords={['CSC Centre Bhanpura']}
         noindex
       />
 

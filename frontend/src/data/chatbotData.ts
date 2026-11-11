@@ -22,9 +22,9 @@ export const chatbotData = {
     mapLink: MAP_LINK,
   },
   aboutIntro:
-    'Bhanpura CSC Centre is a private digital assistance centre serving Village Bhanpura and surrounding areas in Kaithal district, Haryana.',
+    'CSC Centre Bhanpura is a private digital assistance centre serving Village Bhanpura and surrounding areas in Kaithal district, Haryana.',
   aboutText:
-    'Established to bridge the digital divide in our community, Bhanpura CSC Centre helps residents navigate online government services, applications, payments, and documentation — all without travelling to distant cities.',
+    'Established to bridge the digital divide in our community, CSC Centre Bhanpura helps residents navigate online government services, applications, payments, and documentation — all without travelling to distant cities.',
   aboutOwnerText:
     'Our centre is owned and operated by Harinder Singh. We understand the challenges of accessing digital services in rural areas — language barriers, complex portals, document requirements, and technical difficulties. That\'s why we offer patient, step-by-step assistance in Hindi, English, or Hinglish.',
   aboutNote:

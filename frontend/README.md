@@ -1,6 +1,6 @@
-# Bhanpura CSC Centre Website
+# CSC Centre Bhanpura Website
 
-A multipage React website for Bhanpura CSC Centre (Common Service Centre) built with Vite 5, React 18, Tailwind CSS 3, React Router 7, and Lucide React icons.
+A multipage React website for CSC Centre Bhanpura (Common Service Centre) built with Vite 5, React 18, Tailwind CSS 3, React Router 7, and Lucide React icons.
 
 ## Features
 
@@ -164,4 +164,4 @@ The `dist/` folder can be deployed to any static hosting:
 
 ## License
 
-Private project for Bhanpura CSC Centre.
+Private project for CSC Centre Bhanpura.

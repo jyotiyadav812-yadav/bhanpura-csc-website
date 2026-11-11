@@ -159,7 +159,7 @@ export function Payment() {
     <>
       <PageSEO
         title={`Online Payment | ${businessConfig.name}`}
-        description="Make a secure online payment for CSC services at Bhanpura CSC Centre. Pay via UPI, card, net banking, or wallet using Razorpay."
+        description="Make a secure online payment for CSC services at CSC Centre Bhanpura. Pay via UPI, card, net banking, or wallet using Razorpay."
         keywords={['CSC online payment Bhanpura', 'Razorpay payment Kaithal', 'Bhanpura CSC payment gateway', 'online service payment']}
       />
       <SchemaMarkup

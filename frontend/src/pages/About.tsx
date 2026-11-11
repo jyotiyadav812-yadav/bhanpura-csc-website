@@ -133,9 +133,9 @@ export function About() {
   return (
     <>
       <PageSEO
-        title={`About Bhanpura CSC Centre | Local Digital Help in Kaithal`}
-        description="Meet Bhanpura CSC Centre, a private digital assistance centre in Village Bhanpura, Kaithal, Haryana, offering practical guidance for online services."
-        keywords={['about Bhanpura CSC Centre', 'digital assistance centre Kaithal', 'CSC centre Bhanpura Haryana', 'local online service help']}
+        title={`About CSC Centre Bhanpura | Local Digital Help in Kaithal`}
+        description="Meet CSC Centre Bhanpura, a private digital assistance centre in Village Bhanpura, Kaithal, Haryana, offering practical guidance for online services."
+        keywords={['about CSC Centre Bhanpura', 'digital assistance centre Kaithal', 'CSC centre Bhanpura Haryana', 'local online service help']}
       />
       <SchemaMarkup
         type="LocalBusiness"
@@ -190,7 +190,7 @@ export function About() {
             id="about-title"
             title="About Our Centre"
             subtitle="WHO WE ARE"
-            description="Bhanpura CSC Centre is a private digital assistance centre serving Village Bhanpura and surrounding areas in Kaithal district, Haryana."
+            description="CSC Centre Bhanpura is a private digital assistance centre serving Village Bhanpura and surrounding areas in Kaithal district, Haryana."
           />
 
           <div className="mb-16 grid items-start gap-8 lg:grid-cols-12 lg:gap-10">
@@ -212,7 +212,7 @@ export function About() {
 <figure className="mt-8 overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-lg">
                   <img
                     src="/csc-centre.png"
-                    alt="Bhanpura CSC Centre building and storefront"
+                    alt="CSC Centre Bhanpura building and storefront"
                     loading="lazy"
                     decoding="async"
                     width={768}
@@ -222,11 +222,11 @@ export function About() {
                 </figure>
                 <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6">
                   <figure className="overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-lg">
-                    <img src="/csc-certificate.jpg" alt="Bhanpura CSC Centre registration certificate" loading="lazy" decoding="async" width={1200} height={906} className="h-72 w-full object-contain sm:h-80 md:h-96" />
+                    <img src="/csc-certificate.jpg" alt="CSC Centre Bhanpura registration certificate" loading="lazy" decoding="async" width={1200} height={906} className="h-72 w-full object-contain sm:h-80 md:h-96" />
                     <figcaption className="border-t border-slate-100 px-4 py-3 text-sm font-semibold text-slate-700">Registration Certificate</figcaption>
                   </figure>
                   <figure className="overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-lg">
-                    <img src="/csc-id-card.jpg" alt="Bhanpura CSC Centre identity card" loading="lazy" decoding="async" width={1000} height={902} className="h-72 w-full object-contain sm:h-80 md:h-96" />
+                    <img src="/csc-id-card.jpg" alt="CSC Centre Bhanpura identity card" loading="lazy" decoding="async" width={1000} height={902} className="h-72 w-full object-contain sm:h-80 md:h-96" />
                     <figcaption className="border-t border-slate-100 px-4 py-3 text-sm font-semibold text-slate-700">CSC ID Card</figcaption>
                   </figure>
                 </div>

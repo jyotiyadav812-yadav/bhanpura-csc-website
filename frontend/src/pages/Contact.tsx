@@ -92,8 +92,8 @@ export function Contact() {
     <>
       <PageSEO
         title={`Contact & Directions | ${businessConfig.name} Kaithal`}
-        description="Find and contact Bhanpura CSC Centre in Village Bhanpura, Kaithal, Haryana. Call or WhatsApp 9541611393, get directions, or send a message."
-        keywords={['contact Bhanpura CSC Centre', 'CSC centre address Kaithal', 'Bhanpura digital services phone', 'directions to CSC centre']}
+        description="Find and contact CSC Centre Bhanpura in Village Bhanpura, Kaithal, Haryana. Call or WhatsApp 9541611393, get directions, or send a message."
+        keywords={['contact CSC Centre Bhanpura', 'CSC centre address Kaithal', 'Bhanpura digital services phone', 'directions to CSC centre']}
       />
       <SchemaMarkup
         type="LocalBusiness"
@@ -235,11 +235,11 @@ export function Contact() {
               <div className="lg:grid lg:grid-cols-3 lg:gap-8">
                 <div className="lg:col-span-1">
                   <h3 id="map-heading" className="text-2xl font-bold text-gray-900 mb-2">Find Us on Map</h3>
-                  <p className="text-gray-600 mb-6">Bhanpura CSC Centre, Near Shiv Mandir, Yadav Chopal, Village Bhanpura, Kaithal</p>
+                  <p className="text-gray-600 mb-6">CSC Centre Bhanpura, Near Shiv Mandir, Yadav Chopal, Village Bhanpura, Kaithal</p>
                   <div className="space-y-3">
                     <div className="flex items-center gap-3 text-sm text-gray-600">
                       <MapPin className="w-5 h-5 text-primary-600 flex-shrink-0" aria-hidden="true" />
-                      <span>Bhanpura CSC Centre</span>
+                      <span>CSC Centre Bhanpura</span>
                     </div>
                     <div className="flex items-center gap-3 text-sm text-gray-600">
                       <MapPin className="w-5 h-5 text-primary-600 flex-shrink-0" aria-hidden="true" />
@@ -274,7 +274,7 @@ export function Contact() {
                 <div className="lg:col-span-2 mt-6 lg:mt-0">
                   <div className="rounded-2xl overflow-hidden border border-gray-200 shadow-md">
                     <iframe
-                      title="Bhanpura CSC Centre Location"
+                      title="CSC Centre Bhanpura Location"
                       src={MAP_EMBED_URL}
                       loading="lazy"
                       referrerPolicy="no-referrer-when-downgrade"
@@ -528,7 +528,7 @@ export function Contact() {
                 <div className="mt-4">
                   <div className="rounded-xl overflow-hidden aspect-video min-h-[200px]">
                     <iframe
-                      title="Bhanpura CSC Centre Location"
+                      title="CSC Centre Bhanpura Location"
                       src={MAP_EMBED_URL}
                       className="w-full h-full border-0"
                       loading="lazy"

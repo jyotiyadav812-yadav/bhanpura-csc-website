@@ -24,7 +24,7 @@ export function PageSEO({ title, description, keywords, noindex = false }: PageS
       <meta name="keywords" content={keywordList} />
       <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
       <meta property="og:type" content="website" />
-      <meta property="og:site_name" content="Bhanpura CSC Centre" />
+      <meta property="og:site_name" content="CSC Centre Bhanpura" />
       <meta property="og:url" content={pageUrl} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
@@ -33,7 +33,7 @@ export function PageSEO({ title, description, keywords, noindex = false }: PageS
       <meta property="og:image:type" content="image/jpeg" />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
-      <meta property="og:image:alt" content="Bhanpura CSC Centre - local digital assistance services in Kaithal" />
+      <meta property="og:image:alt" content="CSC Centre Bhanpura - local digital assistance services in Kaithal" />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />

@@ -1,5 +1,5 @@
 export const businessConfig = {
-  name: 'Bhanpura CSC Centre',
+  name: 'CSC Centre Bhanpura',
   type: 'Government Verified Common Service Centre (Privately Owned)',
   address: 'Near Shiv Mandir, Yadav Chopal, Village Bhanpura, Kaithal, Haryana 136027, India',
   location: {

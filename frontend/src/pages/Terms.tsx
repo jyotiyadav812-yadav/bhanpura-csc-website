@@ -13,8 +13,8 @@ export function Terms() {
     <>
       <PageSEO
         title={`Terms & Conditions | ${businessConfig.name}`}
-        description="Review the terms for using the Bhanpura CSC Centre website and its private digital assistance services in Kaithal, Haryana."
-        keywords={['Bhanpura CSC Centre terms', 'digital assistance terms and conditions', 'website terms Kaithal']}
+        description="Review the terms for using the CSC Centre Bhanpura website and its private digital assistance services in Kaithal, Haryana."
+        keywords={['CSC Centre Bhanpura terms', 'digital assistance terms and conditions', 'website terms Kaithal']}
       />
       <SchemaMarkup
         type="Organization"

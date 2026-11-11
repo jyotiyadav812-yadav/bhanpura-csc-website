@@ -1,7 +1,7 @@
 {
   "name": "bhanpura-csc-backend",
   "version": "1.0.0",
-  "description": "Backend API for Bhanpura CSC Centre",
+  "description": "Backend API for CSC Centre Bhanpura",
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",

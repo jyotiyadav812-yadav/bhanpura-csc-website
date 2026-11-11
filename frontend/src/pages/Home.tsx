@@ -225,8 +225,8 @@ export function Home() {
     <>
       <PageSEO
         title={`${businessConfig.name} | Online Forms & Digital Services in Kaithal`}
-        description="Get online form, document, photo, payment and certificate assistance at Bhanpura CSC Centre in Kaithal, Haryana. Call or WhatsApp for local support."
-        keywords={['Bhanpura CSC Centre', 'CSC centre in Bhanpura', 'digital services in Kaithal', 'online form filling Kaithal', 'document services', 'passport photo service']}
+        description="Get online form, document, photo, payment and certificate assistance at CSC Centre Bhanpura in Kaithal, Haryana. Call or WhatsApp for local support."
+        keywords={['CSC Centre Bhanpura', 'CSC centre in Bhanpura', 'digital services in Kaithal', 'online form filling Kaithal', 'document services', 'passport photo service']}
       />
       <SchemaMarkup
         type="LocalBusiness"
@@ -265,10 +265,10 @@ export function Home() {
         }}
       />
 
-      <section id="home" className="relative min-h-[480px] sm:min-h-[560px] md:min-h-[calc(100svh-80px)] flex items-center scroll-mt-24" aria-label="Bhanpura CSC Centre">
+      <section id="home" className="relative min-h-[480px] sm:min-h-[560px] md:min-h-[calc(100svh-80px)] flex items-center scroll-mt-24" aria-label="CSC Centre Bhanpura">
         <img
           src="/hero-banner.webp"
-          alt="Bhanpura CSC Centre, providing local digital assistance in Kaithal"
+          alt="CSC Centre Bhanpura, providing local digital assistance in Kaithal"
           loading="eager"
           decoding="async"
           width={1672}
@@ -413,7 +413,7 @@ export function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
             id="why-choose-title"
-            title="Why Choose Bhanpura CSC?"
+            title="Why Choose CSC Centre Bhanpura?"
             subtitle="Our Commitment"
             description="We focus on honest, transparent, and helpful service for our local community."
           />

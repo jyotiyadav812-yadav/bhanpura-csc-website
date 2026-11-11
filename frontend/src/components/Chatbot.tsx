@@ -51,7 +51,7 @@ function getBotResponse(input: string): { text: string; actions?: ChatAction[] }
 
   if (hasAny(norm, ['hi', 'hello', 'hey', 'namaste', 'hola', 'good morning', 'good evening', 'namaskar'])) {
     return {
-      text: 'Namaste! Mai Bhanpura CSC Centre ka assistant hu. Aap services, timing, address ya contact ke baare mein puch sakte hain.',
+      text: 'Namaste! Mai CSC Centre Bhanpura ka assistant hu. Aap services, timing, address ya contact ke baare mein puch sakte hain.',
     };
   }
 
@@ -167,7 +167,7 @@ export function Chatbot() {
     {
       id: 'init',
       role: 'assistant',
-      text: 'Namaste! Mai Bhanpura CSC Centre ka assistant hu. Aap services, timing, address ya contact ke baare mein puch sakte hain.',
+      text: 'Namaste! Mai CSC Centre Bhanpura ka assistant hu. Aap services, timing, address ya contact ke baare mein puch sakte hain.',
     },
   ]);
   const [input, setInput] = useState('');

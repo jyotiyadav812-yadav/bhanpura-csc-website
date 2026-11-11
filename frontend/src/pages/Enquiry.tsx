@@ -87,7 +87,7 @@ export function Enquiry() {
     <>
       <PageSEO
         title={`Request Digital Service Help | ${businessConfig.name}`}
-        description="Ask Bhanpura CSC Centre about online forms, documents, photos, payments, or certificates. Send your service enquiry and our team will follow up."
+        description="Ask CSC Centre Bhanpura about online forms, documents, photos, payments, or certificates. Send your service enquiry and our team will follow up."
         keywords={['CSC service enquiry Kaithal', 'request online form assistance', 'Bhanpura digital service enquiry', 'document service help']}
       />
       <SchemaMarkup

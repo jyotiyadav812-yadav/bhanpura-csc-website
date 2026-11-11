@@ -84,7 +84,7 @@ export function Services() {
     <>
       <PageSEO
         title={`CSC Services in Bhanpura, Kaithal | ${businessConfig.name}`}
-        description="Explore online form filling, payment guidance, passport photos, printing, scanning, PDF and certificate application assistance at Bhanpura CSC Centre."
+        description="Explore online form filling, payment guidance, passport photos, printing, scanning, PDF and certificate application assistance at CSC Centre Bhanpura."
         keywords={['CSC services Bhanpura', 'digital services Kaithal', 'online form filling', 'document printing and scanning', 'passport photos', 'certificate application help']}
       />
       <SchemaMarkup

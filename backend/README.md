@@ -1,6 +1,6 @@
-# Bhanpura CSC Centre - Backend API
+# CSC Centre Bhanpura - Backend API
 
-Backend API for the Bhanpura CSC Centre frontend. Built with Node.js, Express, and SQLite.
+Backend API for the CSC Centre Bhanpura frontend. Built with Node.js, Express, and SQLite.
 
 ## Features
 
@@ -112,7 +112,7 @@ const response = await fetch('http://localhost:3001/api/enquiries', {
 
 ```bash
 npm install -g pm2
-pm2 start src/index.js --name bhanpura-csc-api
+pm2 start src/index.js --name csc-centre-bhanpura-api
 pm2 startup
 pm2 save
 ```
