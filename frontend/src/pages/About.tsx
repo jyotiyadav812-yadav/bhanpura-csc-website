@@ -220,10 +220,16 @@ export function About() {
                     className="h-auto w-full object-contain"
                   />
                 </figure>
-                <div className="mt-6 grid grid-cols-2 gap-3">
-                  <img src="/csc-certificate.jpg" alt="Bhanpura CSC Centre registration certificate" loading="lazy" decoding="async" width={1200} height={906} className="h-48 w-full rounded-2xl bg-white object-contain shadow-md" />
-                  <img src="/csc-id-card.jpg" alt="Bhanpura CSC Centre identity card" loading="lazy" decoding="async" width={1000} height={902} className="h-48 w-full rounded-2xl bg-white object-contain shadow-md" />
-                </div>
+<div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5">
+  <figure className="overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-md">
+    <img src="/csc-certificate.jpg" alt="Bhanpura CSC Centre registration certificate" loading="lazy" decoding="async" width={1200} height={906} className="h-64 w-full object-contain sm:h-72 md:h-80" />
+    <figcaption className="border-t border-slate-100 px-4 py-2.5 text-xs font-medium text-slate-600">Registration Certificate</figcaption>
+  </figure>
+  <figure className="overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-md">
+    <img src="/csc-id-card.jpg" alt="Bhanpura CSC Centre identity card" loading="lazy" decoding="async" width={1000} height={902} className="h-64 w-full object-contain sm:h-72 md:h-80" />
+    <figcaption className="border-t border-slate-100 px-4 py-2.5 text-xs font-medium text-slate-600">CSC ID Card</figcaption>
+  </figure>
+</div>
                 <div className="mt-6 rounded-2xl border border-orange-200 bg-gradient-to-br from-orange-50 to-amber-50 p-5 text-sm leading-relaxed text-orange-900">
                   We are a <strong>private digital assistance centre</strong>, not an official government office. We don't issue certificates or approvals — we help you understand the process, prepare your documents, and complete applications correctly.
                 </div>
