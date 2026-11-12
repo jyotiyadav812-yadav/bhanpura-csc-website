@@ -278,10 +278,14 @@ export function About() {
                   </div>
                 </div>
               </div>
-              <figure className="mt-6 overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-lg">
-                <img src="/csc-certificate.jpg" alt="CSC Centre Bhanpura registration certificate" loading="lazy" decoding="async" width={1200} height={906} className="h-96 w-full object-contain sm:h-[32rem] md:h-[36rem]" />
-                <figcaption className="border-t border-slate-100 px-4 py-3 text-sm font-semibold text-slate-700">Registration Certificate</figcaption>
-              </figure>
+<figure className="mt-6 overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-lg">
+                  <img src="/csc-certificate.jpg" alt="CSC Centre Bhanpura registration certificate" loading="lazy" decoding="async" width={1200} height={906} className="h-96 w-full object-contain sm:h-[32rem] md:h-[36rem]" />
+                  <figcaption className="border-t border-slate-100 px-4 py-3 text-sm font-semibold text-slate-700">Registration Certificate</figcaption>
+                </figure>
+                <figure className="mt-6 overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-lg">
+                  <img src="/csc-id-card.jpg" alt="CSC Centre Bhanpura identity card" loading="lazy" decoding="async" width={1000} height={902} className="h-96 w-full object-contain sm:h-[32rem] md:h-[36rem]" />
+                  <figcaption className="border-t border-slate-100 px-4 py-3 text-sm font-semibold text-slate-700">CSC ID Card</figcaption>
+                </figure>
             </div>
           </div>
 
