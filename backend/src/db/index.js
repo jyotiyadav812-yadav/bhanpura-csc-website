@@ -52,27 +52,6 @@ db.exec(`
   CREATE INDEX IF NOT EXISTS idx_enquiries_status ON enquiries(status);
   CREATE INDEX IF NOT EXISTS idx_enquiries_created_at ON enquiries(created_at);
   CREATE INDEX IF NOT EXISTS idx_services_category ON services(category);
-
-  CREATE TABLE IF NOT EXISTS payments (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    razorpay_order_id TEXT UNIQUE NOT NULL,
-    razorpay_payment_id TEXT,
-    razorpay_signature TEXT,
-    amount INTEGER NOT NULL,
-    currency TEXT DEFAULT 'INR',
-    status TEXT DEFAULT 'created',
-    name TEXT NOT NULL,
-    mobile TEXT NOT NULL,
-    email TEXT,
-    service TEXT,
-    description TEXT,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
-  );
-
-  CREATE INDEX IF NOT EXISTS idx_payments_order_id ON payments(razorpay_order_id);
-  CREATE INDEX IF NOT EXISTS idx_payments_status ON payments(status);
-  CREATE INDEX IF NOT EXISTS idx_payments_created_at ON payments(created_at);
 `);
 
 const initDefaultAdmin = () => {
