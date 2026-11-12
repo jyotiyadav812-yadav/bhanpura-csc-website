@@ -221,8 +221,12 @@ export function About() {
                   />
                 </figure>
 <figure className="overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-lg">
-                    <img src="/csc-certificate.jpg" alt="CSC Centre Bhanpura registration certificate" loading="lazy" decoding="async" width={1200} height={906} className="w-full object-contain" />
+                    <img src="/csc-certificate.jpg" alt="CSC Centre Bhanpura registration certificate" loading="lazy" decoding="async" width={1200} height={906} className="h-80 w-full object-contain sm:h-96 md:h-[28rem]" />
                     <figcaption className="border-t border-slate-100 px-4 py-3 text-sm font-semibold text-slate-700">Registration Certificate</figcaption>
+                  </figure>
+                  <figure className="overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-lg">
+                    <img src="/csc-id-card.jpg" alt="CSC Centre Bhanpura identity card" loading="lazy" decoding="async" width={1000} height={902} className="h-80 w-full object-contain sm:h-96 md:h-[28rem]" />
+                    <figcaption className="border-t border-slate-100 px-4 py-3 text-sm font-semibold text-slate-700">CSC ID Card</figcaption>
                   </figure>
                 <div className="mt-6 rounded-2xl border border-orange-200 bg-gradient-to-br from-orange-50 to-amber-50 p-5 text-sm leading-relaxed text-orange-900">
                   We are a <strong>private digital assistance centre</strong>, not an official government office. We don't issue certificates or approvals — we help you understand the process, prepare your documents, and complete applications correctly.
