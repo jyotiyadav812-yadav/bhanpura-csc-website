@@ -193,7 +193,7 @@ export function About() {
             description="CSC Centre Bhanpura is a private digital assistance centre serving Village Bhanpura and surrounding areas in Kaithal district, Haryana."
           />
 
-          <div className="mb-16 grid items-start gap-8 lg:grid-cols-12 lg:gap-10">
+<div className="mb-16 grid items-start gap-8 lg:grid-cols-12 lg:gap-10">
             <div className="lg:col-span-7">
               <div className="relative overflow-hidden rounded-3xl border border-blue-100 bg-white p-6 shadow-xl shadow-blue-900/5 sm:p-8 lg:p-10">
                 <div className="absolute left-0 top-0 h-full w-1.5 bg-gradient-to-b from-blue-600 via-blue-400 to-orange-400" aria-hidden="true" />
@@ -209,7 +209,7 @@ export function About() {
                 <p className="mt-4 leading-relaxed text-slate-600">
                   Our centre is owned and operated by <strong className="text-blue-800">{teamInfo.owner}</strong>. We understand the challenges of accessing digital services in rural areas — language barriers, complex portals, document requirements, and technical difficulties. That's why we offer patient, step-by-step assistance in Hindi, English, or Hinglish.
                 </p>
-<figure className="mt-8 overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-lg">
+                <figure className="mt-8 overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-lg">
                   <img
                     src="/csc-centre.png"
                     alt="CSC Centre Bhanpura building and storefront"
@@ -222,11 +222,11 @@ export function About() {
                 </figure>
 <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2">
                   <figure className="overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-lg">
-                    <img src="/csc-certificate.jpg" alt="CSC Centre Bhanpura registration certificate" loading="lazy" decoding="async" width={1200} height={906} className="h-80 w-full object-contain sm:h-96 md:h-[28rem]" />
+                    <img src="/csc-certificate.jpg" alt="CSC Centre Bhanpura registration certificate" loading="lazy" decoding="async" width={1200} height={906} className="h-96 w-full object-contain sm:h-[32rem] md:h-[36rem]" />
                     <figcaption className="border-t border-slate-100 px-4 py-3 text-sm font-semibold text-slate-700">Registration Certificate</figcaption>
                   </figure>
                   <figure className="overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-lg">
-                    <img src="/csc-id-card.jpg" alt="CSC Centre Bhanpura identity card" loading="lazy" decoding="async" width={1000} height={902} className="h-80 w-full object-contain sm:h-96 md:h-[28rem]" />
+                    <img src="/csc-id-card.jpg" alt="CSC Centre Bhanpura identity card" loading="lazy" decoding="async" width={1000} height={902} className="h-96 w-full object-contain sm:h-[32rem] md:h-[36rem]" />
                     <figcaption className="border-t border-slate-100 px-4 py-3 text-sm font-semibold text-slate-700">CSC ID Card</figcaption>
                   </figure>
                 </div>
