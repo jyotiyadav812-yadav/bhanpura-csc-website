@@ -25,6 +25,7 @@ const contactSchema = z.object({
 
 let transporter = null;
 let emailConfigured = false;
+let brevoConfigured = false;
 
 function setupTransporter() {
   const host = process.env.SMTP_HOST;
@@ -41,22 +42,60 @@ function setupTransporter() {
   } else {
     emailConfigured = false;
   }
+
+  if (process.env.BREVO_API_KEY) {
+    brevoConfigured = true;
+  }
 }
 
 setupTransporter();
 
+async function sendViaBrevo(data) {
+  const res = await fetch('https://api.brevo.com/v3/smtp/email', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'api-key': process.env.BREVO_API_KEY,
+    },
+    body: JSON.stringify({
+      sender: { name: data.fromName, email: data.fromEmail },
+      to: [{ email: data.to }],
+      subject: data.subject,
+      text: data.text,
+    }),
+  });
+  if (!res.ok) {
+    const body = await res.text().catch(() => '');
+    throw new Error(`Brevo API error: ${res.status} ${body}`);
+  }
+}
+
 async function sendNotification(data) {
+  const to = process.env.NOTIFY_TO || 'digitalbhanpura@gmail.com';
+  const fromEmail = process.env.SMTP_USER || process.env.FROM_EMAIL || 'noreply@bhanpura-csc.vercel.app';
+  const fromName = process.env.FROM_NAME || 'Bhanpura CSC Website';
+  const text = `Name: ${data.name}\nMobile: ${data.mobile}\nEmail: ${data.email || '-'}\nSubject: ${data.subject || '-'}\n\nMessage:\n${data.message}`;
+
+  if (brevoConfigured) {
+    try {
+      await sendViaBrevo({ fromName, fromEmail, to, subject: `New contact message from ${data.name}`, text });
+      return;
+    } catch (err) {
+      console.error('Brevo send failed, falling back to SMTP:', err);
+    }
+  }
+
   if (!emailConfigured) {
-    console.warn('Email not configured: SMTP_HOST/SMTP_USER/SMTP_PASS missing. Message saved to database only.');
+    console.warn('Email not configured: BREVO_API_KEY or SMTP_HOST/SMTP_USER/SMTP_PASS missing. Message saved to database only.');
     return;
   }
-  const to = process.env.NOTIFY_TO || 'digitalbhanpura@gmail.com';
+
   try {
     await transporter.sendMail({
       from: process.env.SMTP_USER,
       to,
       subject: `New contact message from ${data.name}`,
-      text: `Name: ${data.name}\nMobile: ${data.mobile}\nEmail: ${data.email || '-'}\nSubject: ${data.subject || '-'}\n\nMessage:\n${data.message}`,
+      text,
     });
   } catch (err) {
     console.error('Email send failed:', err);

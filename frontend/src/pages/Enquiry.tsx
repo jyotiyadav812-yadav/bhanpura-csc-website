@@ -9,6 +9,7 @@ import { PageSEO } from '../components/PageSEO';
 import { SchemaMarkup } from '../components/SchemaMarkup';
 import { cn } from '../utils/helpers';
 import { submitEnquiry } from '../utils/api';
+import { submitWeb3Forms, isWeb3FormsConfigured } from '../utils/web3forms';
 interface FormData {
   name: string;
   mobile: string;
@@ -57,18 +58,32 @@ export function Enquiry() {
     if (!validateForm()) return;
     setSubmitStatus('submitting');
     setErrors(prev => ({ ...prev, general: '' }));
+    const serviceName = services.find(s => s.id === formData.service)?.name || formData.service;
+    const payload = {
+      name: formData.name.trim(),
+      mobile: formData.mobile.replace(/\D/g, ''),
+      service: serviceName,
+      message: formData.message.trim(),
+      _hp: botcheck,
+    };
+
     try {
-      const serviceName = services.find(s => s.id === formData.service)?.name || formData.service;
-      await submitEnquiry({
-        name: formData.name.trim(),
-        mobile: formData.mobile.replace(/\D/g, ''),
-        service: serviceName,
-        message: formData.message.trim(),
-        privacyConsent,
-        _hp: botcheck,
-      });
+      if (isWeb3FormsConfigured()) {
+        await submitWeb3Forms(payload);
+      } else {
+        await submitEnquiry({ ...payload, privacyConsent });
+      }
       setSubmitStatus('success');
     } catch (error) {
+      if (isWeb3FormsConfigured()) {
+        try {
+          await submitEnquiry({ ...payload, privacyConsent });
+          setSubmitStatus('success');
+          return;
+        } catch {
+          // fall through to show error
+        }
+      }
       setSubmitStatus('idle');
       setErrors(prev => ({
         ...prev,

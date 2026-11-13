@@ -5,6 +5,33 @@ const { authMiddleware, adminMiddleware } = require('../middleware/auth');
 
 const router = express.Router();
 
+const brevoConfigured = Boolean(process.env.BREVO_API_KEY);
+
+async function sendEnquiryNotification(data) {
+  if (!brevoConfigured) return;
+  const to = process.env.NOTIFY_TO || 'digitalbhanpura@gmail.com';
+  const fromEmail = process.env.FROM_EMAIL || 'noreply@bhanpura-csc.vercel.app';
+  const fromName = process.env.FROM_NAME || 'Bhanpura CSC Website';
+  const text = `New enquiry from ${data.name}\nMobile: ${data.mobile}\nEmail: ${data.email || '-'}\nService: ${data.service}\n\nMessage:\n${data.message}`;
+  try {
+    await fetch('https://api.brevo.com/v3/smtp/email', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'api-key': process.env.BREVO_API_KEY,
+      },
+      body: JSON.stringify({
+        sender: { name: fromName, email: fromEmail },
+        to: [{ email: to }],
+        subject: `New enquiry: ${data.service}`,
+        text,
+      }),
+    });
+  } catch (err) {
+    console.error('Brevo enquiry notification failed:', err);
+  }
+}
+
 const enquirySchema = z.object({
   name: z.string().min(1, 'Name is required').max(100),
   mobile: z.string().regex(/^[6-9]\d{9}$/, 'Enter a valid 10-digit Indian mobile number'),
@@ -38,6 +65,8 @@ router.post('/', async (req, res) => {
     );
 
     const enquiry = db.prepare('SELECT * FROM enquiries WHERE id = ?').get(result.lastInsertRowid);
+
+    await sendEnquiryNotification({ ...data, service: data.service });
 
     res.status(201).json({
       success: true,

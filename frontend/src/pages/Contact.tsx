@@ -8,6 +8,7 @@ import { PageSEO } from '../components/PageSEO';
 import { SchemaMarkup } from '../components/SchemaMarkup';
 import { cn, getWhatsAppUrl, getDefaultWhatsAppMessage } from '../utils/helpers';
 import { submitContact } from '../utils/api';
+import { submitWeb3Forms, isWeb3FormsConfigured } from '../utils/web3forms';
 
 const MAP_EMBED_URL = "https://www.google.com/maps?q=29.7802515,76.3262961(Bhanpura+CSC+Centre)&z=17&output=embed";
 const MAP_LINK = "https://maps.app.goo.gl/JgaFfhiGEEunbvQ7A";
@@ -64,19 +65,36 @@ export function Contact() {
     if (!validateForm()) return;
     setSubmitStatus('submitting');
     setSubmitError(null);
+    const payload = {
+      subject: formData.subject.trim(),
+      name: formData.name.trim(),
+      mobile: formData.mobile.replace(/\D/g, ''),
+      email: formData.email.trim() || undefined,
+      message: formData.message.trim(),
+      _hp: botcheck,
+    };
+
     try {
-      await submitContact({
-        subject: formData.subject.trim(),
-        name: formData.name.trim(),
-        mobile: formData.mobile.replace(/\D/g, ''),
-        email: formData.email.trim() || undefined,
-        message: formData.message.trim(),
-        _hp: botcheck,
-      });
+      if (isWeb3FormsConfigured()) {
+        await submitWeb3Forms({ ...payload, service: payload.subject });
+      } else {
+        await submitContact(payload);
+      }
       setSubmitStatus('success');
       setFormData({ name: '', mobile: '', email: '', subject: '', message: '' });
       setBotcheck('');
     } catch (error) {
+      if (isWeb3FormsConfigured()) {
+        try {
+          await submitContact(payload);
+          setSubmitStatus('success');
+          setFormData({ name: '', mobile: '', email: '', subject: '', message: '' });
+          setBotcheck('');
+          return;
+        } catch {
+          // fall through to show error
+        }
+      }
       setSubmitStatus('idle');
       setSubmitError(error instanceof Error ? error.message : 'Message nahi ja paya. Kripya WhatsApp ya call karke sampark karein.');
     }
