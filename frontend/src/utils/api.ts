@@ -34,7 +34,7 @@ export function submitContact(payload: {
   subject: string;
   message: string;
   _hp?: string;
-}): Promise<{ ok: boolean; id: number }> {
+}): Promise<{ ok: boolean; id: number; emailSent?: boolean }> {
   return post('/api/contact', payload);
 }
 

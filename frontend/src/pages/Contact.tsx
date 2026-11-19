@@ -42,6 +42,7 @@ export function Contact() {
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [botcheck, setBotcheck] = useState('');
+  const [emailSent, setEmailSent] = useState<boolean | null>(null);
 
   const whatsappUrl = getWhatsAppUrl(getDefaultWhatsAppMessage());
   const phoneUrl = `tel:+91${businessConfig.contact.phone}`;
@@ -77,8 +78,10 @@ export function Contact() {
     try {
       if (isWeb3FormsConfigured()) {
         await submitWeb3Forms({ ...payload, service: payload.subject });
+        setEmailSent(true);
       } else {
-        await submitContact(payload);
+        const result = await submitContact(payload);
+        setEmailSent(Boolean(result?.emailSent));
       }
       setSubmitStatus('success');
       setFormData({ name: '', mobile: '', email: '', subject: '', message: '' });
@@ -320,11 +323,30 @@ export function Contact() {
                   {submitStatus === 'success' ? (
                 <div className="bg-green-50 border border-green-200 rounded-xl p-6 text-center" role="alert">
                   <CheckCircle className="w-12 h-12 text-green-600 mx-auto mb-3" aria-hidden="true" />
-                  <h3 className="text-xl font-semibold text-green-800 mb-2">Message Sent!</h3>
-                  <p className="text-green-700 mb-4">Thank you for contacting us. We'll respond soon. For urgent queries, please call or WhatsApp us.</p>
+                  {emailSent === false ? (
+                    <>
+                      <h3 className="text-xl font-semibold text-amber-800 mb-2">Message Saved</h3>
+                      <p className="text-amber-700 mb-2">
+                        Thank you for contacting us. Your message has been saved, but the email notification could not be sent right now.
+                      </p>
+                      <p className="text-amber-700 mb-4">For a faster response, please WhatsApp or call us directly.</p>
+                      <div className="flex gap-3 justify-center">
+                        <a href="https://wa.me/919541611393" target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-green-600 text-white rounded-lg text-sm font-semibold">WhatsApp</a>
+                        <a href="tel:9541611393" className="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg text-sm font-semibold">Call</a>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <h3 className="text-xl font-semibold text-green-800 mb-2">Message Sent!</h3>
+                      <p className="text-green-700 mb-4">Thank you for contacting us. We'll respond soon. For urgent queries, please call or WhatsApp us.</p>
+                    </>
+                  )}
                   <button
                     type="button"
-                    onClick={() => setSubmitStatus('idle')}
+                    onClick={() => {
+                      setSubmitStatus('idle');
+                      setEmailSent(null);
+                    }}
                     className="px-6 py-2 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700 transition-colors"
                   >
                     Send Another Message

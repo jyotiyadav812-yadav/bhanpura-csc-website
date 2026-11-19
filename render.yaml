@@ -18,3 +18,12 @@ services:
         sync: false
       - key: DB_PATH
         value: ./data/csc.db
+      # Email notifications (Brevo or SMTP). Set these in the Render dashboard.
+      - key: BREVO_API_KEY
+        sync: false
+      - key: NOTIFY_TO
+        sync: false
+      - key: FROM_EMAIL
+        sync: false
+      - key: FROM_NAME
+        sync: false

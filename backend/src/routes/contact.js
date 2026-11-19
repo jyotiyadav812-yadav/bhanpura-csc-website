@@ -79,7 +79,7 @@ async function sendNotification(data) {
   if (brevoConfigured) {
     try {
       await sendViaBrevo({ fromName, fromEmail, to, subject: `New contact message from ${data.name}`, text });
-      return;
+      return true;
     } catch (err) {
       console.error('Brevo send failed, falling back to SMTP:', err);
     }
@@ -87,7 +87,7 @@ async function sendNotification(data) {
 
   if (!emailConfigured) {
     console.warn('Email not configured: BREVO_API_KEY or SMTP_HOST/SMTP_USER/SMTP_PASS missing. Message saved to database only.');
-    return;
+    return false;
   }
 
   try {
@@ -97,8 +97,10 @@ async function sendNotification(data) {
       subject: `New contact message from ${data.name}`,
       text,
     });
+    return true;
   } catch (err) {
     console.error('Email send failed:', err);
+    return false;
   }
 }
 
@@ -127,9 +129,9 @@ router.post('/', contactLimiter, async (req, res) => {
 
     const row = db.prepare('SELECT * FROM enquiries WHERE id = ?').get(result.lastInsertRowid);
 
-    await sendNotification({ ...data, subject: service });
+    const emailSent = await sendNotification({ ...data, subject: service });
 
-    res.status(201).json({ ok: true, id: row.id });
+    res.status(201).json({ ok: true, id: row.id, emailSent });
   } catch (error) {
     if (error && error.name === 'ZodError') {
       return res.status(400).json({
